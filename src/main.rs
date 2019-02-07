@@ -14,13 +14,9 @@ fn main() {
     // Read test.pcap
     for pcap in pcap_reader {
         //Check if there is no error
-        let pcap = pcap.unwrap();
-        //println!("{}", pcap);
+        let pkt = pcap.unwrap();
 
         counter = counter + 1;
-        //Write each packet of test.pcap in out.pcap
-        //pcap_writer.write_packet(&pcap).unwrap();
-        //
     }
     println!("There are {} number of packets!", counter);
 }
