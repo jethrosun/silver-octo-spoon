@@ -1,0 +1,9 @@
+[package]
+name = "tls-interceptor"
+version = "0.1.0"
+authors = ["Jethro Shuwen Sun <jethrosun@ccs.neu.edu>"]
+edition = "2018"
+
+[dependencies]
+"rustls" = "*"
+pcap-file = "0.10.0"
