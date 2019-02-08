@@ -1,4 +1,3 @@
-#![feature(try_from)]
 
 use pcap_file::{PcapReader, PcapWriter};
 use std::fs::File;
@@ -15,6 +14,17 @@ fn main() {
     for pcap in pcap_reader {
         //Check if there is no error
         let pkt = pcap.unwrap();
+
+        println!("{:?}", pkt);
+        /*
+        println!("hdr {}", pkt.get_header());
+        let payload = pkt.get_payload();
+        print!("Payload: ");
+        for p in payload {
+            print!("{:x} ", p);
+        }
+        println!("");
+*/
 
         counter = counter + 1;
     }
