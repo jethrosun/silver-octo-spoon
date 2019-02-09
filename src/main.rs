@@ -1,32 +1,49 @@
+//! This is my awesome crate
+//!
+//! Here goes some other description of what it is and what is does
+//!
+//! # Examples
+//! ```
+//! fn sum2(n1: i32, n2: i32) -> i32 {
+//!   n1 + n2
+//! }
+//! # assert_eq!(4, sum2(2, 2));
+//! ```
 
+extern crate etherparse;
+
+use etherparse::SlicedPacket;
 use pcap_file::{PcapReader, PcapWriter};
+
 use std::fs::File;
+
+use std::net::Ipv4Addr;
+
+use smoltcp::phy::ChecksumCapabilities;
+use smoltcp::wire::*;
 
 fn main() {
     println!("Hello, world!");
-    let file_in = File::open("data/tls-real.pcap").expect("Error opening file");
-    let pcap_reader = PcapReader::new(file_in).unwrap();
-
-    //let file_out = File::create("data/output/out.pcap").expect("Error creating file");
-    //let mut pcap_writer = PcapWriter::new(file_out).unwrap();
-    let mut counter = 0;
-    // Read test.pcap
-    for pcap in pcap_reader {
-        //Check if there is no error
-        let pkt = pcap.unwrap();
-
-        println!("{:?}", pkt);
-        /*
-        println!("hdr {}", pkt.get_header());
-        let payload = pkt.get_payload();
-        print!("Payload: ");
-        for p in payload {
-            print!("{:x} ", p);
-        }
-        println!("");
-*/
-
-        counter = counter + 1;
+    let repr = Ipv4Repr {
+        src_addr: Ipv4Address::new(10, 0, 0, 1),
+        dst_addr: Ipv4Address::new(10, 0, 0, 2),
+        protocol: IpProtocol::Tcp,
+        payload_len: 10,
+        hop_limit: 64,
+    };
+    let mut buffer = vec![0; repr.buffer_len() + repr.payload_len];
+    {
+        // emission
+        let mut packet = Ipv4Packet::new_unchecked(&mut buffer);
+        repr.emit(&mut packet, &ChecksumCapabilities::default());
     }
-    println!("There are {} number of packets!", counter);
+    {
+        // parsing
+        let packet = Ipv4Packet::new_checked(&buffer).expect("truncated packet");
+        let parsed =
+            Ipv4Repr::parse(&packet, &ChecksumCapabilities::default()).expect("malformed packet");
+        assert_eq!(repr, parsed);
+
+        println!("{:?}", packet);
+    }
 }

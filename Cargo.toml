@@ -7,12 +7,5 @@ edition = "2018"
 [dependencies]
 "rustls" = "*"
 pcap-file = "0.10.0"
-e2d2 = { path = "../../framework", features = ["performance"] }
-time = ">=0.1.0"
-getopts = "*"
-rand = "0.3"
-fnv = "*"
-
-[features]
-default = []
-print = []
+etherparse = "0.8.0"
+smoltcp = ">=0.5.0"
