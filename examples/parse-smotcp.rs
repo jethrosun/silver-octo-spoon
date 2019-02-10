@@ -15,6 +15,7 @@ use failure::{err_msg, Error};
 use futures::prelude::*;
 //use h2::Codec;
 use pcap::Capture;
+use rustls::internal::msgs::enums::ContentType;
 use smoltcp::wire::*;
 use tokio_io::io::read_exact;
 

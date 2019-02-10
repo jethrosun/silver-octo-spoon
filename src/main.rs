@@ -15,16 +15,9 @@ use failure::{err_msg, Error};
 use futures::prelude::*;
 //use h2::Codec;
 use pcap::Capture;
-use protocol::ETH_HLEN;
+use rustls::internal::msgs::enums::ContentType;
 use smoltcp::wire::*;
 use tokio_io::io::read_exact;
-
-use rustls::internal::msgs::{
-    codec::Codec, enums::ContentType, enums::ServerNameType, handshake::ClientHelloPayload,
-    handshake::HandshakePayload, handshake::HasServerExtensions, handshake::ServerHelloPayload,
-    handshake::ServerNamePayload, message::Message as TLSMessage, message::MessagePayload,
-};
-use rustls::{CipherSuite, ProtocolVersion};
 
 fn parse_endpoint(endpoint: &str) -> Result<IpEndpoint, Error> {
     let mut iter = endpoint.rsplitn(2, ':');
@@ -35,21 +28,6 @@ fn parse_endpoint(endpoint: &str) -> Result<IpEndpoint, Error> {
         .parse::<IpAddress>()
         .map_err(|_| err_msg("failed to parse ip address"))?;
     Ok(IpEndpoint::new(addr, port))
-}
-
-#[inline]
-fn iph_len(buf: &[u8]) -> usize {
-    ((buf[ETH_HLEN] & 0x0F) as usize) << 2
-}
-
-#[inline]
-fn tcp_len(buf: &[u8]) -> usize {
-    ((buf[ETH_HLEN + iph_len(buf) + 12] as usize) >> 4) << 2
-}
-
-#[inline]
-fn tcp_payload_offset(buf: &[u8]) -> usize {
-    ETH_HLEN + iph_len(buf) + tcp_len(buf)
 }
 
 fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
@@ -74,21 +52,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                         println!("Matched!!!!");
                         println!("{:?}", tcp.payload());
 
-                        let mut version = ProtocolVersion::Unknown(0x0000);
-                        let (handshake, version) = {
-                            let offset = tcp_payload_offset(tcp.payload());
-                            let mut packet = TLSMessage::read_bytes(&tcp.payload()[offset..])?;
-
-                            if packet.typ == ContentType::Handshake && packet.decode_payload() {
-                                if let MessagePayload::Handshake(x) = packet.payload {
-                                    (x, packet.version)
-                                } else {
-                                    Ok(())
-                                }
-                            } else {
-                                Ok(())
-                            }
-                        };
+                        ;
                     }
                 }
             }
@@ -102,6 +66,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
 fn main() {
     env_logger::init();
 
+    println!("{}", ContentType::Handshake);
     let input_file = "data/tls-all.pcap";
 
     if let Err(err) = dump_file(input_file) {
