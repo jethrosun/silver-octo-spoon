@@ -15,17 +15,15 @@ use failure::{err_msg, Error};
 use futures::prelude::*;
 //use h2::Codec;
 use pcap::Capture;
-use smoltcp::wire::*;
-use tokio_io::io::read_exact;
-
 use rustls::internal::msgs::{
     codec::Codec, enums::ContentType, enums::ServerNameType, handshake::ClientHelloPayload,
     handshake::HandshakePayload, handshake::HasServerExtensions, handshake::ServerHelloPayload,
     handshake::ServerNamePayload, message::Message as TLSMessage, message::MessagePayload,
 };
 use rustls::{CipherSuite, ProtocolVersion};
-
+use smoltcp::wire::*;
 use std::net::Ipv4Addr;
+use tokio_io::io::read_exact;
 
 fn parse_endpoint(endpoint: &str) -> Result<IpEndpoint, Error> {
     let mut iter = endpoint.rsplitn(2, ':');
@@ -42,27 +40,40 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
     let mut counter = 1;
     let mut cap = Capture::from_file(path)?;
 
-    let src_endpoint = parse_endpoint("192.30.253.117:10")?;
-    let dst_endpoint = parse_endpoint("10.200.205.238:59295")?;
+    // define a bogus client side ip addr
+    let client_endpoint = parse_endpoint("10.200.205.238:59295")?;
+    // server side ip addr: google
+    let server_endpoint = parse_endpoint("192.30.253.117:443")?;
 
-    while let Ok(pkt) = cap.next() {
+    while let Ok(packet) = cap.next() {
         //println!("{:?}", packet); // sanity check
-        let mut version = ProtocolVersion::Unknown(0x0000);
-        //let (handshake, version) = {
-        let mut packet =
-            TLSMessage::read_bytes(&pkt()).ok_or(err_msg("packet read byte failed"))?;
 
-        if packet.typ == ContentType::Handshake && packet.decode_payload() {
-            if let MessagePayload::Handshake(x) = packet.payload {
-                println!("{:?}, {:?}", x, packet.version);
-            //Ok(())
-            } else {
-                //Ok(())
-                //return None;
+        let ether = EthernetFrame::new_checked(packet.data).map_err(err_msg)?;
+        if EthernetProtocol::Ipv4 == ether.ethertype() {
+            let ipv4 = Ipv4Packet::new_checked(ether.payload()).map_err(err_msg)?;
+
+            // if packet goes to client
+            if IpAddress::from(ipv4.dst_addr()) == client_endpoint.addr {
+                let tcp = TcpPacket::new_checked(ipv4.payload()).map_err(err_msg)?;
+                if tcp.dst_port() == client_endpoint.port {
+                    println!("This is a packet for the client!!!!");
+                    //println!("Payload is: {:x?}", tcp.payload());
+
+                    let mut packet = TLSMessage::read_bytes(&tcp.payload_mut())?; //.ok_or("Failed")?;
+                                                                                  //println!("{:?}", packet);
+                    if packet.typ == ContentType::Handshake && packet.decode_payload() {
+                        if let MessagePayload::Handshake(x) = packet.payload {
+                            println!("Handshake is {}, packet version is {}", x, packet.version);
+                        } else {
+                            println!("Packet payload doesnot match handshake!");
+                        }
+                    } else {
+                        println!("Packet type is not matched!")
+                    }
+                }
             }
-        } else {
-            //Ok(())
-            //return None;
+
+            counter = counter + 1;
         }
     }
     Ok(())
@@ -71,7 +82,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
 fn main() {
     env_logger::init();
 
-    println!("{:?}", ContentType::Handshake);
+    //let input_file = "data/tls-cert.pcap";
     let input_file = "data/tls-all.pcap";
 
     if let Err(err) = dump_file(input_file) {
