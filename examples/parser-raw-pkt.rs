@@ -6,7 +6,6 @@ extern crate h2;
 extern crate pcap;
 extern crate rustls;
 extern crate smoltcp;
-extern crate tokio_io;
 
 use std::path::Path;
 
@@ -16,7 +15,6 @@ use futures::prelude::*;
 //use h2::Codec;
 use pcap::Capture;
 use smoltcp::wire::*;
-use tokio_io::io::read_exact;
 
 use rustls::internal::msgs::{
     codec::Codec, enums::ContentType, enums::ServerNameType, handshake::ClientHelloPayload,

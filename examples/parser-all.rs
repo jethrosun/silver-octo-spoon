@@ -6,7 +6,6 @@ extern crate h2;
 extern crate pcap;
 extern crate rustls;
 extern crate smoltcp;
-extern crate tokio_io;
 
 use std::path::Path;
 
@@ -23,7 +22,6 @@ use rustls::internal::msgs::{
 use rustls::{CipherSuite, ProtocolVersion};
 use smoltcp::wire::*;
 use std::net::Ipv4Addr;
-use tokio_io::io::read_exact;
 
 fn parse_endpoint(endpoint: &str) -> Result<IpEndpoint, Error> {
     let mut iter = endpoint.rsplitn(2, ':');

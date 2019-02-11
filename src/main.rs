@@ -1,29 +1,45 @@
+//! Simple TLS parser.
+//!
+//! This Rust crate is a proof-of-concept implementation of a TLS certificate validator. As a PoC
+//! currently we only use pcap packet traces as input. The current progress is tracked in `examples/` and
+//! the active developing part is in `src/`.
+//!
+//! # Examples (missing)
+//! ```sh
+//! # this command will parse tls-all.pcap file and give the output
+//! $ cargo run --example parser-all
+//! # this command will parse tls-cert.pcap file and give the output
+//! $ cargo run --example parser-cert
+//! ```
+//! # TODO
+//! * handle tcp segment reassemble so that we can retrieve the certificate.
 extern crate clap;
 extern crate env_logger;
 extern crate failure;
 extern crate futures;
-extern crate h2;
+//extern crate h2;
 extern crate pcap;
 extern crate rustls;
 extern crate smoltcp;
-//extern crate tokio_io;
 
 use std::path::Path;
 
-use clap::{App, Arg};
+//use clap::{App, Arg};
 use failure::{err_msg, Error};
-use futures::prelude::*;
+//use futures::prelude::*;
 //use h2::Codec;
 use pcap::Capture;
 use rustls::internal::msgs::{
-    codec::Codec, enums::ContentType, enums::ServerNameType, handshake::ClientHelloPayload,
-    handshake::HandshakePayload, handshake::HasServerExtensions, handshake::ServerHelloPayload,
-    handshake::ServerNamePayload, message::Message as TLSMessage, message::MessagePayload,
+    codec::Codec, enums::ContentType, message::Message as TLSMessage, message::MessagePayload,
 };
-use rustls::{CipherSuite, ProtocolVersion};
+use rustls::internal::msgs::{
+    enums::ServerNameType, handshake::ClientHelloPayload, handshake::HandshakePayload,
+    handshake::HasServerExtensions, handshake::ServerHelloPayload, handshake::ServerNamePayload,
+};
+
+//use rustls::{CipherSuite, ProtocolVersion};
 use smoltcp::wire::*;
-use std::net::Ipv4Addr;
-//use tokio_io::io::read_exact;
+//use std::net::Ipv4Addr;
 
 fn parse_endpoint(endpoint: &str) -> Result<IpEndpoint, Error> {
     let mut iter = endpoint.rsplitn(2, ':');
@@ -43,7 +59,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
     // define a bogus client side ip addr
     let client_endpoint = parse_endpoint("10.200.205.238:59295")?;
     // server side ip addr: google
-    let server_endpoint = parse_endpoint("192.30.253.117:443")?;
+    //let server_endpoint = parse_endpoint("192.30.253.117:443")?;
 
     while let Ok(packet) = cap.next() {
         //println!("{:?}", packet); // sanity check
@@ -60,8 +76,8 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                     //println!("Payload is: {:x?}", tcp.payload());
 
                     let pkt = TLSMessage::read_bytes(&tcp.payload());
-
                     //println!("{:?}", packet);
+
                     match pkt {
                         Some(mut packet) => {
                             // TODO: need to reassemble tcp segements
@@ -96,14 +112,12 @@ fn main() {
 
     if let Err(err) = dump_file(input_file) {
         eprintln!("error: failed to dump pcap file");
-        for cause in err.causes() {
+        for cause in err.iter_chain() {
             eprintln!("caused by: {}", cause);
         }
-
         for line in err.backtrace().to_string().lines() {
             eprintln!("{}", line);
         }
-
         std::process::exit(1);
     }
 }
