@@ -21,6 +21,7 @@ extern crate futures;
 extern crate pcap;
 extern crate rustls;
 extern crate smoltcp;
+use std::collections::HashMap;
 
 use std::path::Path;
 
@@ -41,6 +42,23 @@ use rustls::internal::msgs::{
 use smoltcp::wire::*;
 //use std::net::Ipv4Addr;
 
+/// For a not finished packet we simply add it to the flow cache.
+///
+/// If the end point pair has never been seen before, we cache the current packet.
+fn insert_flow_cache(endpoint: &IpEndpoint, pkt: Option<Ipv4Packet>) -> &str {
+    match endpoint {
+        _ => "Not recognized!",
+    }
+}
+
+/// The current packet belongs to a flow and the flow
+///
+fn dump_flow(endpoint: &IpEndpoint) -> &str {
+    match endpoint {
+        _ => "Not recognized!",
+    }
+}
+
 /// Endpoint parsing function.
 ///
 /// The function will take a simple endpoint string and parse it into ip address and port number as
@@ -60,11 +78,13 @@ fn parse_endpoint(endpoint: &str) -> Result<IpEndpoint, Error> {
 ///
 /// The function will take a pcap file as input and parse it for TLS handshake messages.
 fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
+    //let mut flows = HashMap::new();
     let mut counter = 1;
     let mut cap = Capture::from_file(path)?;
 
     // define a bogus client side ip addr
     let client_endpoint = parse_endpoint("10.200.205.238:59295")?;
+    println!("{}", client_endpoint);
     // server side ip addr: google
     //let server_endpoint = parse_endpoint("192.30.253.117:443")?;
 
@@ -77,41 +97,44 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
 
             // if packet goes to client
             if IpAddress::from(ipv4.dst_addr()) == client_endpoint.addr {
-                let tcp = TcpPacket::new_checked(ipv4.payload()).map_err(err_msg)?;
-                let _seq_num = tcp.seq_number();
-                let _ack_num = tcp.ack_number();
-                let _fin = tcp.fin();
+                let tcp_pkt = TcpPacket::new_checked(ipv4.payload()).map_err(err_msg)?;
+                let _seq_num = tcp_pkt.seq_number();
+                let _ack_num = tcp_pkt.ack_number();
+                let _fin = tcp_pkt.fin();
+                let _psh = tcp_pkt.psh();
 
-                if tcp.dst_port() == client_endpoint.port {
+                if tcp_pkt.dst_port() == client_endpoint.port {
+                    println!();
+                    println!(
+                        "PACKET: {} --- Seq No: {}, ACK No: {}, FIN Flag: {} PSH Flag P{}",
+                        counter, _seq_num, _ack_num, _fin, _psh
+                    );
+
                     println!("This is a packet for the client!!!!");
                     //println!("Payload is: {:x?}", tcp.payload());
 
-                    let pkt = TLSMessage::read_bytes(&tcp.payload());
+                    let pkt = TLSMessage::read_bytes(&tcp_pkt.payload());
                     //println!("{:?}", packet);
-                    println!(
-                        "PACKET: {} --- Seq No: {}, ACK No: {}, FIN Flag: {}",
-                        counter, _seq_num, _ack_num, _fin
-                    );
 
                     match pkt {
                         Some(mut packet) => {
+                            println!("");
                             println!("Type of the packet is: {:?}", packet.typ);
                             // TODO: need to reassemble tcp segements
-                            if packet.typ == ContentType::Handshake && packet.decode_payload() {
-                                println!("Packet type doesn't match handshake!");
-                                println!("But we want to print it anyway {:?}", packet.payload);
-                                let prev_packet = packet;
+                            if packet.typ == ContentType::Handshake && _psh == false {
+                                println!("Packet is a TLS handshake but it is not yet complete, we now insert the current packet into the flow cache!");
+                                let string = insert_flow_cache(&client_endpoint, tcp_pkt);
                             } else {
-                                println!("Packet type doesn't match handshake!");
-                                println!("But we want to print it anyway {:?}", packet.payload);
-                                let prev_packet = packet;
+                                println!("Packet is a TLS handshake!");
+                                //rintln!("But we want to print it anyway {:?}", packet.payload);
                             }
                         }
                         None => {
+                            println!("");
                             println!("There is no packet");
                             // I should concat this to the previous packet
                             //println!("Previous packet {:?}", prev_packet);
-                            println!("Current packet {:?}", packet);
+                            println!("So we just print the bytes we have {:?}", pkt);
                         }
                     }
                 }
