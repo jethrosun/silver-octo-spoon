@@ -98,21 +98,21 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                             println!("Type of the packet is: {:?}", packet.typ);
                             // TODO: need to reassemble tcp segements
                             if packet.typ == ContentType::Handshake && packet.decode_payload() {
-                                if let MessagePayload::Handshake(x) = packet.payload {
-                                    println!(
-                                        "Handshake is {:?}, packet version is {:?}",
-                                        x, packet.version
-                                    );
-                                } else {
-                                    println!("Packet payload type doesn't match handshake!");
-                                    println!("But we want to print it anyway {:?}", packet.payload);
-                                }
-                            } else {
-                                println!("Packet payload type doesn't match handshake!");
+                                println!("Packet type doesn't match handshake!");
                                 println!("But we want to print it anyway {:?}", packet.payload);
+                                let prev_packet = packet;
+                            } else {
+                                println!("Packet type doesn't match handshake!");
+                                println!("But we want to print it anyway {:?}", packet.payload);
+                                let prev_packet = packet;
                             }
                         }
-                        None => println!("There is no packet"),
+                        None => {
+                            println!("There is no packet");
+                            // I should concat this to the previous packet
+                            //println!("Previous packet {:?}", prev_packet);
+                            println!("Current packet {:?}", packet);
+                        }
                     }
                 }
             }
