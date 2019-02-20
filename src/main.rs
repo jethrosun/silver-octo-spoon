@@ -95,7 +95,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
 
                     match pkt {
                         Some(mut packet) => {
-                            println!("{:?}", packet.typ);
+                            println!("Type of the packet is: {:?}", packet.typ);
                             // TODO: need to reassemble tcp segements
                             if packet.typ == ContentType::Handshake && packet.decode_payload() {
                                 if let MessagePayload::Handshake(x) = packet.payload {
@@ -104,10 +104,12 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                                         x, packet.version
                                     );
                                 } else {
-                                    println!("Packet payload doesnot match handshake!");
+                                    println!("Packet payload type doesn't match handshake!");
+                                    println!("But we want to print it anyway {:?}", packet.payload);
                                 }
                             } else {
-                                println!("Packet type is not handshake!")
+                                println!("Packet payload type doesn't match handshake!");
+                                println!("But we want to print it anyway {:?}", packet.payload);
                             }
                         }
                         None => println!("There is no packet"),
