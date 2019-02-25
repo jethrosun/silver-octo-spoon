@@ -45,9 +45,16 @@ use smoltcp::wire::*;
 /// For a not finished packet we simply add it to the flow cache.
 ///
 /// If the end point pair has never been seen before, we cache the current packet.
-fn insert_flow_cache(endpoint: &IpEndpoint, pkt: Option<Ipv4Packet>) -> &str {
+fn insert_flow_cache<T>(endpoint: &IpEndpoint, pkt: TcpPacket<T>) -> &str
+where
+    T: std::convert::AsRef<[u8]>,
+    T: std::fmt::Debug,
+{
     match endpoint {
-        _ => "Not recognized!",
+        _ => {
+            //println!("{:?}", pkt);
+            "Not recognized from insert flow cache!"
+        }
     }
 }
 
@@ -55,7 +62,7 @@ fn insert_flow_cache(endpoint: &IpEndpoint, pkt: Option<Ipv4Packet>) -> &str {
 ///
 fn dump_flow(endpoint: &IpEndpoint) -> &str {
     match endpoint {
-        _ => "Not recognized!",
+        _ => "Not recognized from dump flow!",
     }
 }
 
@@ -118,20 +125,19 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
 
                     match pkt {
                         Some(mut packet) => {
-                            println!("");
                             println!("Type of the packet is: {:?}", packet.typ);
                             // TODO: need to reassemble tcp segements
                             if packet.typ == ContentType::Handshake && _psh == false {
                                 println!("Packet is a TLS handshake but it is not yet complete, we now insert the current packet into the flow cache!");
                                 let string = insert_flow_cache(&client_endpoint, tcp_pkt);
+                                println!("{}", string);
                             } else {
                                 println!("Packet is a TLS handshake!");
-                                //rintln!("But we want to print it anyway {:?}", packet.payload);
                             }
                         }
                         None => {
-                            println!("");
-                            println!("There is no packet");
+                            //println!();
+                            println!("DEBUG: matched pkt with None");
                             // I should concat this to the previous packet
                             //println!("Previous packet {:?}", prev_packet);
                             println!("So we just print the bytes we have {:?}", pkt);
@@ -156,9 +162,7 @@ fn main() {
         for cause in err.iter_chain() {
             eprintln!("caused by: {}", cause);
         }
-        for line in err.backtrace().to_string().lines() {
-            eprintln!("{}", line);
-        }
+        for line in err.backtrace().to_string().lines() {}
         std::process::exit(1);
     }
 }
