@@ -17,30 +17,26 @@ extern crate clap;
 extern crate env_logger;
 extern crate failure;
 extern crate futures;
-//extern crate h2;
 extern crate pcap;
 extern crate rustls;
 extern crate smoltcp;
-use std::collections::HashMap;
 
-use std::path::Path;
-
-//use clap::{App, Arg};
 use failure::{err_msg, Error};
-//use futures::prelude::*;
-//use h2::Codec;
 use pcap::Capture;
 use rustls::internal::msgs::{
-    codec::Codec, enums::ContentType, message::Message as TLSMessage, message::MessagePayload,
+    codec::Codec,
+    enums::ContentType,
+    message::Message as TLSMessage, //message::MessagePayload,
 };
-use rustls::internal::msgs::{
-    enums::ServerNameType, handshake::ClientHelloPayload, handshake::HandshakePayload,
-    handshake::HasServerExtensions, handshake::ServerHelloPayload, handshake::ServerNamePayload,
-};
-
-//use rustls::{CipherSuite, ProtocolVersion};
 use smoltcp::wire::*;
-//use std::net::Ipv4Addr;
+use std::path::Path;
+
+//extern crate h2;
+//use std::collections::HashMap;
+//use rustls::internal::msgs::{
+//    enums::ServerNameType, handshake::ClientHelloPayload, handshake::HandshakePayload,
+//   handshake::HasServerExtensions, handshake::ServerHelloPayload, handshake::ServerNamePayload,
+//};
 
 /// For a not finished packet we simply add it to the flow cache.
 ///
