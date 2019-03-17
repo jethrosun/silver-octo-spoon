@@ -31,17 +31,10 @@ use rustls::internal::msgs::{
 use smoltcp::wire::*;
 use std::path::Path;
 
-//extern crate h2;
-//use std::collections::HashMap;
-//use rustls::internal::msgs::{
-//    enums::ServerNameType, handshake::ClientHelloPayload, handshake::HandshakePayload,
-//   handshake::HasServerExtensions, handshake::ServerHelloPayload, handshake::ServerNamePayload,
-//};
-
 /// For a not finished packet we simply add it to the flow cache.
 ///
 /// If the end point pair has never been seen before, we cache the current packet.
-fn insert_flow_cache<T>(endpoint: &IpEndpoint, pkt: TcpPacket<T>) -> &str
+fn insert_flow_cache<T>(endpoint: &IpEndpoint, _pkt: TcpPacket<T>) -> &str
 where
     T: std::convert::AsRef<[u8]>,
     T: std::fmt::Debug,
@@ -68,10 +61,14 @@ fn dump_flow(endpoint: &IpEndpoint) -> &str {
 /// we desired.
 fn parse_endpoint(endpoint: &str) -> Result<IpEndpoint, Error> {
     let mut iter = endpoint.rsplitn(2, ':');
-    let port = iter.next().ok_or(err_msg("missing port"))?.parse::<u16>()?;
+    //let port = iter.next().ok_or(err_msg("missing port"))?.parse::<u16>()?;
+    let port = iter
+        .next()
+        .ok_or_else(|| err_msg("missing port"))?
+        .parse::<u16>()?;
     let addr = iter
         .next()
-        .ok_or(err_msg("missing address"))?
+        .ok_or_else(|| err_msg("missing address"))?
         .parse::<IpAddress>()
         .map_err(|_| err_msg("failed to parse ip address"))?;
     Ok(IpEndpoint::new(addr, port))
@@ -120,10 +117,10 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                     //println!("{:?}", packet);
 
                     match pkt {
-                        Some(mut packet) => {
+                        Some(packet) => {
                             println!("Type of the packet is: {:?}", packet.typ);
                             // TODO: need to reassemble tcp segements
-                            if packet.typ == ContentType::Handshake && _psh == false {
+                            if packet.typ == ContentType::Handshake && !_psh {
                                 println!("Packet is a TLS handshake but it is not yet complete, we now insert the current packet into the flow cache!");
                                 let string = insert_flow_cache(&client_endpoint, tcp_pkt);
                                 println!("{}", string);
@@ -141,7 +138,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                     }
                 }
             }
-            counter = counter + 1;
+            counter += 1;
         }
     }
     Ok(())
@@ -158,7 +155,7 @@ fn main() {
         for cause in err.iter_chain() {
             eprintln!("caused by: {}", cause);
         }
-        for line in err.backtrace().to_string().lines() {}
+        for _line in err.backtrace().to_string().lines() {}
         std::process::exit(1);
     }
 }
