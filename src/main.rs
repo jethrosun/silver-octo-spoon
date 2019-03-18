@@ -31,9 +31,9 @@ use rustls::internal::msgs::{
 use smoltcp::wire::*;
 use std::path::Path;
 
-/// For a not finished packet we simply add it to the flow cache.
+/// For a not finished packet we simply add it to the flow cache, if the end point pair has never been seen before, we cache the current packet.
 ///
-/// If the end point pair has never been seen before, we cache the current packet.
+/// The key will be the IpEndpoint and the hash value will be ?
 fn insert_flow_cache<T>(endpoint: &IpEndpoint, _pkt: TcpPacket<T>) -> &str
 where
     T: std::convert::AsRef<[u8]>,
