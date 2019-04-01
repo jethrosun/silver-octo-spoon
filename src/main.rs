@@ -47,21 +47,26 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
     println!("{}", client_endpoint);
     // server side ip addr: google
     //let server_endpoint = parse_endpoint("192.30.253.117:443")?;
+    let mut expected_seq_no = TcpSeqNumber(0);
 
     while let Ok(packet) = cap.next() {
-        //println!("This is the {}th packet.", counter); // sanity check
-
+        /// println!(
+        ///     "\nThis is the {}th packet, and we are expecting {}",
+        ///     counter, expected_seq_no
+        /// ); // sanity check
+        // ethernet packet
         let ether = EthernetFrame::new_checked(packet.data).map_err(err_msg)?;
         if EthernetProtocol::Ipv4 == ether.ethertype() {
             let ipv4 = Ipv4Packet::new_checked(ether.payload()).map_err(err_msg)?;
 
-            // if packet goes to client
+            // filter: if packet goes to client
             if IpAddress::from(ipv4.dst_addr()) == client_endpoint.addr {
                 let tcp_pkt = TcpPacket::new_checked(ipv4.payload()).map_err(err_msg)?;
                 let _seq_num = tcp_pkt.seq_number();
                 let _ack_num = tcp_pkt.ack_number();
                 let _fin = tcp_pkt.fin();
                 let _psh = tcp_pkt.psh();
+                let _seg_len = tcp_pkt.segment_len();
 
                 if tcp_pkt.dst_port() == client_endpoint.port {
                     println!();
@@ -70,13 +75,20 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                         counter, _seq_num, _ack_num, _fin, _psh
                     );
 
+                    if _seq_num == expected_seq_no {
+                        println!("We are expecting this exact packet!!!");
+                    } else {
+                        println!("This is not the packet we are looking for");
+                    }
+
                     println!("This is a packet for the client!!!!");
                     //println!("Payload is: {:x?}", tcp.payload());
 
+                    // parse packet into TCP header + TCP payload
                     let pkt = TLSMessage::read_bytes(&tcp_pkt.payload());
-                    //println!("{:?}", packet);
+                    //println!("Read tcp packet payload as \n {:?}", packet);
 
-                    match pkt {
+                    expected_seq_no = match pkt {
                         Some(packet) => {
                             println!("Type of the packet is: {:?}", packet.typ);
                             // TODO: need to reassemble tcp segements
@@ -84,16 +96,18 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                                 println!("Packet is a TLS handshake but it is not yet complete, we now insert the current packet into the flow cache!");
                                 let string = insert_flow_cache(&client_endpoint, tcp_pkt);
                                 println!("{}", string);
+                                _seq_num + _seg_len
                             } else {
                                 println!("Packet is a TLS handshake!");
+                                _seq_num + _seg_len
                             }
                         }
                         None => {
-                            //println!();
-                            println!("DEBUG: matched pkt with None");
-                            // I should concat this to the previous packet
-                            //println!("Previous packet {:?}", prev_packet);
-                            println!("So we just print the bytes we have {:?}", pkt);
+                            // matched none, very likely this a segmented packet
+                            println!("==========Matched NONE============");
+                            let string = insert_flow_cache(&client_endpoint, tcp_pkt);
+                            println!("{}", string);
+                            _seq_num + _seg_len
                         }
                     }
                 }
