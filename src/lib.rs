@@ -6,29 +6,39 @@ use rustls::internal::msgs::{
     message::Message as TLSMessage, //message::MessagePayload,
 };
 use smoltcp::wire::*;
+use std::io;
 use std::path::Path;
 
-/// For a not finished packet we simply add it to the flow cache, if the end point pair has never been seen before, we cache the current packet.
+/// Insert a packet into a flow.
 ///
 /// The key will be the IpEndpoint and the hash value will be ?
-pub fn insert_flow_cache<T>(endpoint: &IpEndpoint, _pkt: TcpPacket<T>) -> &str
+pub fn insert_flow_cache<T>(endpoint: Option<&IpEndpoint>, _pkt: TcpPacket<T>) -> &str
 where
     T: std::convert::AsRef<[u8]>,
     T: std::fmt::Debug,
 {
     match endpoint {
-        _ => {
-            //println!("{:?}", pkt);
-            "Not recognized from insert flow cache!"
+        Some(ip_endpoint) => {
+            println!("{:?}", ip_endpoint);
+            "Some insert flow cache!"
         }
+        None => "Not recognized from insert flow cache!",
     }
 }
 
 /// The current packet belongs to a flow and the flow
 ///
-pub fn dump_flow(endpoint: &IpEndpoint) -> &str {
+pub fn dump_flow<T>(endpoint: Option<&IpEndpoint>, _pkt: TcpPacket<T>) -> (&str, io::Result<u8>)
+where
+    T: std::convert::AsRef<[u8]>,
+    T: std::fmt::Debug,
+{
     match endpoint {
-        _ => "Not recognized from dump flow!",
+        Some(ip_endpoint) => {
+            println!("{:?}", ip_endpoint);
+            ("Some insert flow cache!", unimplemented!())
+        }
+        None => ("Not recognized from insert flow cache!", unimplemented!()),
     }
 }
 
