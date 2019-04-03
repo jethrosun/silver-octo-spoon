@@ -94,7 +94,6 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
 
                     expected_seq_no = match pkt {
                         Some(packet) => {
-                            dbg!(pkt);
                             println!("Type of the packet is: {:?}", packet.typ);
                             // TODO: need to reassemble tcp segements
                             if packet.typ == ContentType::Handshake && !_psh {
@@ -133,10 +132,11 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                                 // be careful about the implemnetation: https://users.rust-lang.org/t/how-do-i-do-insert-update-of-a-vec-inside-a-hashmap/17092/2
                                 //flow_group.entry(&client_endpoint).push(packet);
                                 match flow_group.get_mut(&client_endpoint) {
-                                    Some(flow) => flow.push(pkt),
+                                    //Some(flow) => flow.push(pkt),
+                                    Some(flow) => println!("Figured out ,,,"),
                                     None => {
-                                        println!("Figured out ,,,");
-                                        Flow::new(client_endpoint, pkt)
+                                        println!("Figured out ,,,")
+                                        //Flow::new(client_endpoint, pkt)
                                     }
                                 }
 

@@ -2,7 +2,6 @@ extern crate clap;
 extern crate env_logger;
 extern crate failure;
 extern crate futures;
-extern crate h2;
 extern crate pcap;
 extern crate rustls;
 extern crate smoltcp;

@@ -8,20 +8,17 @@ use std::io;
 #[derive(Debug)]
 pub struct Flow {
     ip_endpoint: IpEndpoint,
-    flow_content: Vec<TLSMessage>,
+    flow_content: TLSMessage,
 }
 
 impl Flow {
     pub fn new(ip_end_point: IpEndpoint, pkt: TLSMessage) -> (Self) {
-        let mut vec: Vec<TLSMessage> = Vec::new();
-        vec.push(pkt);
         Flow {
             ip_endpoint: ip_end_point,
-            flow_content: vec,
+            flow_content: pkt,
         }
     }
     pub fn push(mut self, pkt: TLSMessage) -> (Flow) {
-        self.flow_content.push(pkt);
         self
     }
 }
