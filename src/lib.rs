@@ -1,45 +1,41 @@
 use failure::{err_msg, Error};
-use pcap::Capture;
-use rustls::internal::msgs::{
-    codec::Codec,
-    enums::ContentType,
-    message::Message as TLSMessage, //message::MessagePayload,
-};
+//use pcap::Capture;
+use rustls::internal::msgs::message::Message as TLSMessage;
 use smoltcp::wire::*;
 use std::io;
-use std::path::Path;
+//use std::path::Path;
+
+pub struct Flow {
+    ip_endpoint: IpEndpoint,
+    flow_content: Vec<TLSMessage>,
+}
+
+impl Flow {
+    pub fn new(ip_end_point: IpEndpoint, pkt: TLSMessage) -> (Self) {
+        let mut vec: Vec<TLSMessage> = Vec::new();
+        vec.push(pkt);
+        Flow {
+            ip_endpoint: ip_end_point,
+            flow_content: vec,
+        }
+    }
+    pub fn push(mut self, pkt: TLSMessage) -> (Flow) {
+        self.flow_content.push(pkt);
+        self
+    }
+}
 
 /// Insert a packet into a flow.
 ///
 /// The key will be the IpEndpoint and the hash value will be ?
-pub fn insert_flow_cache<T>(endpoint: Option<&IpEndpoint>, _pkt: TcpPacket<T>) -> &str
-where
-    T: std::convert::AsRef<[u8]>,
-    T: std::fmt::Debug,
-{
-    match endpoint {
-        Some(ip_endpoint) => {
-            println!("{:?}", ip_endpoint);
-            "Some insert flow cache!"
-        }
-        None => "Not recognized from insert flow cache!",
-    }
+pub fn insert_flow_cache<T>(flow: Flow, pkt: TLSMessage) -> (Flow) {
+    flow.push(pkt)
 }
 
 /// The current packet belongs to a flow and the flow
 ///
-pub fn dump_flow<T>(endpoint: Option<&IpEndpoint>, _pkt: TcpPacket<T>) -> (&str, io::Result<u8>)
-where
-    T: std::convert::AsRef<[u8]>,
-    T: std::fmt::Debug,
-{
-    match endpoint {
-        Some(ip_endpoint) => {
-            println!("{:?}", ip_endpoint);
-            ("Some insert flow cache!", unimplemented!())
-        }
-        None => ("Not recognized from insert flow cache!", unimplemented!()),
-    }
+pub fn dump_flow(flow: Flow) -> (io::Result<usize>) {
+    unimplemented!();
 }
 
 /// Endpoint parsing function.

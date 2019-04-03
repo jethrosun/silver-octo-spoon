@@ -22,7 +22,7 @@ extern crate rustls;
 extern crate smoltcp;
 
 use failure::{err_msg, Error};
-use flow::Flow;
+use lib::Flow;
 use lib::{insert_flow_cache, parse_endpoint};
 use pcap::Capture;
 use rustls::internal::msgs::{
@@ -34,7 +34,6 @@ use smoltcp::wire::*;
 use std::path::Path;
 use std::vec::Vec;
 
-mod flow;
 mod lib;
 
 /// Pcap file parser.
@@ -44,7 +43,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
     //let mut flows = HashMap::new();
     let mut counter = 1;
     let mut cap = Capture::from_file(path)?;
-    let mut flow: Vec<Flow<TcpPacket<T>>> = Vec::new();
+    let mut flow_group: Vec<Flow> = Vec::new();
 
     // define a bogus client side ip addr
     let client_endpoint = parse_endpoint("10.200.205.238:59295")?;
@@ -98,8 +97,8 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                             // TODO: need to reassemble tcp segements
                             if packet.typ == ContentType::Handshake && !_psh {
                                 println!("Packet is a TLS handshake but it is not yet complete, we now insert the current packet into the flow cache!");
-                                let string = insert_flow_cache(Some(&client_endpoint), tcp_pkt);
-                                println!("{}", string);
+
+                                //let flow = insert_flow_cache(Some(&client_endpoint), tcp_pkt);
                                 _seq_num + _seg_len
                             } else {
                                 println!("Orphan packet!!");
@@ -111,15 +110,13 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                             println!("==========Matched NONE============");
                             if _psh {
                                 println!("Push flag is true. We should dump the whole flow!!");
-                                let string = insert_flow_cache(Some(&client_endpoint), tcp_pkt);
-                                println!("{}", string);
+                                //let string = insert_flow_cache(Some(&client_endpoint), tcp_pkt);
                                 _seq_num + _seg_len
                             } else {
                                 println!(
                                     "Packet should be a segmented packet in the middle of a flow!"
                                 );
-                                let string = insert_flow_cache(Some(&client_endpoint), tcp_pkt);
-                                println!("{}", string);
+                                //let string = insert_flow_cache(Some(&client_endpoint), tcp_pkt);
                                 _seq_num + _seg_len
                             }
                         }
