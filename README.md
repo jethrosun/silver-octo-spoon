@@ -9,6 +9,8 @@ the active developing part is in `src/`.
 
 ## Examples (missing)
 ```sh
+# running the last version
+$ cargo run --example last
 # this command will parse tls-all.pcap file and give the output
 $ cargo run --example parser-all
 # this command will parse tls-cert.pcap file and give the output
@@ -16,6 +18,7 @@ $ cargo run --example parser-cert
 ```
 ## TODO
 * handle tcp segment reassemble so that we can retrieve the certificate.
+
 
 Current version: 0.1.0
 
