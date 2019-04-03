@@ -44,7 +44,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
     //let mut flows = HashMap::new();
     let mut counter = 1;
     let mut cap = Capture::from_file(path)?;
-    let mut flow_group: HashMap<IpEndpoint, Flow> = HashMap::new();
+    let mut flow_group: HashMap<IpEndpoint, Flow<&[u8]>> = HashMap::new();
 
     // define a bogus client side ip addr
     let client_endpoint = parse_endpoint("10.200.205.238:59295")?;
@@ -54,10 +54,10 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
     let mut expected_seq_no = TcpSeqNumber(0);
 
     while let Ok(packet) = cap.next() {
-        /// println!(
-        ///     "\nThis is the {}th packet, and we are expecting {}",
-        ///     counter, expected_seq_no
-        /// ); // sanity check
+        // println!(
+        //     "\nThis is the {}th packet, and we are expecting {}",
+        //     counter, expected_seq_no
+        // ); // sanity check
         // ethernet packet
         let ether = EthernetFrame::new_checked(packet.data).map_err(err_msg)?;
         if EthernetProtocol::Ipv4 == ether.ethertype() {
@@ -65,7 +65,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
 
             // filter: if packet goes to client
             if IpAddress::from(ipv4.dst_addr()) == client_endpoint.addr {
-                let tcp_pkt = TcpPacket::new_checked(ipv4.payload()).map_err(err_msg)?;
+                let tcp_pkt = TcpPacket::new_unchecked(ipv4.payload());
                 let _seq_num = tcp_pkt.seq_number();
                 let _ack_num = tcp_pkt.ack_number();
                 let _fin = tcp_pkt.fin();
@@ -99,9 +99,9 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                             if packet.typ == ContentType::Handshake && !_psh {
                                 println!("Packet is a TLS handshake but it is not yet complete, we now insert the current packet into the flow cache!");
 
-                                let mut current_flow = Flow::new(client_endpoint, packet);
-                                flow_group.insert(client_endpoint, current_flow);
-                                println!("{:?}", flow_group);
+                                //let mut current_flow = Flow::new(client_endpoint, packet);
+                                //flow_group.insert(client_endpoint, current_flow);
+                                //println!("{:?}", flow_group);
 
                                 //let flow = insert_flow_cache(Some(&client_endpoint), tcp_pkt);
                                 _seq_num + _seg_len

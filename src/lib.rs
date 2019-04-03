@@ -6,19 +6,27 @@ use std::io;
 //use std::path::Path;
 
 #[derive(Debug)]
-pub struct Flow {
+pub struct Flow<T>
+where
+    T: std::convert::AsRef<[u8]>,
+{
     ip_endpoint: IpEndpoint,
-    flow_content: TLSMessage,
+    flow_content: Vec<TcpPacket<T>>,
 }
 
-impl Flow {
-    pub fn new(ip_end_point: IpEndpoint, pkt: TLSMessage) -> (Self) {
+impl<T> Flow<T>
+where
+    T: std::convert::AsRef<[u8]>,
+{
+    pub fn new(ip_end_point: IpEndpoint, pkt: TcpPacket<T>) -> (Self) {
+        let vec: Vec<TcpPacket<T>> = Vec::new();
         Flow {
             ip_endpoint: ip_end_point,
-            flow_content: pkt,
+            flow_content: vec,
         }
     }
-    pub fn push(mut self, pkt: TLSMessage) -> (Flow) {
+
+    pub fn push(mut self, pkt: TcpPacket<T>) -> (Flow<T>) {
         self
     }
 }
@@ -26,13 +34,19 @@ impl Flow {
 /// Insert a packet into a flow.
 ///
 /// The key will be the IpEndpoint and the hash value will be ?
-pub fn insert_flow_cache(flow: Flow, pkt: TLSMessage) -> (Flow) {
+pub fn insert_flow_cache<T>(flow: Flow<T>, pkt: TcpPacket<T>) -> (Flow<T>)
+where
+    T: std::convert::AsRef<[u8]>,
+{
     flow.push(pkt)
 }
 
 /// The current packet belongs to a flow and the flow
 ///
-pub fn dump_flow(flow: Flow) -> (io::Result<usize>) {
+pub fn dump_flow<T>(flow: Flow<T>) -> (io::Result<usize>)
+where
+    T: std::convert::AsRef<[u8]>,
+{
     unimplemented!();
 }
 
