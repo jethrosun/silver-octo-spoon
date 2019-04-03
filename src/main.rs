@@ -31,6 +31,7 @@ use rustls::internal::msgs::{
     message::Message as TLSMessage, //message::MessagePayload,
 };
 use smoltcp::wire::*;
+use std::collections::HashMap;
 use std::path::Path;
 use std::vec::Vec;
 
@@ -43,7 +44,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
     //let mut flows = HashMap::new();
     let mut counter = 1;
     let mut cap = Capture::from_file(path)?;
-    let mut flow_group: Vec<Flow> = Vec::new();
+    let mut flow_group: HashMap<IpEndpoint, Flow> = HashMap::new();
 
     // define a bogus client side ip addr
     let client_endpoint = parse_endpoint("10.200.205.238:59295")?;
@@ -93,10 +94,15 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
 
                     expected_seq_no = match pkt {
                         Some(packet) => {
+                            dbg!(pkt);
                             println!("Type of the packet is: {:?}", packet.typ);
                             // TODO: need to reassemble tcp segements
                             if packet.typ == ContentType::Handshake && !_psh {
                                 println!("Packet is a TLS handshake but it is not yet complete, we now insert the current packet into the flow cache!");
+
+                                let mut current_flow = Flow::new(client_endpoint, packet);
+                                flow_group.insert(client_endpoint, current_flow);
+                                println!("{:?}", flow_group);
 
                                 //let flow = insert_flow_cache(Some(&client_endpoint), tcp_pkt);
                                 _seq_num + _seg_len
@@ -108,15 +114,32 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                         None => {
                             // matched none, very likely this a segmented packet
                             println!("==========Matched NONE============");
+                            dbg!(pkt);
                             if _psh {
                                 println!("Push flag is true. We should dump the whole flow!!");
+
+                                match flow_group.get(&client_endpoint) {
+                                    Some(flow) => println!("Calling Ashley:"),
+                                    _ => println!("Don't have Ashley's number."),
+                                }
+                                //insert_flow_cache(current_flow, packet);
+
                                 //let string = insert_flow_cache(Some(&client_endpoint), tcp_pkt);
                                 _seq_num + _seg_len
                             } else {
                                 println!(
                                     "Packet should be a segmented packet in the middle of a flow!"
                                 );
-                                //let string = insert_flow_cache(Some(&client_endpoint), tcp_pkt);
+                                // be careful about the implemnetation: https://users.rust-lang.org/t/how-do-i-do-insert-update-of-a-vec-inside-a-hashmap/17092/2
+                                //flow_group.entry(&client_endpoint).push(packet);
+                                match flow_group.get_mut(&client_endpoint) {
+                                    Some(flow) => flow.push(pkt),
+                                    None => {
+                                        println!("Figured out ,,,");
+                                        Flow::new(client_endpoint, pkt)
+                                    }
+                                }
+
                                 _seq_num + _seg_len
                             }
                         }

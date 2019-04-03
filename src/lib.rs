@@ -5,6 +5,7 @@ use smoltcp::wire::*;
 use std::io;
 //use std::path::Path;
 
+#[derive(Debug)]
 pub struct Flow {
     ip_endpoint: IpEndpoint,
     flow_content: Vec<TLSMessage>,
@@ -28,7 +29,7 @@ impl Flow {
 /// Insert a packet into a flow.
 ///
 /// The key will be the IpEndpoint and the hash value will be ?
-pub fn insert_flow_cache<T>(flow: Flow, pkt: TLSMessage) -> (Flow) {
+pub fn insert_flow_cache(flow: Flow, pkt: TLSMessage) -> (Flow) {
     flow.push(pkt)
 }
 
