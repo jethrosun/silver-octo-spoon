@@ -45,7 +45,8 @@ where
         }
     }
 
-    pub fn push(mut self, pkt: TcpPacket<T>) -> (Flow<T>) {
+    pub fn insert_pkt(mut self, pkt: TcpPacket<T>) -> (Flow<T>) {
+        self.flow_content.push(pkt);
         self
     }
 }
@@ -53,12 +54,12 @@ where
 /// Insert a packet into a flow.
 ///
 /// The key will be the IpEndpoint and the hash value will be ?
-pub fn insert_flow_cache<T>(flow: Flow<T>, pkt: TcpPacket<T>) -> (Flow<T>)
-where
-    T: std::convert::AsRef<[u8]>,
-{
-    flow.push(pkt)
-}
+// pub fn insert_flow_cache<T>(flow: Flow<T>, pkt: TcpPacket<T>) -> (Flow<T>)
+// where
+//     T: std::convert::AsRef<[u8]>,
+// {
+//     //flow.push(pkt)
+// }
 
 /// The current packet belongs to a flow and the flow
 ///
