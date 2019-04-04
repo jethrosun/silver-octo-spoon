@@ -11,11 +11,6 @@ use failure::{err_msg, Error};
 use lib::parse_endpoint;
 use lib::Flow;
 use pcap::Capture;
-use rustls::internal::msgs::{
-    codec::Codec,
-    enums::ContentType,
-    message::Message as TLSMessage, //message::MessagePayload,
-};
 use smoltcp::wire::*;
 use std::collections::HashMap;
 use std::path::Path;
@@ -77,21 +72,24 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
 
                     // Beginning of the parsing
 
-                    if !_psh {
+                    flow_group = if !_psh {
                         expected_seq_no = _seq_num + _seg_len;
                         println!(
                             "Packet has no Push flag, which means it is a fraction of something!"
                         );
-                        let mut flow = Flow::new(client_endpoint, tcp_pkt);
+                        let flow = Flow::new(client_endpoint, tcp_pkt);
                         flow_group.insert(client_endpoint, flow);
                         println!("{:?}", flow_group);
+                        flow_group
                     } else {
                         if _seq_num == expected_seq_no {
                             expected_seq_no = _seq_num + _seg_len;
                             println!("Seq number equals to our expected seq number");
+                            flow_group
                         } else {
                             expected_seq_no = _seq_num + _seg_len;
                             println!("Seq number doesn't equal to expected seq number, this shouldn't have happened.");
+                            flow_group
                         }
                     }
                 }

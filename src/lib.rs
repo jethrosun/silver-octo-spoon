@@ -18,7 +18,6 @@
 //!
 use failure::{err_msg, Error};
 //use pcap::Capture;
-use rustls::internal::msgs::message::Message as TLSMessage;
 use smoltcp::wire::*;
 use std::io;
 //use std::path::Path;
@@ -37,16 +36,17 @@ impl<T> Flow<T>
 where
     T: std::convert::AsRef<[u8]>,
 {
-    pub fn new(ip_end_point: IpEndpoint, pkt: TcpPacket<T>) -> (Self) {
-        let vec: Vec<TcpPacket<T>> = Vec::new();
+    pub fn new(ip_end_point: IpEndpoint, _pkt: TcpPacket<T>) -> (Self) {
+        let mut vec: Vec<TcpPacket<T>> = Vec::new();
+        vec.push(_pkt);
         Flow {
             ip_endpoint: ip_end_point,
             flow_content: vec,
         }
     }
 
-    pub fn insert_pkt(mut self, pkt: TcpPacket<T>) -> (Flow<T>) {
-        self.flow_content.push(pkt);
+    pub fn insert_pkt(mut self, _pkt: TcpPacket<T>) -> (Flow<T>) {
+        self.flow_content.push(_pkt);
         self
     }
 }
@@ -63,7 +63,7 @@ where
 
 /// The current packet belongs to a flow and the flow
 ///
-pub fn dump_flow<T>(flow: Flow<T>) -> (io::Result<usize>)
+pub fn dump_flow<T>(_flow: Flow<T>) -> (io::Result<usize>)
 where
     T: std::convert::AsRef<[u8]>,
 {
