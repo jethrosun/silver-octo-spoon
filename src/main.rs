@@ -87,7 +87,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                         println!("Seq number doesn't equal to expected seq number, this shouldn't have happened.");
                         Flow::new(client_endpoint, tcp_pkt)
                     };
-                    &mut flow_group.push(flow);
+                    //flow_group.push(flow);
                 }
             }
             counter += 1;
