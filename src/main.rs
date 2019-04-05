@@ -25,7 +25,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
 
     //let mut flows = HashMap::new();
     let mut counter = 1;
-    let mut flow_group: HashMap<IpEndpoint, Flow<&[u8]>> = HashMap::new();
+    let mut flow_group: Vec<Flow<&[u8]>> = Vec::new();
 
     // define a bogus client side ip addr
     let client_endpoint = parse_endpoint("10.200.205.238:59295")?;
@@ -71,24 +71,23 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
 
                     // Beginning of the parsing
 
-                    flow_group = if !_psh {
+                    let flow = if !_psh {
                         expected_seq_no = _seq_num + _seg_len;
                         println!(
                             "Packet has no Push flag, which means it is a fraction of something!"
                         );
-                        let flow = Flow::new(client_endpoint, tcp_pkt);
-                        flow_group.insert(client_endpoint, flow);
-                        println!("{:?}", flow_group);
-                        flow_group
+                        Flow::new(client_endpoint, tcp_pkt)
+                    // println!("{:?}", flow_group);
                     } else if _seq_num == expected_seq_no {
                         expected_seq_no = _seq_num + _seg_len;
                         println!("Seq number equals to our expected seq number");
-                        flow_group
+                        Flow::new(client_endpoint, tcp_pkt)
                     } else {
                         expected_seq_no = _seq_num + _seg_len;
                         println!("Seq number doesn't equal to expected seq number, this shouldn't have happened.");
-                        flow_group
-                    }
+                        Flow::new(client_endpoint, tcp_pkt)
+                    };
+                    &mut flow_group.push(flow);
                 }
             }
             counter += 1;
