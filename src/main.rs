@@ -14,7 +14,6 @@ use pcap::Capture;
 use smoltcp::wire::*;
 use std::collections::HashMap;
 use std::path::Path;
-//use std::vec::Vec;
 
 mod lib;
 
@@ -81,16 +80,14 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                         flow_group.insert(client_endpoint, flow);
                         println!("{:?}", flow_group);
                         flow_group
+                    } else if _seq_num == expected_seq_no {
+                        expected_seq_no = _seq_num + _seg_len;
+                        println!("Seq number equals to our expected seq number");
+                        flow_group
                     } else {
-                        if _seq_num == expected_seq_no {
-                            expected_seq_no = _seq_num + _seg_len;
-                            println!("Seq number equals to our expected seq number");
-                            flow_group
-                        } else {
-                            expected_seq_no = _seq_num + _seg_len;
-                            println!("Seq number doesn't equal to expected seq number, this shouldn't have happened.");
-                            flow_group
-                        }
+                        expected_seq_no = _seq_num + _seg_len;
+                        println!("Seq number doesn't equal to expected seq number, this shouldn't have happened.");
+                        flow_group
                     }
                 }
             }
