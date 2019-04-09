@@ -1,8 +1,10 @@
 #![cfg_attr(feature = "nightly", feature(nll))]
+//#![feature(try_from)]
 extern crate clap;
 extern crate env_logger;
 extern crate failure;
 extern crate futures;
+extern crate net_parser_rs;
 extern crate pcap;
 extern crate rustls;
 extern crate smoltcp;
@@ -10,10 +12,13 @@ extern crate smoltcp;
 use failure::{err_msg, Error};
 use lib::parse_endpoint;
 use lib::Flow;
-use pcap::Capture;
+use net_parser_rs::flow::*;
+use net_parser_rs::CaptureParser;
+use pcap::{Capture, Packet};
 use smoltcp::wire::*;
 use std::collections::HashMap;
 use std::path::Path;
+use std::*;
 
 mod lib;
 
@@ -33,6 +38,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
     // server side ip addr: google
     //let server_endpoint = parse_endpoint("192.30.253.117:443")?;
     let mut expected_seq_no = TcpSeqNumber(0);
+    //let mut packet: Result<Packet, Error>;
 
     while let Ok(packet) = cap.next() {
         // println!(
@@ -87,7 +93,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                         println!("Seq number doesn't equal to expected seq number, this shouldn't have happened.");
                         Flow::new(client_endpoint, tcp_pkt)
                     };
-                    //flow_group.push(flow);
+                    flow_group.push(flow);
                 }
             }
             counter += 1;

@@ -45,9 +45,8 @@ where
         }
     }
 
-    pub fn insert_pkt(mut self, _pkt: TcpPacket<T>) -> (Flow<T>) {
+    pub fn insert_pkt(&mut self, _pkt: TcpPacket<T>) {
         self.flow_content.push(_pkt);
-        self
     }
 }
 
