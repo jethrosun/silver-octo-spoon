@@ -1,5 +1,6 @@
-#![cfg_attr(feature = "nightly", feature(nll))]
+//#![cfg_attr(feature = "nightly", feature(nll))]
 //#![feature(try_from)]
+
 extern crate clap;
 extern crate env_logger;
 extern crate failure;
