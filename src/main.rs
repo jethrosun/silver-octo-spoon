@@ -39,6 +39,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
     // server side ip addr: google
     //let server_endpoint = parse_endpoint("192.30.253.117:443")?;
     let mut expected_seq_no = TcpSeqNumber(0);
+    let mut expected =
     //let mut packet: Result<Packet, Error>;
 
     while let Ok(packet) = cap.next() {

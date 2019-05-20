@@ -1,3 +1,8 @@
+//! Parse and display all the TLS handshake messages.
+//!
+//! This program parses all the packets and display the packets that belong to a TLS handshake. To
+//! run:
+//! `cargo run --example parser-handshake`
 extern crate clap;
 extern crate env_logger;
 extern crate failure;
@@ -49,37 +54,26 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
         if EthernetProtocol::Ipv4 == ether.ethertype() {
             let ipv4 = Ipv4Packet::new_checked(ether.payload()).map_err(err_msg)?;
 
-            // if packet goes to client
-            if IpAddress::from(ipv4.dst_addr()) == client_endpoint.addr {
-                let tcp = TcpPacket::new_checked(ipv4.payload()).map_err(err_msg)?;
-                if tcp.dst_port() == client_endpoint.port {
-                    println!("This is a packet for the client!!!!");
-                    //println!("Payload is: {:x?}", tcp.payload());
+            let tcp = TcpPacket::new_checked(ipv4.payload()).map_err(err_msg)?;
+            let seq = tcp.seq_number();
+            let pkt = TLSMessage::read_bytes(&tcp.payload());
 
-                    let pkt = TLSMessage::read_bytes(&tcp.payload());
-                    println!("{:?}", pkt);
+            //println!("pkt # {} is: \n{:?}\n ", seq, pkt);
+            println!("pkt # {} is: \n", seq);
 
-                    //println!("{:?}", packet);
-                    match pkt {
-                        Some(mut packet) => {
-                            // TODO: need to reassemble tcp segements
-                            if packet.typ == ContentType::Handshake && packet.decode_payload() {
-                                if let MessagePayload::Handshake(x) = packet.payload {
-                                    println!("\n******************************\n");
-                                    println!(
-                                        "\nHandshake is {:?}, packet version is {:?}",
-                                        x, packet.version
-                                    );
-                                } else {
-                                    println!("Packet payload doesnot match handshake!");
-                                }
-                            } else {
-                                println!("Packet type is not matched!")
-                            }
-                        }
-                        None => println!("There is nothing"),
+            //println!("{:?}", packet);
+            match pkt {
+                Some(mut packet) => {
+                    // TODO: need to reassemble tcp segements
+                    if packet.typ == ContentType::Handshake {
+                        println!("\n**********************************************************************\n");
+                        println!("Handshake packet {:?}", packet);
+                        println!("\n**********************************************************************\n");
+                    } else {
+                        println!("Packet type is not matched!")
                     }
                 }
+                None => println!("There is nothing"),
             }
             counter = counter + 1;
         }

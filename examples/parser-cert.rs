@@ -57,6 +57,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
                     //println!("Payload is: {:x?}", tcp.payload());
 
                     let pkt = TLSMessage::read_bytes(&tcp.payload());
+                    println!("{:?}", pkt);
 
                     //println!("{:?}", packet);
                     match pkt {
