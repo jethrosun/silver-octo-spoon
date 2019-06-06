@@ -30,7 +30,7 @@ fn dump_file<P: AsRef<Path>>(path: P) -> Result<(), Error> {
     let mut cap = Capture::from_file(path)?;
 
     //let mut flows = HashMap::new();
-    let mut counter = 1;
+    //let mut counter = 1;
     let mut flow_group: Vec<Flow<&[u8]>> = Vec::new();
 
     // define a bogus client side ip addr
