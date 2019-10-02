@@ -3,6 +3,10 @@ extern crate tiny_http;
 
 use failure::Fallible;
 use std::fs;
+use std::sync::Arc;
+use std::sync::Mutex;
+use std::thread::sleep;
+use std::time::Duration;
 
 use headless_chrome::browser::tab::RequestInterceptionDecision;
 use headless_chrome::protocol::network::methods::RequestPattern;
@@ -42,7 +46,8 @@ fn main() -> Fallible<()> {
     tab.enable_request_interception(
         &patterns,
         Box::new(|transport, session_id, intercepted| {
-            println!("DEBUG: url content: {:?}", intercepted.request.url);
+            println!("\nDEBUG: url content: {:?}", intercepted.request.url);
+            println!("\nDEBUG: {:?}", intercepted.request);
             if intercepted.request.url.ends_with(".js") {
                 println!("DEBUG: jackpot! We have JS code",);
                 let js_body = r#"document.body.appendChild(document.createElement("hr"));"#;
@@ -74,6 +79,22 @@ fn main() -> Fallible<()> {
         }),
     )?;
 
+    let responses = Arc::new(Mutex::new(Vec::new()));
+    // let responses2 = responses.clone();
+    tab.enable_response_handling(Box::new(move |response, fetch_body| {
+        // NOTE: you can only fetch the body after it's been downloaded, which might be some time
+        // after the initial 'response' (with status code, headers, etc.) has come back. hence this
+        // sleep:
+        println!("\nDEBUG: Response {:?}", response);
+        sleep(Duration::from_millis(100));
+        let body = fetch_body().unwrap();
+        println!("\nDEBUG: Response body: {:?}", body);
+        responses.lock().unwrap().push((response, body));
+    }))?;
+
+    // tab.set_default_timeout(Duration::from_secs(100));
+    // let final_responses: Vec<_> = responses.lock().unwrap().clone();
+
     println!("\nTMZ website\n",);
     let jpeg_data = tab
         .navigate_to("https://tmz.com")?
@@ -81,12 +102,12 @@ fn main() -> Fallible<()> {
         .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
     fs::write("tmz.jpg", &jpeg_data)?;
 
-    println!("\nGoogle image search\n",);
-    let jpeg_data = tab
-        .navigate_to("http://www.google.com/images?q=co-thkoo")?
-        .wait_until_navigated()?
-        .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    fs::write("screenshot.jpg", &jpeg_data)?;
+    // println!("\nGoogle image search\n",);
+    // let jpeg_data = tab
+    //     .navigate_to("http://www.google.com/images?q=co-thkoo")?
+    //     .wait_until_navigated()?
+    //     .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
+    // fs::write("screenshot.jpg", &jpeg_data)?;
 
     println!("Screenshots successfully created.");
     Ok(())
