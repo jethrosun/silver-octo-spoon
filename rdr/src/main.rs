@@ -67,11 +67,9 @@ fn main() -> Fallible<()> {
                 js_response
                     .raw_print(&mut wrapped_writer, (1, 2).into(), &[], false, None)
                     .unwrap();
-                println!("wrapper writer: {:?}", wrapped_writer);
 
                 let base64_response = base64::encode(&wrapped_writer);
 
-                println!("JS content: {:?}", base64_response);
                 RequestInterceptionDecision::Response(base64_response)
             } else {
                 RequestInterceptionDecision::Continue
