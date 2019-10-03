@@ -81,6 +81,7 @@ fn main() -> Fallible<()> {
 
     let responses = Arc::new(Mutex::new(Vec::new()));
     // let responses2 = responses.clone();
+
     tab.enable_response_handling(Box::new(move |response, fetch_body| {
         // NOTE: you can only fetch the body after it's been downloaded, which might be some time
         // after the initial 'response' (with status code, headers, etc.) has come back. hence this
@@ -102,12 +103,12 @@ fn main() -> Fallible<()> {
         .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
     fs::write("tmz.jpg", &jpeg_data)?;
 
-    // println!("\nGoogle image search\n",);
-    // let jpeg_data = tab
-    //     .navigate_to("http://www.google.com/images?q=co-thkoo")?
-    //     .wait_until_navigated()?
-    //     .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    // fs::write("screenshot.jpg", &jpeg_data)?;
+    println!("\nLobste.rs\n",);
+    let jpeg_data = tab
+        .navigate_to("http://lobste.rs")?
+        .wait_until_navigated()?
+        .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
+    fs::write("screenshot.jpg", &jpeg_data)?;
 
     println!("Screenshots successfully created.");
     Ok(())
