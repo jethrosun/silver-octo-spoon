@@ -20,6 +20,7 @@ use headless_chrome::{
     Browser, Tab,
 };
 
+/// Issue: doing everything with unwrap may cause the kernel panicing.
 fn main() {
     // Create a headless browser, navigate to wikipedia.org, wait for the page
     // to render completely, take a screenshot of the entire page
@@ -96,16 +97,16 @@ fn main() {
     // tab.set_default_timeout(Duration::from_secs(100));
     // let final_responses: Vec<_> = responses.lock().unwrap().clone();
 
-    println!("\nTMZ website\n",);
+    println!("\nLobste.rs\n",);
     let jpeg_data = tab
-        .navigate_to("https://tmz.com")
+        .navigate_to("http://lobste.rs")
         .unwrap()
         .wait_until_navigated()
         .unwrap();
 
-    println!("\nLobste.rs\n",);
+    println!("\nTMZ website\n",);
     let jpeg_data = tab
-        .navigate_to("http://lobste.rs")
+        .navigate_to("https://tmz.com")
         .unwrap()
         .wait_until_navigated()
         .unwrap();
