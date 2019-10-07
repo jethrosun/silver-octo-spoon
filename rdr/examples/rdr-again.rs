@@ -108,13 +108,6 @@ fn main() -> Fallible<()> {
         .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
     fs::write("screenshot.jpg", &jpeg_data)?;
 
-    println!("\nusatoday\n",);
-    let jpeg_data = tab
-        .navigate_to("www.usatoday.com")?
-        .wait_until_navigated()?
-        .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    fs::write("screenshot.jpg", &jpeg_data)?;
-
     println!("Screenshots successfully created.");
     Ok(())
 }
