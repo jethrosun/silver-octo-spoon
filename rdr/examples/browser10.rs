@@ -2,12 +2,6 @@ extern crate base64;
 extern crate tiny_http;
 
 use failure::Fallible;
-use std::fs;
-use std::sync::Arc;
-use std::sync::Mutex;
-use std::thread::sleep;
-use std::time::Duration;
-
 use headless_chrome::browser::tab::RequestInterceptionDecision;
 use headless_chrome::protocol::network::methods::RequestPattern;
 use headless_chrome::protocol::network::Cookie;
@@ -19,6 +13,11 @@ use headless_chrome::{
     protocol::page::ScreenshotFormat,
     Browser, Tab,
 };
+use std::fs;
+use std::sync::Arc;
+use std::sync::Mutex;
+use std::thread::sleep;
+use std::time::Duration;
 
 fn main() -> Fallible<()> {
     let options = LaunchOptionsBuilder::default()
@@ -114,6 +113,8 @@ fn main() -> Fallible<()> {
         .expect("Couldn't find appropriate Chrome binary.");
     let browser15 = Browser::new(options15)?;
     let tab15 = browser15.wait_for_initial_tab()?;
+
+    sleep(Duration::from_secs(300));
 
     Ok(())
 }
