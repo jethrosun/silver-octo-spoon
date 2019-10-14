@@ -94,41 +94,26 @@ fn main() -> Fallible<()> {
     // tab.set_default_timeout(Duration::from_secs(100));
     // let final_responses: Vec<_> = responses.lock().unwrap().clone();
 
-    // println!("\nTMZ website\n",);
-    // let jpeg_data = tab
-    //     .navigate_to("https://tmz.com")?
-    //     .wait_until_navigated()?
-    //     .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    // fs::write("tmz.jpg", &jpeg_data)?;
-
-    println!("\nHTTPS: Lobste.rs\n",);
+    println!("\nTMZ website\n",);
     let jpeg_data = tab
-        .navigate_to("https://lobste.rs")?
+        .navigate_to("https://tmz.com")?
         .wait_until_navigated()?
         .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    fs::write("screenshot.jpg", &jpeg_data)?;
+    fs::write("tmz.jpg", &jpeg_data)?;
 
-    // println!("\nusatoday\n",);
-    // let jpeg_data = tab
-    //     .navigate_to("www.usatoday.com")?
-    //     .wait_until_navigated()?
-    //     .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    // fs::write("screenshot.jpg", &jpeg_data)?;
-
-    println!("\nHTTP: Lobste.rs\n",);
+    println!("\nLobste.rs\n",);
     let jpeg_data = tab
         .navigate_to("http://lobste.rs")?
         .wait_until_navigated()?
         .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
     fs::write("screenshot.jpg", &jpeg_data)?;
 
-    // NOTE: this is a invalid case
-    // println!("\nNOTHING: Lobste.rs\n",);
-    // let jpeg_data = tab
-    //     .navigate_to("lobste.rs")?
-    //     .wait_until_navigated()?
-    //     .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    // fs::write("screenshot.jpg", &jpeg_data)?;
+    println!("\nusatoday\n",);
+    let jpeg_data = tab
+        .navigate_to("www.usatoday.com")?
+        .wait_until_navigated()?
+        .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
+    fs::write("screenshot.jpg", &jpeg_data)?;
 
     println!("Screenshots successfully created.");
     Ok(())

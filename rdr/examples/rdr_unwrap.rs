@@ -20,15 +20,16 @@ use headless_chrome::{
     Browser, Tab,
 };
 
-fn main() -> Fallible<()> {
+/// Issue: doing everything with unwrap may cause the kernel panicing.
+fn main() {
     // Create a headless browser, navigate to wikipedia.org, wait for the page
     // to render completely, take a screenshot of the entire page
     // in JPEG-format using 75% quality.
     let options = LaunchOptionsBuilder::default()
         .build()
         .expect("Couldn't find appropriate Chrome binary.");
-    let browser = Browser::new(options)?;
-    let tab = browser.wait_for_initial_tab()?;
+    let browser = Browser::new(options).unwrap();
+    let tab = browser.wait_for_initial_tab().unwrap();
 
     let patterns = vec![
         RequestPattern {
@@ -75,7 +76,8 @@ fn main() -> Fallible<()> {
                 RequestInterceptionDecision::Continue
             }
         }),
-    )?;
+    )
+    .unwrap();
 
     let responses = Arc::new(Mutex::new(Vec::new()));
     // let responses2 = responses.clone();
@@ -89,47 +91,25 @@ fn main() -> Fallible<()> {
         let body = fetch_body().unwrap();
         println!("\nDEBUG: Response body: {:?}", body);
         responses.lock().unwrap().push((response, body));
-    }))?;
+    }))
+    .unwrap();
 
     // tab.set_default_timeout(Duration::from_secs(100));
     // let final_responses: Vec<_> = responses.lock().unwrap().clone();
 
-    // println!("\nTMZ website\n",);
-    // let jpeg_data = tab
-    //     .navigate_to("https://tmz.com")?
-    //     .wait_until_navigated()?
-    //     .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    // fs::write("tmz.jpg", &jpeg_data)?;
-
-    println!("\nHTTPS: Lobste.rs\n",);
+    println!("\nLobste.rs\n",);
     let jpeg_data = tab
-        .navigate_to("https://lobste.rs")?
-        .wait_until_navigated()?
-        .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    fs::write("screenshot.jpg", &jpeg_data)?;
+        .navigate_to("http://lobste.rs")
+        .unwrap()
+        .wait_until_navigated()
+        .unwrap();
 
-    // println!("\nusatoday\n",);
-    // let jpeg_data = tab
-    //     .navigate_to("www.usatoday.com")?
-    //     .wait_until_navigated()?
-    //     .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    // fs::write("screenshot.jpg", &jpeg_data)?;
-
-    println!("\nHTTP: Lobste.rs\n",);
+    println!("\nTMZ website\n",);
     let jpeg_data = tab
-        .navigate_to("http://lobste.rs")?
-        .wait_until_navigated()?
-        .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    fs::write("screenshot.jpg", &jpeg_data)?;
-
-    // NOTE: this is a invalid case
-    // println!("\nNOTHING: Lobste.rs\n",);
-    // let jpeg_data = tab
-    //     .navigate_to("lobste.rs")?
-    //     .wait_until_navigated()?
-    //     .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    // fs::write("screenshot.jpg", &jpeg_data)?;
+        .navigate_to("https://tmz.com")
+        .unwrap()
+        .wait_until_navigated()
+        .unwrap();
 
     println!("Screenshots successfully created.");
-    Ok(())
 }
