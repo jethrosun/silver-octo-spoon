@@ -26,7 +26,10 @@ fn main() {
 
     let args: Vec<String> = env::args().collect();
     let path = match args.into_iter().nth(1) {
-        Some(arg) => arg,
+        Some(arg) => {
+            println!("arg: {:?}", arg);
+            arg
+        }
         None => {
             println!("Usage: thing <torrent file>");
             return;
