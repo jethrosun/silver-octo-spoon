@@ -1,0 +1,10 @@
+[package]
+name = "p2p"
+version = "0.1.0"
+authors = ["Domantas Jadenkus <djadenkus@gmail.com>", "Shuwen Jethro Sun <jethrosun@ccs.neu.edu>"]
+
+[dependencies]
+rand = "0.3"
+sha1 = "0.2.0"
+hyper = "0.10"
+log = "0.3.7"
