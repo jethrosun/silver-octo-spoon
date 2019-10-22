@@ -2,8 +2,8 @@ extern crate transmission;
 use transmission::{Client, ClientConfig};
 
 fn main() {
-    let config_dir = "/";
-    let download_dir = "/";
+    let config_dir = "config/";
+    let download_dir = "downloads/";
 
     // big-buck-bunny.torrent  cosmos-laundromat.torrent  sintel.torrent  tears-of-steel.torrent  wired-cd.torrent
     let free_path = "free-torrents/big-buck-bunny.torrent";
