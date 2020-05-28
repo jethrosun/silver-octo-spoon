@@ -2,12 +2,6 @@ extern crate base64;
 extern crate tiny_http;
 
 use failure::Fallible;
-use std::fs;
-use std::sync::Arc;
-use std::sync::Mutex;
-use std::thread::sleep;
-use std::time::Duration;
-
 use headless_chrome::browser::tab::RequestInterceptionDecision;
 use headless_chrome::protocol::network::methods::RequestPattern;
 use headless_chrome::protocol::network::Cookie;
@@ -19,117 +13,58 @@ use headless_chrome::{
     protocol::page::ScreenshotFormat,
     Browser, Tab,
 };
+use lib::*;
+use std::fs;
+use std::sync::Arc;
+use std::sync::Mutex;
+use std::thread::sleep;
+use std::time::{Duration, Instant};
+
+mod lib;
 
 fn main() -> Fallible<()> {
-    // Create a headless browser, navigate to wikipedia.org, wait for the page
-    // to render completely, take a screenshot of the entire page
-    // in JPEG-format using 75% quality.
-    let options = LaunchOptionsBuilder::default()
-        .build()
-        .expect("Couldn't find appropriate Chrome binary.");
-    let browser = Browser::new(options)?;
-    let tab = browser.wait_for_initial_tab()?;
+    // Workloads:
 
-    let patterns = vec![
-        RequestPattern {
-            url_pattern: None,
-            resource_type: None,
-            interception_stage: Some("HeadersReceived"),
-        },
-        RequestPattern {
-            url_pattern: None,
-            resource_type: None,
-            interception_stage: Some("Request"),
-        },
-    ];
+    let workload_path =
+        "/home/jethros/dev/projects/silver-octo-spoon/workload_tempaltes/rdr_pvn_workload.json";
 
-    tab.enable_request_interception(
-        &patterns,
-        Box::new(|transport, session_id, intercepted| {
-            println!("\nDEBUG: url content: {:?}", intercepted.request.url);
-            println!("\nDEBUG: {:?}", intercepted.request);
-            if intercepted.request.url.ends_with(".js") {
-                println!("DEBUG: jackpot! We have JS code",);
-                let js_body = r#"document.body.appendChild(document.createElement("hr"));"#;
-                let js_response = tiny_http::Response::new(
-                    200.into(),
-                    vec![tiny_http::Header::from_bytes(
-                        &b"Content-Type"[..],
-                        &b"application/javascript"[..],
-                    )
-                    .unwrap()],
-                    js_body.as_bytes(),
-                    Some(js_body.len()),
-                    None,
-                );
+    let num_of_users = 100;
+    let num_of_secs = 600;
 
-                let mut wrapped_writer = Vec::new();
-                js_response
-                    .raw_print(&mut wrapped_writer, (1, 2).into(), &[], false, None)
-                    .unwrap();
+    let mut rdr_workload =
+        rdr_load_workload(workload_path.to_string(), num_of_secs, num_of_users).unwrap();
+    println!("Workload is generated",);
 
-                let base64_response = base64::encode(&wrapped_writer);
+    // Browser list.
+    let mut browser_list: Vec<Browser> = Vec::new();
 
-                RequestInterceptionDecision::Response(base64_response)
-            } else {
-                RequestInterceptionDecision::Continue
+    for _ in 0..num_of_users {
+        let browser = browser_create().unwrap();
+        browser_list.push(browser);
+    }
+    println!("All browsers are created ",);
+
+    // Jobs stack.
+    let mut job_stack = Vec::new();
+    let mut pivot = 0 as usize;
+    for i in (1..num_of_secs).rev() {
+        job_stack.push(i);
+    }
+
+    let now = Instant::now();
+
+    loop {
+        if now.elapsed().as_secs() == pivot as u64 {
+            let min = pivot / 60;
+            let rest_sec = pivot % 60;
+            println!("{:?} min, {:?} second", min, rest_sec);
+            match rdr_workload.remove(&pivot) {
+                Some(wd) => rdr_scheduler(&pivot, &num_of_users, wd, &browser_list),
+                None => println!("No workload for second {:?}", pivot),
             }
-        }),
-    )?;
+            pivot += 1;
+        }
+    }
 
-    let responses = Arc::new(Mutex::new(Vec::new()));
-    // let responses2 = responses.clone();
-
-    tab.enable_response_handling(Box::new(move |response, fetch_body| {
-        // NOTE: you can only fetch the body after it's been downloaded, which might be some time
-        // after the initial 'response' (with status code, headers, etc.) has come back. hence this
-        // sleep:
-        println!("\nDEBUG: Response {:?}", response);
-        sleep(Duration::from_millis(100));
-        let body = fetch_body().unwrap();
-        println!("\nDEBUG: Response body: {:?}", body);
-        responses.lock().unwrap().push((response, body));
-    }))?;
-
-    // tab.set_default_timeout(Duration::from_secs(100));
-    // let final_responses: Vec<_> = responses.lock().unwrap().clone();
-
-    // println!("\nTMZ website\n",);
-    // let jpeg_data = tab
-    //     .navigate_to("https://tmz.com")?
-    //     .wait_until_navigated()?
-    //     .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    // fs::write("tmz.jpg", &jpeg_data)?;
-
-    println!("\nHTTPS: Lobste.rs\n",);
-    let jpeg_data = tab
-        .navigate_to("https://lobste.rs")?
-        .wait_until_navigated()?
-        .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    fs::write("screenshot.jpg", &jpeg_data)?;
-
-    // println!("\nusatoday\n",);
-    // let jpeg_data = tab
-    //     .navigate_to("www.usatoday.com")?
-    //     .wait_until_navigated()?
-    //     .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    // fs::write("screenshot.jpg", &jpeg_data)?;
-
-    println!("\nHTTP: Lobste.rs\n",);
-    let jpeg_data = tab
-        .navigate_to("http://lobste.rs")?
-        .wait_until_navigated()?
-        .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    fs::write("screenshot.jpg", &jpeg_data)?;
-
-    // NOTE: this is a invalid case
-    // println!("\nNOTHING: Lobste.rs\n",);
-    // let jpeg_data = tab
-    //     .navigate_to("lobste.rs")?
-    //     .wait_until_navigated()?
-    //     .capture_screenshot(ScreenshotFormat::JPEG(Some(75)), None, true)?;
-    // fs::write("screenshot.jpg", &jpeg_data)?;
-
-    println!("Screenshots successfully created.");
     Ok(())
 }
