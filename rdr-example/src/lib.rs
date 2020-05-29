@@ -49,13 +49,39 @@ pub fn rdr_load_workload(
                 None => continue,
             };
             // println!("{:?}", urls.unwrap());
-            millis.push((
-                urls.unwrap()[0].as_u64().unwrap(),
-                urls.unwrap()[1].as_str().unwrap().to_string(),
-                user,
-            ));
+
+            if urls.unwrap()[1].as_str().unwrap().to_string() == "32.wcmcs.net" {
+                println!("match {:?}", urls.unwrap()[1].as_str().unwrap().to_string(),);
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string()
+                == "provider-directory.anthem.com"
+            {
+                println!("match {:?}", urls.unwrap()[1].as_str().unwrap().to_string(),);
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "kr.sports.yahoo.com" {
+                println!("match {:?}", urls.unwrap()[1].as_str().unwrap().to_string(),);
+                continue;
+            } else {
+                millis.push((
+                    urls.unwrap()[0].as_u64().unwrap(),
+                    urls.unwrap()[1].as_str().unwrap().to_string(),
+                    user,
+                ));
+            }
+
+            // if urls.unwrap()[1].as_str().unwrap().to_string() == "32.wcmcs.net" {
+            //     println!("{:?}", urls.unwrap()[1].as_str().unwrap().to_string());
+            //     millis.push((
+            //         urls.unwrap()[0].as_u64().unwrap(),
+            //         urls.unwrap()[1].as_str().unwrap().to_string(),
+            //         user,
+            //     ));
+            // } else {
+            //     continue;
+            // }
         }
         millis.sort();
+
         // sec_wd.insert(millis);
 
         // {'96': [53, 'video.od.visiblemeasures.com'],
@@ -78,6 +104,7 @@ pub fn rdr_load_workload(
         // if sec == 599 {
         //     println!("{:?}, ", millis);
         // }
+        // println!("\n{:?} {:?}", sec, millis);
         workload.insert(sec, millis);
     }
     Ok(workload)
@@ -112,7 +139,10 @@ pub fn user_browse(current_browser: &Browser, hostname: &String) -> Fallible<()>
     // let _ = current_tab
     //     .navigate_to(&https_hostname)?
     //     .wait_until_navigated()?;
-    let _ = current_tab.navigate_to(&https_hostname)?;
+    match current_tab.navigate_to(&https_hostname) {
+        Ok(_) => println!("Browse finished"),
+        Err(e) => println!("Browse failed with {:?}", e),
+    }
 
     Ok(())
 }
