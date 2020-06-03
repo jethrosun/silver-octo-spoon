@@ -51,15 +51,15 @@ pub fn rdr_load_workload(
             // println!("{:?}", urls.unwrap());
 
             if urls.unwrap()[1].as_str().unwrap().to_string() == "32.wcmcs.net" {
-                println!("match {:?}", urls.unwrap()[1].as_str().unwrap().to_string(),);
+                // println!("match {:?}", urls.unwrap()[1].as_str().unwrap().to_string(),);
                 continue;
             } else if urls.unwrap()[1].as_str().unwrap().to_string()
                 == "provider-directory.anthem.com"
             {
-                println!("match {:?}", urls.unwrap()[1].as_str().unwrap().to_string(),);
+                // println!("match {:?}", urls.unwrap()[1].as_str().unwrap().to_string(),);
                 continue;
             } else if urls.unwrap()[1].as_str().unwrap().to_string() == "kr.sports.yahoo.com" {
-                println!("match {:?}", urls.unwrap()[1].as_str().unwrap().to_string(),);
+                // println!("match {:?}", urls.unwrap()[1].as_str().unwrap().to_string(),);
                 continue;
             } else {
                 millis.push((
