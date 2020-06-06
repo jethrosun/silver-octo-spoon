@@ -5,6 +5,7 @@ use std::hash::BuildHasherDefault;
 use std::net::Ipv4Addr;
 use std::sync::{Arc, Mutex, RwLock};
 use std::time::{Duration, Instant};
+use std::{thread, time};
 use transmission::{Client, ClientConfig};
 
 mod lib;
@@ -47,18 +48,14 @@ fn main() {
         pivot += 1;
     }
 
-    let now = Instant::now();
-    let mut time = 5;
-
+    let ten_secs = time::Duration::from_secs(10);
     loop {
         let tlist = torrent_list.clone();
-        // if tlist.into_iter().all(|x| x.stats().finished) {
-        //     println!("All done");
-        // }
-        println!("Time is {:?}", time);
-        if now.elapsed().as_secs() == time {
-            for t in tlist {
-                println!(
+
+        println!("!0 secs has passed");
+
+        for t in tlist {
+            println!(
                     "state: {:?}, percent complete: {:?}, percent done: {:?}, finished: {:?}, is stalled: {:?}",
                     t.stats().state,
                     t.stats().percent_complete,
@@ -66,8 +63,7 @@ fn main() {
                     t.stats().finished,
                     t.stats().is_stalled
                 );
-            }
-            time += 5;
         }
+        thread::sleep(ten_secs);
     }
 }
