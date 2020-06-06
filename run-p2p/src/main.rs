@@ -51,6 +51,7 @@ fn main() {
     let ten_secs = time::Duration::from_secs(10);
     loop {
         let tlist = torrent_list.clone();
+        let tlist2 = torrent_list.clone();
 
         println!("!0 secs has passed");
 
@@ -63,6 +64,10 @@ fn main() {
                     t.stats().finished,
                     t.stats().is_stalled
                 );
+        }
+
+        if tlist2.into_iter().all(|x| x.stats().percent_done == 1.0) {
+            println!("All Done!!!!!");
         }
         thread::sleep(ten_secs);
     }
