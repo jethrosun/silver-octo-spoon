@@ -55,9 +55,17 @@ fn main() {
         // if tlist.into_iter().all(|x| x.stats().finished) {
         //     println!("All done");
         // }
+        println!("Time is {:?}", time);
         if now.elapsed().as_secs() == time {
             for t in tlist {
-                println!("{:?}", t.stats().percent_complete);
+                println!(
+                    "state: {:?}, percent complete: {:?}, percent done: {:?}, finished: {:?}, is stalled: {:?}",
+                    t.stats().state,
+                    t.stats().percent_complete,
+                    t.stats().percent_done,
+                    t.stats().finished,
+                    t.stats().is_stalled
+                );
             }
             time += 5;
         }
