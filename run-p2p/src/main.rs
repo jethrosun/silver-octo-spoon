@@ -46,11 +46,20 @@ fn main() {
         torrent_list.push(t);
         pivot += 1;
     }
-    let tlist = torrent_list.clone();
+
+    let now = Instant::now();
+    let mut time = 5;
 
     loop {
-        if tlist.into_iter().all(|x| x.stats().finished) {
-            println!("All done");
+        let tlist = torrent_list.clone();
+        // if tlist.into_iter().all(|x| x.stats().finished) {
+        //     println!("All done");
+        // }
+        if now.elapsed().as_secs() == time {
+            for t in tlist {
+                println!("{:?}", t.stats().percent_complete);
+            }
+            time += 5;
         }
     }
 }
