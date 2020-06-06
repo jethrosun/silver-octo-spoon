@@ -46,5 +46,8 @@ fn main() {
         torrent_list.push(t);
         pivot += 1;
     }
-    print!("{}\n", torrent_list.into_iter().all(|x| x.stats().finished));
+
+    loop {
+        print!("{}\n", torrent_list.into_iter().all(|x| x.stats().finished));
+    }
 }
