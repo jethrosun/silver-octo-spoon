@@ -46,9 +46,10 @@ fn main() {
         torrent_list.push(t);
         pivot += 1;
     }
+    let tlist = torrent_list.clone();
 
     loop {
-        if torrent_list.clone().into_iter().all(|x| x.stats().finished) {
+        if tlist.into_iter().all(|x| x.stats().finished) {
             println!("All done");
         }
     }
