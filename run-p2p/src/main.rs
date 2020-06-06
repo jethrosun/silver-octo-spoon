@@ -48,6 +48,8 @@ fn main() {
     }
 
     loop {
-        print!("{}\n", torrent_list.into_iter().all(|x| x.stats().finished));
+        if torrent_list.clone().into_iter().all(|x| x.stats().finished) {
+            println!("All done");
+        }
     }
 }
