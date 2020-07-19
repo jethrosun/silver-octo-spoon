@@ -61,6 +61,9 @@ pub fn rdr_load_workload(
             } else if urls.unwrap()[1].as_str().unwrap().to_string() == "kr.sports.yahoo.com" {
                 // println!("match {:?}", urls.unwrap()[1].as_str().unwrap().to_string(),);
                 continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "desktopfw.weather.com" {
+                // println!("match {:?}", urls.unwrap()[1].as_str().unwrap().to_string(),);
+                continue;
             } else {
                 millis.push((
                     urls.unwrap()[0].as_u64().unwrap(),
