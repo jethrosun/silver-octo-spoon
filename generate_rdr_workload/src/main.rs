@@ -25,9 +25,9 @@ mod lib;
 fn main() -> Fallible<()> {
     // Workloads:
 
-    let workload_path =
-        "/home/jethros/dev/silver-octo-spoon/workload_tempaltes/rdr_pvn_workload.json";
-        // "/home/jethros/dev/projects/silver-octo-spoon/workload_tempaltes/rdr_pvn_workload.json";
+    let workload_path = "/home/jethros/dev/pvn/utils/workloads/rdr_pvn_workload.json";
+    // "/home/jethros/dev/silver-octo-spoon/workload_tempaltes/rdr_pvn_workload.json";
+    // "/home/jethros/dev/projects/silver-octo-spoon/workload_tempaltes/rdr_pvn_workload.json";
 
     let num_of_users = 100;
     let num_of_secs = 600;
