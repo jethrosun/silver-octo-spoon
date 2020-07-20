@@ -1,0 +1,769 @@
+Workload is generated
+All browsers are created 
+0 min, 0 second
+No workload for second 0
+0 min, 1 second
+User 78: milli: 309 url: "sesamestats.com"
+0 min, 2 second
+User 6: milli: 181 url: "sweetim.com"
+User 78: milli: 868 url: "d.tradex.openx.com"
+0 min, 3 second
+User 78: milli: 135 url: "d.tradex.openx.com"
+User 29: milli: 466 url: "sesamestats.com"
+User 6: milli: 749 url: "hcr.com"
+0 min, 4 second
+User 29: milli: 91 url: "msn.com"
+User 78: milli: 104 url: "tags.kotaku.com"
+User 6: milli: 488 url: "hv3.webstat.com"
+User 74: milli: 583 url: "blogs.msdn.com"
+0 min, 5 second
+User 29: milli: 339 url: "cdn.unicast.msn.com"
+User 6: milli: 620 url: "imeem.com"
+User 52: milli: 673 url: "stumbleupon.com"
+User 78: milli: 726 url: "bid.openx.net"
+0 min, 6 second
+User 52: milli: 399 url: "womenofyoutube.mevio.com"
+User 6: milli: 601 url: "daum.net"
+User 58: milli: 898 url: "finance.google.com"
+0 min, 7 second
+User 6: milli: 269 url: "google.com"
+User 9: milli: 634 url: "0.channel12.facebook.com"
+0 min, 8 second
+User 29: milli: 120 url: "espn.go.com"
+User 78: milli: 418 url: "d.tradex.openx.com"
+User 9: milli: 507 url: "minihp.cyworld.com"
+User 6: milli: 708 url: "video-stats.video.google.com"
+User 75: milli: 823 url: "sidereel.com"
+User 58: milli: 991 url: "demr.opt.fimserve.com"
+0 min, 9 second
+User 36: milli: 91 url: "aa.lgv.facdn.com"
+User 58: milli: 285 url: "npr.org"
+User 75: milli: 704 url: "youtube.com"
+User 52: milli: 726 url: "gourmandia.com"
+User 29: milli: 856 url: "ad.yieldmanager.com"
+User 74: milli: 928 url: "view.atdmt.com"
+0 min, 10 second
+User 62: milli: 219 url: "bk.pps.tv"
+User 74: milli: 339 url: "fb.hf.fminutes.us"
+User 78: milli: 357 url: "bid.openx.net"
+User 6: milli: 417 url: "ads.brazzers.com"
+0 min, 11 second
+User 6: milli: 103 url: "cyimg.cyworld.com"
+User 59: milli: 177 url: "afe.specificclick.net"
+User 52: milli: 588 url: "google.com.tw"
+User 78: milli: 868 url: "ad.yieldmanager.com"
+0 min, 12 second
+User 6: milli: 363 url: "tonightshowwithconanobrien.com"
+User 9: milli: 365 url: "search.yahoo.com"
+User 59: milli: 414 url: "xp.trafficmp.com"
+User 58: milli: 427 url: "priceline.com"
+User 74: milli: 595 url: "google.com"
+User 78: milli: 769 url: "d.tradex.openx.com"
+User 29: milli: 831 url: "facebook.com"
+0 min, 13 second
+User 75: milli: 149 url: "womenofyoutube.mevio.com"
+User 9: milli: 298 url: "facebook.com"
+User 6: milli: 353 url: "minihp.cyworld.com"
+User 74: milli: 362 url: "ads.brazzers.com"
+User 58: milli: 596 url: "polls.polldaddy.com"
+User 36: milli: 686 url: "cyworld.com"
+User 59: milli: 756 url: "ad.yieldmanager.com"
+User 40: milli: 793 url: "youtube.com"
+0 min, 14 second
+User 62: milli: 354 url: "msn.foxsports.com"
+User 40: milli: 416 url: "ads.specificmedia.com"
+User 9: milli: 528 url: "hcr.com"
+User 58: milli: 668 url: "tracking2.vindicosuite.com"
+User 52: milli: 705 url: "sesamestats.com"
+User 8: milli: 811 url: "deviantart.com"
+User 75: milli: 946 url: "cell.com"
+User 74: milli: 956 url: "rt31.infolinks.com"
+0 min, 15 second
+User 6: milli: 128 url: "imeem.com"
+User 62: milli: 131 url: "d.tradex.openx.com"
+User 52: milli: 607 url: "eyny.com"
+User 58: milli: 681 url: "network.kitaramarketplace.com"
+User 75: milli: 686 url: "deviantart.com"
+0 min, 16 second
+User 91: milli: 36 url: "target.com"
+User 58: milli: 125 url: "video-stats.video.google.com"
+User 62: milli: 283 url: "viewmorepics.myspace.com"
+User 78: milli: 323 url: "d.tradex.openx.com"
+User 61: milli: 402 url: "d.tradex.openx.com"
+User 75: milli: 445 url: "bk.pps.tv"
+User 36: milli: 551 url: "static.addtoany.com"
+User 52: milli: 684 url: "video-stats.video.google.com"
+User 9: milli: 759 url: "ads.bluelithium.com"
+0 min, 17 second
+User 9: milli: 0 url: "arienh4.net.nyud.net"
+User 9 caused an error: ConnectionClosed
+
+   0: failure::backtrace::internal::InternalBacktrace::new
+             at /home/jethros/.cargo/registry/src/github.com-1ecc6299db9ec823/failure-0.1.8/src/backtrace/internal.rs:46
+   1: failure::backtrace::Backtrace::new
+             at /home/jethros/.cargo/registry/src/github.com-1ecc6299db9ec823/failure-0.1.8/src/backtrace/mod.rs:121
+   2: <failure::error::error_impl::ErrorImpl as core::convert::From<F>>::from
+             at /home/jethros/.cargo/registry/src/github.com-1ecc6299db9ec823/failure-0.1.8/src/error/error_impl.rs:19
+   3: <failure::error::Error as core::convert::From<F>>::from
+             at /home/jethros/.cargo/registry/src/github.com-1ecc6299db9ec823/failure-0.1.8/src/error/mod.rs:36
+   4: <T as core::convert::Into<U>>::into
+             at /home/jethros/.rustup/toolchains/nightly-2020-05-01-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libcore/convert/mod.rs:559
+   5: headless_chrome::browser::transport::waiting_call_registry::WaitingCallRegistry::cancel_outstanding_method_calls
+             at /home/jethros/.cargo/git/checkouts/rust-headless-chrome-64aacc558fc60af2/68c5a96/src/browser/transport/waiting_call_registry.rs:74
+   6: headless_chrome::browser::transport::Transport::handle_incoming_messages::{{closure}}
+             at /home/jethros/.cargo/git/checkouts/rust-headless-chrome-64aacc558fc60af2/68c5a96/src/browser/transport/mod.rs:343
+   7: std::sys_common::backtrace::__rust_begin_short_backtrace
+             at /home/jethros/.rustup/toolchains/nightly-2020-05-01-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libstd/sys_common/backtrace.rs:130
+   8: std::thread::Builder::spawn_unchecked::{{closure}}::{{closure}}
+             at /home/jethros/.rustup/toolchains/nightly-2020-05-01-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libstd/thread/mod.rs:475
+   9: <std::panic::AssertUnwindSafe<F> as core::ops::function::FnOnce<()>>::call_once
+             at /home/jethros/.rustup/toolchains/nightly-2020-05-01-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libstd/panic.rs:318
+  10: std::panicking::try::do_call
+             at /home/jethros/.rustup/toolchains/nightly-2020-05-01-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libstd/panicking.rs:297
+  11: __rust_try
+  12: std::panicking::try
+             at /home/jethros/.rustup/toolchains/nightly-2020-05-01-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libstd/panicking.rs:274
+  13: std::panic::catch_unwind
+             at /home/jethros/.rustup/toolchains/nightly-2020-05-01-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libstd/panic.rs:394
+  14: std::thread::Builder::spawn_unchecked::{{closure}}
+             at /home/jethros/.rustup/toolchains/nightly-2020-05-01-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libstd/thread/mod.rs:474
+  15: core::ops::function::FnOnce::call_once{{vtable.shim}}
+             at /home/jethros/.rustup/toolchains/nightly-2020-05-01-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libcore/ops/function.rs:232
+  16: <alloc::boxed::Box<F> as core::ops::function::FnOnce<A>>::call_once
+             at /rustc/7ced01a730e8fc1bae2f8d4369c26812c0484da4/src/liballoc/boxed.rs:1034
+      <alloc::boxed::Box<F> as core::ops::function::FnOnce<A>>::call_once
+             at /rustc/7ced01a730e8fc1bae2f8d4369c26812c0484da4/src/liballoc/boxed.rs:1034
+      std::sys::unix::thread::Thread::new::thread_start
+             at /rustc/7ced01a730e8fc1bae2f8d4369c26812c0484da4/src/libstd/sys/unix/thread.rs:87
+  17: start_thread
+  18: __clone
+
+User 62: milli: 230 url: "video-stats.video.google.com"
+User 8: milli: 234 url: "hv3.webstat.com"
+User 58: milli: 345 url: "movshare.net"
+User 59: milli: 360 url: "openxxx.viragemedia.com"
+User 78: milli: 589 url: "fms.indiana.edu"
+User 61: milli: 653 url: "pann.nate.com"
+User 91: milli: 759 url: "d.tradex.openx.com"
+User 19: milli: 832 url: "imgcache.qq.com"
+0 min, 18 second
+User 62: milli: 145 url: "fls.doubleclick.net"
+User 9: milli: 260 url: "hv3.webstat.com"
+User 61: milli: 278 url: "d.tradex.openx.com"
+User 96: milli: 342 url: "media.trafficjunky.net"
+User 59: milli: 702 url: "womenofyoutube.mevio.com"
+User 36: milli: 958 url: "informatics.indiana.edu"
+0 min, 19 second
+User 31: milli: 202 url: "nba.com"
+User 19: milli: 665 url: "womenofyoutube.mevio.com"
+User 8: milli: 671 url: "amazon.com"
+0 min, 20 second
+User 96: milli: 67 url: "minihp.cyworld.com"
+User 62: milli: 335 url: "d.tradex.openx.com"
+User 91: milli: 648 url: "d.tradex.openx.com"
+User 65: milli: 709 url: "amazon.com"
+User 40: milli: 754 url: "womenofyoutube.mevio.com"
+User 19: milli: 791 url: "google.com"
+0 min, 21 second
+User 9: milli: 131 url: "sesamestats.com"
+User 19: milli: 164 url: "tpc.googlesyndication.com"
+User 8: milli: 267 url: "ad.yieldmanager.com"
+User 31: milli: 283 url: "sesamestats.com"
+User 61: milli: 489 url: "d.tradex.openx.com"
+User 40: milli: 512 url: "granite.medlib.iupui.edu"
+User 62: milli: 818 url: "ads.pointroll.com"
+User 91: milli: 859 url: "bid.openx.net"
+0 min, 22 second
+User 96: milli: 32 url: "ad.linkstorms.com"
+User 79: milli: 85 url: "facebook.com"
+User 8: milli: 255 url: "xici.net"
+User 91: milli: 355 url: "asx.kbs.co.kr"
+User 16: milli: 404 url: "imeem.com"
+User 59: milli: 455 url: "arienh4.net.nyud.net"
+User 19: milli: 504 url: "mail.google.com"
+User 36: milli: 792 url: "br.fling.com"
+User 40: milli: 873 url: "facebook.com"
+0 min, 23 second
+User 46: milli: 27 url: "vodguide.pps.tv"
+User 19: milli: 146 url: "googleads.g.doubleclick.net"
+User 61: milli: 295 url: "google.com"
+User 8: milli: 388 url: "baidu.com"
+User 79: milli: 717 url: "womenofyoutube.mevio.com"
+0 min, 24 second
+User 75: milli: 35 url: "arienh4.net.nyud.net"
+User 61: milli: 74 url: "d.tradex.openx.com"
+User 8: milli: 341 url: "google.com"
+User 91: milli: 438 url: "facebook.com"
+User 59: milli: 474 url: "secure-us.imrworldwide.com"
+User 65: milli: 578 url: "cyimg.cyworld.com"
+User 16: milli: 957 url: "idsnews.com"
+User 79: milli: 985 url: "api.choicestream.com"
+0 min, 25 second
+User 96: milli: 65 url: "msn.foxsports.com"
+User 74: milli: 153 url: "letsrun.com"
+User 65: milli: 184 url: "proquest.umi.com"
+User 79: milli: 199 url: "player.play.it"
+User 31: milli: 227 url: "fandango.com"
+User 16: milli: 251 url: "video-stats.video.google.com"
+User 8: milli: 368 url: "video-stats.video.google.com"
+User 51: milli: 483 url: "webmaila.netzero.net"
+User 62: milli: 678 url: "d.tradex.openx.com"
+0 min, 26 second
+User 65: milli: 54 url: "themovieinsider.com"
+User 79: milli: 80 url: "0.channel34.facebook.com"
+User 61: milli: 81 url: "d.tradex.openx.com"
+User 40: milli: 126 url: "autou.vodone.cn"
+User 62: milli: 239 url: "bid.openx.net"
+User 16: milli: 253 url: "sesamestats.com"
+User 96: milli: 354 url: "bs.serving-sys.com"
+User 51: milli: 894 url: "fanfiction.net"
+0 min, 27 second
+User 46: milli: 2 url: "i.ytimg.com"
+User 51: milli: 180 url: "delivery.trafficjunky.net"
+User 91: milli: 259 url: "k201consulting.blogspot.com"
+User 79: milli: 466 url: "facebook.com"
+User 3: milli: 710 url: "target.com"
+User 31: milli: 794 url: "medicine.iu.edu"
+User 16: milli: 861 url: "facebook.com"
+User 65: milli: 992 url: "news.163.com"
+0 min, 28 second
+User 65: milli: 2 url: "anmgpvpw.vp.video.l.google.com"
+User 57: milli: 177 url: "bbs.20jh.net"
+User 19: milli: 310 url: "a28.photo.store.qq.com"
+User 46: milli: 335 url: "widget.say-on.com"
+User 58: milli: 341 url: "youtube.com"
+User 16: milli: 392 url: "mail.live.com"
+User 31: milli: 659 url: "connect.mcgraw-hill.com"
+User 61: milli: 710 url: "d.tradex.openx.com"
+User 96: milli: 776 url: "hcr.com"
+User 79: milli: 822 url: "teendestruction.com"
+0 min, 29 second
+User 38: milli: 106 url: "youtube.com"
+User 31: milli: 241 url: "medicine.iu.edu"
+User 78: milli: 245 url: "d.tradex.openx.com"
+User 59: milli: 343 url: "promo.awempire.com"
+User 46: milli: 645 url: "ads.brazzers.com"
+User 57: milli: 729 url: "megaupload.com"
+User 65: milli: 732 url: "proquest.umi.com"
+User 79: milli: 913 url: "0.channel34.facebook.com"
+User 51: milli: 968 url: "sn117w.snt117.mail.live.com"
+User 3: milli: 990 url: "youtube.com"
+0 min, 30 second
+User 51: milli: 27 url: "open.compassion-intl.com"
+User 57: milli: 158 url: "megavideo.com"
+User 36: milli: 333 url: "dataandsearch.org"
+User 79: milli: 382 url: "music.indiana.edu"
+User 8: milli: 501 url: "tnaflix.com"
+User 31: milli: 515 url: "nate.com"
+User 91: milli: 555 url: "d.tradex.openx.com"
+User 73: milli: 593 url: "ro-co1.exp.msn.com"
+User 16: milli: 662 url: "video-stats.video.google.com"
+User 46: milli: 865 url: "static3.photo.sina.com.cn"
+User 59: milli: 865 url: "xtube.com"
+0 min, 31 second
+User 75: milli: 327 url: "video-stats.video.google.com"
+User 57: milli: 359 url: "video-stats.video.google.com"
+User 9: milli: 370 url: "womenofyoutube.mevio.com"
+User 12: milli: 401 url: "arienh4.net.nyud.net"
+User 51: milli: 484 url: "facebook.com"
+User 46: milli: 577 url: "video-stats.video.google.com"
+User 91: milli: 844 url: "d.tradex.openx.com"
+User 78: milli: 955 url: "d.tradex.openx.com"
+0 min, 32 second
+User 78: milli: 289 url: "d13.zedo.com"
+User 57: milli: 495 url: "xjjh.com"
+User 74: milli: 661 url: "ncaafootball.fanhouse.com"
+User 51: milli: 693 url: "ad.yieldmanager.com"
+User 3: milli: 707 url: "ad.doubleclick.net"
+User 46: milli: 712 url: "facebook.com"
+User 16: milli: 779 url: "radontheweb.mevio.com"
+User 65: milli: 831 url: "pandora.com"
+User 2: milli: 890 url: "cwtv.com"
+User 8: milli: 906 url: "netv.sbs.co.kr"
+User 38: milli: 950 url: "video-stats.video.google.com"
+0 min, 33 second
+User 74: milli: 30 url: "img05.taobaocdn.com"
+User 2: milli: 67 url: "mytechnicalinterviewexperience.com"
+User 14: milli: 133 url: "youtube.com"
+User 75: milli: 212 url: "ongulfshores.com"
+User 96: milli: 285 url: "google.com"
+User 51: milli: 326 url: "mail.live.com"
+User 91: milli: 444 url: "d.tradex.openx.com"
+User 6: milli: 781 url: "hv3.webstat.com"
+0 min, 34 second
+User 12: milli: 94 url: "trumba.com"
+User 62: milli: 99 url: "ad.insightexpressai.com"
+User 9: milli: 174 url: "ts.vimeo.com.s3.amazonaws.com"
+User 6: milli: 184 url: "iudsr.blogspot.com"
+User 46: milli: 213 url: "ads.bluelithium.com"
+User 3: milli: 374 url: "samanyoluhaber.com"
+User 65: milli: 379 url: "minihp.cyworld.com"
+User 19: milli: 414 url: "hv3.webstat.com"
+User 50: milli: 440 url: "google.com"
+User 79: milli: 501 url: "informatics.indiana.edu"
+User 38: milli: 644 url: "bs.serving-sys.com"
+User 57: milli: 843 url: "personal.news.yahoo.com"
+User 2: milli: 914 url: "deviantart.com"
+0 min, 35 second
+User 14: milli: 175 url: "br.fling.com"
+User 57: milli: 446 url: "ad.yieldmanager.com"
+User 3: milli: 653 url: "ads.netbookadserver.com"
+User 12: milli: 736 url: "google.com"
+User 9: milli: 754 url: "ad.yieldmanager.com"
+User 29: milli: 917 url: "nate.com"
+User 46: milli: 981 url: "video-stats.video.google.com"
+0 min, 36 second
+User 57: milli: 37 url: "bs.serving-sys.com"
+User 6: milli: 139 url: "ad.yieldmanager.com"
+User 2: milli: 176 url: "ws.amazon.com"
+User 12: milli: 386 url: "vodguide.pps.tv"
+User 65: milli: 508 url: "facebook.com"
+User 29: milli: 660 url: "tw.yahoo.com"
+User 51: milli: 798 url: "hv3.webstat.com"
+User 14: milli: 904 url: "tyrashow.warnerbros.com"
+User 40: milli: 906 url: "hv3.webstat.com"
+User 38: milli: 924 url: "ads.brazzers.com"
+0 min, 37 second
+User 58: milli: 94 url: "drudgereport.com"
+User 9: milli: 164 url: "google.com"
+User 61: milli: 268 url: "bid.openx.net"
+User 57: milli: 294 url: "fastbrowsersearch.com"
+User 3: milli: 656 url: "secure-us.imrworldwide.com"
+User 14: milli: 827 url: "thumb.brandreachsys.com"
+User 55: milli: 843 url: "bk.pps.tv"
+User 6: milli: 935 url: "hv3.webstat.com"
+0 min, 38 second
+User 57: milli: 130 url: "laptopmag.com"
+User 84: milli: 421 url: "ytaahg.vo.llnwd.net"
+User 2: milli: 747 url: "ads.brazzers.com"
+User 73: milli: 773 url: "video-stats.video.google.com"
+0 min, 39 second
+User 12: milli: 155 url: "arienh4.net.nyud.net"
+User 73: milli: 184 url: "t.msn.com"
+User 50: milli: 418 url: "srv2.wa.marketingsolutions.yahoo.com"
+User 57: milli: 428 url: "wwwq33.megaupload.com"
+User 16: milli: 458 url: "assoc-amazon.com"
+User 55: milli: 553 url: "vodguide.pps.tv"
+User 84: milli: 938 url: "xp.trafficmp.com"
+User 29: milli: 978 url: "video-stats.video.google.com"
+0 min, 40 second
+User 2: milli: 75 url: "optimized-by.rubiconproject.com"
+User 38: milli: 121 url: "livejasmin.com"
+User 14: milli: 273 url: "srv2.wa.marketingsolutions.yahoo.com"
+User 51: milli: 284 url: "media.trafficjunky.net"
+User 65: milli: 363 url: "video.od.visiblemeasures.com"
+User 55: milli: 426 url: "results.freeze.com"
+User 3: milli: 438 url: "google.com"
+User 29: milli: 450 url: "cyworld.com"
+User 6: milli: 591 url: "facebook.com"
+User 73: milli: 643 url: "ads.brazzers.com"
+User 16: milli: 775 url: "blog.yiyidu.com"
+0 min, 41 second
+User 36: milli: 165 url: "thumb.brandreachsys.com"
+User 12: milli: 696 url: "bing.com"
+User 58: milli: 712 url: "adserving.cpxinteractive.com"
+User 29: milli: 721 url: "amch.questionmarket.com"
+User 75: milli: 768 url: "facebook.com"
+User 84: milli: 770 url: "video-stats.video.google.com"
+User 2: milli: 913 url: "ad.yieldmanager.com"
+User 20: milli: 946 url: "google.com"
+0 min, 42 second
+User 61: milli: 13 url: "st.chatango.com"
+User 51: milli: 45 url: "hcr.com"
+User 14: milli: 227 url: "facebook.com"
+User 16: milli: 360 url: "ws.amazon.com"
+User 20: milli: 395 url: "static.atm.youku.com"
+User 29: milli: 555 url: "tw.yahoo.com"
+User 50: milli: 689 url: "youtube.com"
+User 46: milli: 738 url: "stats6.li"
+User 2: milli: 863 url: "tyrashow.warnerbros.com"
+User 91: milli: 909 url: "d.tradex.openx.com"
+User 84: milli: 946 url: "comingsoon.net"
+User 6: milli: 966 url: "video-stats.video.google.com"
+0 min, 43 second
+User 29: milli: 141 url: "ad.doubleclick.net"
+User 78: milli: 288 url: "redtube.com"
+User 75: milli: 424 url: "minihp.cyworld.com"
+User 66: milli: 433 url: "googleads.g.doubleclick.net"
+User 6: milli: 473 url: "video-stats.video.google.com"
+User 73: milli: 495 url: "ad.insightexpressai.com"
+User 55: milli: 511 url: "objects.tremormedia.com"
+User 9: milli: 678 url: "indianapublicmedia.org"
+User 20: milli: 701 url: "people.com"
+User 46: milli: 724 url: "nate.com"
+0 min, 44 second
+User 78: milli: 74 url: "d.tradex.openx.com"
+User 55: milli: 109 url: "amch.questionmarket.com"
+User 16: milli: 118 url: "picasaweb.google.com"
+User 46: milli: 494 url: "data.house.sina.com.cn"
+User 50: milli: 816 url: "talenthunter.com"
+User 57: milli: 891 url: "rmm1u.checkm8.com"
+User 61: milli: 997 url: "d.tradex.openx.com"
+0 min, 45 second
+User 57: milli: 0 url: "myspace.com"
+User 57 caused an error: ConnectionClosed
+
+   0: failure::backtrace::internal::InternalBacktrace::new
+             at /home/jethros/.cargo/registry/src/github.com-1ecc6299db9ec823/failure-0.1.8/src/backtrace/internal.rs:46
+   1: failure::backtrace::Backtrace::new
+             at /home/jethros/.cargo/registry/src/github.com-1ecc6299db9ec823/failure-0.1.8/src/backtrace/mod.rs:121
+   2: <failure::error::error_impl::ErrorImpl as core::convert::From<F>>::from
+             at /home/jethros/.cargo/registry/src/github.com-1ecc6299db9ec823/failure-0.1.8/src/error/error_impl.rs:19
+   3: <failure::error::Error as core::convert::From<F>>::from
+             at /home/jethros/.cargo/registry/src/github.com-1ecc6299db9ec823/failure-0.1.8/src/error/mod.rs:36
+   4: <T as core::convert::Into<U>>::into
+             at /home/jethros/.rustup/toolchains/nightly-2020-05-01-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libcore/convert/mod.rs:559
+   5: headless_chrome::browser::transport::Transport::call_method
+             at /home/jethros/.cargo/git/checkouts/rust-headless-chrome-64aacc558fc60af2/68c5a96/src/browser/transport/mod.rs:125
+   6: headless_chrome::browser::transport::Transport::call_method_on_browser
+             at /home/jethros/.cargo/git/checkouts/rust-headless-chrome-64aacc558fc60af2/68c5a96/src/browser/transport/mod.rs:191
+   7: headless_chrome::browser::Browser::call_method
+             at /home/jethros/.cargo/git/checkouts/rust-headless-chrome-64aacc558fc60af2/68c5a96/src/browser/mod.rs:353
+   8: headless_chrome::browser::Browser::new_tab_with_options
+             at /home/jethros/.cargo/git/checkouts/rust-headless-chrome-64aacc558fc60af2/68c5a96/src/browser/mod.rs:218
+   9: headless_chrome::browser::Browser::new_tab
+             at /home/jethros/.cargo/git/checkouts/rust-headless-chrome-64aacc558fc60af2/68c5a96/src/browser/mod.rs:196
+  10: rdr::lib::user_browse
+             at src/lib.rs:134
+  11: rdr::lib::rdr_scheduler
+             at src/lib.rs:172
+  12: rdr::main
+             at src/main.rs:66
+  13: std::rt::lang_start::{{closure}}
+             at /home/jethros/.rustup/toolchains/nightly-2020-05-01-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libstd/rt.rs:67
+  14: std::rt::lang_start_internal::{{closure}}
+             at /rustc/7ced01a730e8fc1bae2f8d4369c26812c0484da4/src/libstd/rt.rs:52
+      std::panicking::try::do_call
+             at /rustc/7ced01a730e8fc1bae2f8d4369c26812c0484da4/src/libstd/panicking.rs:297
+      std::panicking::try
+             at /rustc/7ced01a730e8fc1bae2f8d4369c26812c0484da4/src/libstd/panicking.rs:274
+      std::panic::catch_unwind
+             at /rustc/7ced01a730e8fc1bae2f8d4369c26812c0484da4/src/libstd/panic.rs:394
+      std::rt::lang_start_internal
+             at /rustc/7ced01a730e8fc1bae2f8d4369c26812c0484da4/src/libstd/rt.rs:51
+  15: std::rt::lang_start
+             at /home/jethros/.rustup/toolchains/nightly-2020-05-01-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libstd/rt.rs:67
+  16: main
+  17: __libc_start_main
+  18: _start
+
+User 29: milli: 90 url: "ads.brazzers.com"
+User 51: milli: 91 url: "sesamestats.com"
+User 62: milli: 203 url: "ad.doubleclick.net"
+User 19: milli: 220 url: "talenthunter.com"
+User 66: milli: 238 url: "womenofyoutube.mevio.com"
+User 84: milli: 389 url: "naver.com"
+User 77: milli: 518 url: "amch.questionmarket.com"
+User 75: milli: 622 url: "teendestruction.com"
+User 20: milli: 665 url: "camadegato.globo.com"
+User 50: milli: 689 url: "espn.go.com"
+User 8: milli: 964 url: "hcr.com"
+0 min, 46 second
+User 3: milli: 0 url: "kr.msn.com"
+User 3 caused an error: ConnectionClosed
+
+   0: failure::backtrace::internal::InternalBacktrace::new
+             at /home/jethros/.cargo/registry/src/github.com-1ecc6299db9ec823/failure-0.1.8/src/backtrace/internal.rs:46
+   1: failure::backtrace::Backtrace::new
+             at /home/jethros/.cargo/registry/src/github.com-1ecc6299db9ec823/failure-0.1.8/src/backtrace/mod.rs:121
+   2: <failure::error::error_impl::ErrorImpl as core::convert::From<F>>::from
+             at /home/jethros/.cargo/registry/src/github.com-1ecc6299db9ec823/failure-0.1.8/src/error/error_impl.rs:19
+   3: <failure::error::Error as core::convert::From<F>>::from
+             at /home/jethros/.cargo/registry/src/github.com-1ecc6299db9ec823/failure-0.1.8/src/error/mod.rs:36
+   4: <T as core::convert::Into<U>>::into
+             at /home/jethros/.rustup/toolchains/nightly-2020-05-01-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libcore/convert/mod.rs:559
+   5: headless_chrome::browser::transport::Transport::call_method
+             at /home/jethros/.cargo/git/checkouts/rust-headless-chrome-64aacc558fc60af2/68c5a96/src/browser/transport/mod.rs:125
+   6: headless_chrome::browser::transport::Transport::call_method_on_browser
+             at /home/jethros/.cargo/git/checkouts/rust-headless-chrome-64aacc558fc60af2/68c5a96/src/browser/transport/mod.rs:191
+   7: headless_chrome::browser::Browser::call_method
+             at /home/jethros/.cargo/git/checkouts/rust-headless-chrome-64aacc558fc60af2/68c5a96/src/browser/mod.rs:353
+   8: headless_chrome::browser::Browser::new_tab_with_options
+             at /home/jethros/.cargo/git/checkouts/rust-headless-chrome-64aacc558fc60af2/68c5a96/src/browser/mod.rs:218
+   9: headless_chrome::browser::Browser::new_tab
+             at /home/jethros/.cargo/git/checkouts/rust-headless-chrome-64aacc558fc60af2/68c5a96/src/browser/mod.rs:196
+  10: rdr::lib::user_browse
+             at src/lib.rs:134
+  11: rdr::lib::rdr_scheduler
+             at src/lib.rs:172
+  12: rdr::main
+             at src/main.rs:66
+  13: std::rt::lang_start::{{closure}}
+             at /home/jethros/.rustup/toolchains/nightly-2020-05-01-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libstd/rt.rs:67
+  14: std::rt::lang_start_internal::{{closure}}
+             at /rustc/7ced01a730e8fc1bae2f8d4369c26812c0484da4/src/libstd/rt.rs:52
+      std::panicking::try::do_call
+             at /rustc/7ced01a730e8fc1bae2f8d4369c26812c0484da4/src/libstd/panicking.rs:297
+      std::panicking::try
+             at /rustc/7ced01a730e8fc1bae2f8d4369c26812c0484da4/src/libstd/panicking.rs:274
+      std::panic::catch_unwind
+             at /rustc/7ced01a730e8fc1bae2f8d4369c26812c0484da4/src/libstd/panic.rs:394
+      std::rt::lang_start_internal
+             at /rustc/7ced01a730e8fc1bae2f8d4369c26812c0484da4/src/libstd/rt.rs:51
+  15: std::rt::lang_start
+             at /home/jethros/.rustup/toolchains/nightly-2020-05-01-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libstd/rt.rs:67
+  16: main
+  17: __libc_start_main
+  18: _start
+
+User 96: milli: 189 url: "facebook.com"
+User 50: milli: 191 url: "hv3.webstat.com"
+User 46: milli: 215 url: "mag7raceseries.com"
+User 14: milli: 224 url: "tpc.googlesyndication.com"
+User 20: milli: 253 url: "ad.adserverplus.com"
+User 55: milli: 489 url: "0.channel34.facebook.com"
+User 84: milli: 505 url: "ad.doubleclick.net"
+User 77: milli: 640 url: "rafaelmathieu.com"
+User 93: milli: 701 url: "google.com"
+User 57: milli: 795 url: "arienh4.net.nyud.net"
+User 6: milli: 918 url: "google.com"
+0 min, 47 second
+User 65: milli: 58 url: "action.mathtag.com"
+User 61: milli: 201 url: "d.tradex.openx.com"
+User 3: milli: 265 url: "secure-us.imrworldwide.com"
+User 20: milli: 373 url: "playersonly.com"
+User 71: milli: 449 url: "google.com"
+User 93: milli: 456 url: "google.com.au"
+User 50: milli: 572 url: "hv3.webstat.com"
+User 59: milli: 649 url: "hv3.webstat.com"
+User 51: milli: 809 url: "hcr.com"
+User 6: milli: 809 url: "img.mediaplex.com"
+0 min, 48 second
+User 55: milli: 251 url: "ad-g.doubleclick.net"
+User 84: milli: 276 url: "comingsoon.net"
+User 51: milli: 291 url: "google.com"
+User 59: milli: 299 url: "ad.admediaprovider.com"
+User 29: milli: 348 url: "rk.com"
+User 20: milli: 401 url: "anmgpvpw.vp.video.l.google.com"
+User 16: milli: 563 url: "auth.ulib.iupui.edu"
+User 93: milli: 690 url: "hv3.webstat.com"
+User 71: milli: 863 url: "research.opt.indiana.edu"
+User 50: milli: 946 url: "google.com"
+0 min, 49 second
+User 16: milli: 164 url: "xvideos.com"
+User 96: milli: 203 url: "sesamestats.com"
+User 50: milli: 211 url: "googleads.g.doubleclick.net"
+User 52: milli: 212 url: "web.lightningcast.net"
+User 9: milli: 347 url: "hcr.com"
+User 66: milli: 403 url: "sesamestats.com"
+User 20: milli: 428 url: "image.wapi.wetpaint.com"
+User 58: milli: 513 url: "news.google.com"
+User 61: milli: 594 url: "d.tradex.openx.com"
+User 65: milli: 620 url: "pagead2.googlesyndication.com"
+User 74: milli: 646 url: "arienh4.net.nyud.net"
+User 91: milli: 715 url: "d.tradex.openx.com"
+User 14: milli: 735 url: "promo.awempire.com"
+User 51: milli: 745 url: "fe.brandreachsys.com"
+User 90: milli: 773 url: "ad.inven.co.kr"
+0 min, 50 second
+User 8: milli: 17 url: "xici.net"
+User 16: milli: 213 url: "web.lightningcast.net"
+User 77: milli: 219 url: "tracking2.vindicosuite.com"
+User 75: milli: 277 url: "sesamestats.com"
+User 20: milli: 356 url: "js.wretch.yahoo.net"
+User 51: milli: 437 url: "c13.zedo.com"
+User 29: milli: 653 url: "cyworld.com"
+User 91: milli: 701 url: "womenofyoutube.mevio.com"
+User 3: milli: 817 url: "fms.indiana.edu"
+User 90: milli: 903 url: "ad.inven.co.kr"
+0 min, 51 second
+User 20: milli: 96 url: "womenofyoutube.mevio.com"
+User 90: milli: 149 url: "wow.inven.co.kr"
+User 50: milli: 163 url: "video.od.visiblemeasures.com"
+User 76: milli: 215 url: "mapquest.com"
+User 71: milli: 338 url: "msn.foxsports.com"
+User 77: milli: 424 url: "toptvbytes.com"
+User 46: milli: 725 url: "youtube.com"
+User 66: milli: 812 url: "xjjh.com"
+0 min, 52 second
+User 52: milli: 256 url: "surfthechannel.com"
+User 76: milli: 501 url: "gaiaonline.com"
+User 71: milli: 547 url: "ad.yieldmanager.com"
+User 46: milli: 605 url: "myspace.com"
+User 90: milli: 878 url: "ad.inven.co.kr"
+User 62: milli: 921 url: "d.tradex.openx.com"
+User 75: milli: 971 url: "google.com"
+User 20: milli: 975 url: "gourmandia.com"
+User 17: milli: 999 url: "clickclickclick.com"
+0 min, 53 second
+User 71: milli: 11 url: "cdn.eyewonder.com"
+User 20: milli: 49 url: "web.lightningcast.net"
+User 17: milli: 64 url: "xvideos.com"
+User 77: milli: 101 url: "rafaelmathieu.com"
+User 19: milli: 232 url: "arienh4.net.nyud.net"
+User 75: milli: 282 url: "adds.predictad.com"
+User 62: milli: 341 url: "d.tradex.openx.com"
+User 90: milli: 352 url: "weather.com"
+User 2: milli: 576 url: "newyork.craigslist.org"
+User 93: milli: 690 url: "google.cn"
+User 16: milli: 824 url: "ads.brazzers.com"
+User 86: milli: 874 url: "video-stats.video.google.com"
+0 min, 54 second
+User 77: milli: 3 url: "love.mail.ru"
+User 93: milli: 49 url: "wenda.tianya.cn"
+User 79: milli: 68 url: "facebook.com"
+User 2: milli: 442 url: "thecolorbluephotography.com"
+User 17: milli: 512 url: "ad.naver.com"
+User 88: milli: 515 url: "google.com"
+User 90: milli: 650 url: "ad.inven.co.kr"
+User 20: milli: 955 url: "pagead2.googlesyndication.com"
+0 min, 55 second
+User 46: milli: 15 url: "facebook.com"
+User 91: milli: 96 url: "d.tradex.openx.com"
+User 2: milli: 223 url: "home.myspace.com"
+User 50: milli: 438 url: "ads.tw.adsonar.com"
+User 71: milli: 501 url: "tyads.tianya.cn"
+User 20: milli: 579 url: "ezinearticles.com"
+User 86: milli: 583 url: "hv3.webstat.com"
+User 84: milli: 859 url: "beautifulagony.com"
+User 77: milli: 925 url: "parents.com"
+User 93: milli: 992 url: "womenofyoutube.mevio.com"
+0 min, 56 second
+User 36: milli: 7 url: "arienh4.net.nyud.net"
+User 61: milli: 113 url: "ads.brazzers.com"
+User 14: milli: 183 url: "item-origin.slide.com"
+User 9: milli: 216 url: "0.channel12.facebook.com"
+User 86: milli: 246 url: "hv3.webstat.com"
+User 75: milli: 322 url: "video-stats.video.google.com"
+User 90: milli: 335 url: "ad.inven.co.kr"
+User 91: milli: 356 url: "buddypic.com"
+User 84: milli: 411 url: "ad.yieldmanager.com"
+User 77: milli: 413 url: "stat.onestat.com"
+User 46: milli: 857 url: "mail.live.com"
+0 min, 57 second
+User 39: milli: 31 url: "messaging.myspace.com"
+User 78: milli: 105 url: "webmail.aol.com"
+User 79: milli: 199 url: "arienh4.net.nyud.net"
+User 90: milli: 266 url: "ad.inven.co.kr"
+User 16: milli: 306 url: "imeem.com"
+User 88: milli: 350 url: "ads.brazzers.com"
+User 36: milli: 435 url: "cyworld.com"
+User 17: milli: 503 url: "hv3.webstat.com"
+User 40: milli: 560 url: "hiphop.popcrunch.com"
+User 75: milli: 627 url: "ad.admediaprovider.com"
+User 71: milli: 691 url: "ads.brazzers.com"
+User 51: milli: 736 url: "facebook.com"
+User 86: milli: 866 url: "news.sina.com.cn"
+0 min, 58 second
+User 74: milli: 172 url: "hcr.com"
+User 51: milli: 199 url: "womenofyoutube.mevio.com"
+User 90: milli: 231 url: "sz0048.ev.mail.comcast.net"
+User 58: milli: 254 url: "uncrate.com"
+User 6: milli: 427 url: "usatoday.com"
+User 20: milli: 514 url: "search.msn.com"
+User 88: milli: 567 url: "huffingtonpost.com"
+User 84: milli: 631 url: "ytaahg.vo.llnwd.net"
+User 75: milli: 662 url: "ad.yieldmanager.com"
+User 22: milli: 664 url: "google.com"
+User 96: milli: 674 url: "hv3.webstat.com"
+User 71: milli: 936 url: "bs.serving-sys.com"
+User 16: milli: 996 url: "hv3.webstat.com"
+0 min, 59 second
+User 16: milli: 203 url: "woot.com"
+User 88: milli: 257 url: "wretch.cc"
+User 61: milli: 343 url: "d.tradex.openx.com"
+User 91: milli: 626 url: "reg.163.com"
+User 90: milli: 745 url: "ad.inven.co.kr"
+User 86: milli: 796 url: "http300.edge.ru4.com"
+User 75: milli: 813 url: "letsrun.com"
+User 6: milli: 991 url: "ad.yieldmanager.com"
+1 min, 0 second
+User 29: milli: 58 url: "nba.com"
+User 91: milli: 64 url: "ads.buddypic.com"
+User 17: milli: 137 url: "ad.yieldmanager.com"
+User 20: milli: 343 url: "iupress.indiana.edu"
+User 90: milli: 433 url: "ad.inven.co.kr"
+User 9: milli: 453 url: "idcs.interclick.com"
+User 2: milli: 557 url: "sesamestats.com"
+User 76: milli: 614 url: "switch.atdmt.com"
+User 14: milli: 692 url: "apple.com"
+User 61: milli: 707 url: "arienh4.net.nyud.net"
+User 6: milli: 717 url: "hcr.com"
+User 26: milli: 886 url: "web.lightningcast.net"
+User 84: milli: 891 url: "parents.com"
+1 min, 1 second
+User 17: milli: 208 url: "google.com"
+User 75: milli: 250 url: "hcr.com"
+User 2: milli: 262 url: "thecolorbluephotography.com"
+User 26: milli: 281 url: "youtube.com"
+User 20: milli: 303 url: "sitb-images.amazon.com"
+User 90: milli: 338 url: "video-stats.video.google.com"
+User 88: milli: 346 url: "wowhead.com"
+User 51: milli: 401 url: "nytimes.com"
+User 22: milli: 423 url: "twitter.com"
+User 46: milli: 522 url: "data.taobao.linezing.com"
+User 82: milli: 545 url: "yahoo.com"
+User 86: milli: 626 url: "facebook.com"
+User 58: milli: 628 url: "ads.specificmedia.com"
+User 6: milli: 676 url: "arienh4.net.nyud.net"
+User 29: milli: 810 url: "arienh4.net.nyud.net"
+User 38: milli: 904 url: "livejasmin.com"
+1 min, 2 second
+User 88: milli: 150 url: "blowatlife.blogspot.com"
+User 39: milli: 233 url: "desk.opt.fimserve.com"
+User 17: milli: 318 url: "youtube.com"
+User 22: milli: 328 url: "waterjet.net"
+User 75: milli: 394 url: "sidereel.com"
+User 90: milli: 561 url: "static.addtoany.com"
+User 76: milli: 572 url: "photos-g.ak.fbcdn.net"
+User 78: milli: 739 url: "ad.doubleclick.net"
+User 99: milli: 952 url: "search.yahoo.com"
+User 91: milli: 991 url: "google.com"
+1 min, 3 second
+User 14: milli: 117 url: "facebook.com"
+User 82: milli: 158 url: "ad.admediaprovider.com"
+User 87: milli: 231 url: "people.com"
+User 84: milli: 278 url: "beautifulagony.com"
+User 19: milli: 359 url: "arienh4.net.nyud.net"
+User 9: milli: 617 url: "shine.yahoo.com"
+User 39: milli: 767 url: "youtube.com"
+User 17: milli: 775 url: "youtube.com"
+User 6: milli: 824 url: "youtube.com"
+User 86: milli: 973 url: "apps.facebook.com"
+User 79: milli: 999 url: "womenofyoutube.mevio.com"
+1 min, 4 second
+User 88: milli: 63 url: "simfile.chol.com"
+User 66: milli: 350 url: "colbertnation.com"
+User 77: milli: 425 url: "pandora.com"
+User 51: milli: 532 url: "video-stats.video.google.com"
+User 86: milli: 960 url: "expedia.com"
+1 min, 5 second
+User 14: milli: 137 url: "twitpic.com"
+User 39: milli: 155 url: "video-stats.video.google.com"
+User 8: milli: 170 url: "int.teracent.net"
+User 40: milli: 230 url: "youtube.com"
+User 29: milli: 265 url: "video.od.visiblemeasures.com"
+User 90: milli: 293 url: "a367.yahoofs.com"
+User 9: milli: 293 url: "nate.com"
+User 88: milli: 304 url: "askpop.com"
+User 61: milli: 383 url: "pann.nate.com"
+User 87: milli: 408 url: "d.tradex.openx.com"
+User 50: milli: 441 url: "hcr.com"
+User 17: milli: 676 url: "bp.specificclick.net"
+User 99: milli: 827 url: "ad.yieldmanager.com"
+1 min, 6 second
+User 22: milli: 17 url: "mbd.scout.com"
+User 84: milli: 23 url: "parents.com"
+User 59: milli: 97 url: "nexplore.com"
+User 87: milli: 164 url: "d.tradex.openx.com"
+User 29: milli: 192 url: "ro-co1.exp.msn.com"
+User 86: milli: 254 url: "solutions.com"
+User 20: milli: 319 url: "teendestruction.com"
+User 31: milli: 455 url: "connect.mcgraw-hill.com"
+User 99: milli: 804 url: "sesamestats.com"
+User 65: milli: 806 url: "arienh4.net.nyud.net"
+User 71: milli: 840 url: "youtube.com"
+User 12: milli: 855 url: "sn125w.snt125.mail.live.com"
+User 26: milli: 911 url: "video-stats.video.google.com"
+User 70: milli: 943 url: "netflix.com"
+1 min, 7 second
+User 3: milli: 35 url: "hulu.com"
+User 59: milli: 75 url: "hcr.com"
+User 46: milli: 177 url: "arienh4.net.nyud.net"
+User 58: milli: 221 url: "apps.facebook.com"
+User 90: milli: 238 url: "facebook.com"
+User 74: milli: 479 url: "c.microsoft.com"
+User 8: milli: 512 url: "harrypotterfanfiction.com"
+User 16: milli: 697 url: "mevio.com"
+User 38: milli: 751 url: "msn.foxsports.com"
+User 91: milli: 971 url: "d.tradex.openx.com"
