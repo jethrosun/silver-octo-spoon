@@ -51,18 +51,44 @@ pub fn rdr_load_workload(
             // println!("{:?}", urls.unwrap());
 
             if urls.unwrap()[1].as_str().unwrap().to_string() == "32.wcmcs.net" {
-                // println!("match {:?}", urls.unwrap()[1].as_str().unwrap().to_string(),);
                 continue;
             } else if urls.unwrap()[1].as_str().unwrap().to_string()
                 == "provider-directory.anthem.com"
             {
-                // println!("match {:?}", urls.unwrap()[1].as_str().unwrap().to_string(),);
                 continue;
             } else if urls.unwrap()[1].as_str().unwrap().to_string() == "kr.sports.yahoo.com" {
-                // println!("match {:?}", urls.unwrap()[1].as_str().unwrap().to_string(),);
                 continue;
             } else if urls.unwrap()[1].as_str().unwrap().to_string() == "desktopfw.weather.com" {
-                // println!("match {:?}", urls.unwrap()[1].as_str().unwrap().to_string(),);
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "arienh4.net.nyud.net" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "hv3.webstat.com" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "rs.mail.ru" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "arienh4.net.nyud.net" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "apps.facebook.com" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "ads.adultadvertising.net" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "reuters.com" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "pn1.adserver.yahoo.com" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "ad.yieldmanager.com" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
                 continue;
             } else {
                 millis.push((
@@ -159,7 +185,7 @@ pub fn user_browse(
         Ok(_) => Ok(now.elapsed().as_micros()),
         Err(e) => Err((now.elapsed().as_micros(), e)),
     };
-    println!("{:?}", result);
+
     result
 }
 
@@ -186,9 +212,11 @@ pub fn simple_user_browse(
     // wait until navigated or not
     let result = match current_tab.navigate_to(&https_hostname) {
         Ok(_) => Ok(now.elapsed().as_micros()),
+        // Err(e) => Err((now.elapsed().as_micros(), e)),
         Err(e) => Err((now.elapsed().as_micros(), e)),
     };
 
+    // println!("{:?}", result);
     result
 }
 
@@ -211,32 +239,35 @@ pub fn rdr_scheduler(
     // println!("current work {:?}", current_work);
 
     for (milli, url, user) in current_work.into_iter() {
-        // println!("User {:?}: milli: {:?} url: {:?}", user, milli, url);
+        println!("User {:?}: milli: {:?} url: {:?}", user, milli, url);
         println!("DEBUG: {:?} {:?}", now.elapsed().as_millis(), milli);
 
         if now.elapsed().as_millis() < milli as u128 {
-            // println!("DEBUG: waiting");
+            println!("DEBUG: waiting");
             let one_millis = Duration::from_millis(1);
             std::thread::sleep(one_millis);
         } else {
             println!("DEBUG: matched");
             match user_browse(&browser_list[user], &url) {
                 Ok(elapsed) => {
-                    *num_of_ok += 1;
-                    elapsed_time.push(elapsed);
+                    println!("ok");
+                    // *num_of_ok += 1;
+                    // elapsed_time.push(elapsed);
                 }
                 Err((elapsed, e)) => {
-                    *num_of_err += 1;
-                    elapsed_time.push(elapsed);
-                    println!("User {} caused an error: {:?}", user, e);
+                    println!("err");
+                    // *num_of_err += 1;
+                    // elapsed_time.push(elapsed);
+                    // println!("User {} caused an error: {:?}", user, e);
+                    println!("User {} caused an error", user,);
                 }
             }
         }
     }
 
-    println!(
-        "(pivot {}) RDR Scheduling: {:?} {:?}",
-        pivot, num_of_ok, num_of_err
-    );
-    println!("(pivot {}) RDR Elapsed Time:  {:?}", pivot, elapsed_time);
+    // println!(
+    //     "(pivot {}) RDR Scheduling: {:?} {:?}",
+    //     pivot, num_of_ok, num_of_err
+    // );
+    // println!("(pivot {}) RDR Elapsed Time:  {:?}", pivot, elapsed_time);
 }
