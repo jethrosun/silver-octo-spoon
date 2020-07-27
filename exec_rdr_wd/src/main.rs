@@ -63,6 +63,7 @@ fn main() {
             println!("{:?} min, {:?} second", min, rest_sec);
             match rdr_workload.remove(&pivot) {
                 Some(wd) => rdr_scheduler(
+                    now.clone(),
                     &pivot,
                     &mut num_of_ok,
                     &mut num_of_err,

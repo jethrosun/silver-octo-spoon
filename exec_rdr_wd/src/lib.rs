@@ -169,6 +169,7 @@ pub fn user_browse(
 // 4 [(4636, "fanfiction.net"), (9055, "bs.serving-sys.com")]
 
 pub fn rdr_scheduler(
+    now: Instant,
     pivot: &usize,
     num_of_ok: &mut usize,
     num_of_err: &mut usize,
@@ -177,17 +178,15 @@ pub fn rdr_scheduler(
     current_work: Vec<(u64, String, usize)>,
     browser_list: &Vec<Browser>,
 ) {
-    let now = Instant::now();
-
     // println!("\npivot: {:?}", pivot);
     // println!("current work {:?}", current_work);
 
     for (milli, url, user) in current_work.into_iter() {
-        println!("User {:?}: milli: {:?} url: {:?}", user, milli, url);
+        // println!("User {:?}: milli: {:?} url: {:?}", user, milli, url);
         println!("DEBUG: {:?} {:?}", now.elapsed().as_millis(), milli);
 
         if now.elapsed().as_millis() < milli as u128 {
-            println!("DEBUG: waiting");
+            // println!("DEBUG: waiting");
             let one_millis = Duration::from_millis(1);
             std::thread::sleep(one_millis);
         } else {
