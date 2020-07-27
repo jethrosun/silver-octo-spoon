@@ -1,9 +1,10 @@
 use failure::Fallible;
 use headless_chrome::LaunchOptionsBuilder;
-use headless_chrome::{Browser, Tab};
+use headless_chrome::{browser::context::Context, Browser, Tab};
 use serde_json::{from_reader, Result, Value};
 use std::collections::HashMap;
 use std::fs::File;
+use std::sync::Arc;
 use std::time::{Duration, Instant};
 use std::vec::Vec;
 
@@ -145,9 +146,9 @@ pub fn browser_create() -> Fallible<Browser> {
         .build()
         .expect("Couldn't find appropriate Chrome binary.");
 
-    let browser = Browser::new(options)?;
-    let tab = browser.wait_for_initial_tab()?;
-    tab.set_default_timeout(std::time::Duration::from_secs(100));
+    let browser = Browser::new(options).unwrap();
+    // let tab = browser.wait_for_initial_tab()?;
+    // tab.set_default_timeout(std::time::Duration::from_secs(100));
 
     // println!("Browser created",);
     Ok(browser)
@@ -165,6 +166,63 @@ pub fn user_browse(
         Ok(tab) => tab,
         Err(e) => return Err((now.elapsed().as_micros(), e)),
     };
+
+    // Incogeneto mode
+    //
+    // let incognito_cxt = current_browser.new_context()?;
+    // let current_tab: Arc<Tab> = incognito_cxt.new_tab()?;
+
+    let https_hostname = "https://".to_string() + &hostname;
+
+    // wait until navigated or not
+    let navigate_to = match current_tab.navigate_to(&https_hostname) {
+        Ok(tab) => tab,
+        Err(e) => {
+            return Err((now.elapsed().as_micros(), e));
+        }
+    };
+    // let _ = current_tab.navigate_to(&https_hostname)?;
+    let result = match navigate_to.wait_until_navigated() {
+        Ok(_) => Ok(now.elapsed().as_micros()),
+        Err(e) => Err((now.elapsed().as_micros(), e)),
+    };
+
+    result
+}
+
+// pub fn browser_ctx_create(browser: Browser) -> Fallible<Context<'static>> {
+//     let ctx = browser.new_context().unwrap();
+//     // println!("try to create a browser",);
+//
+//     // println!("Browser created",);
+//     Ok(ctx)
+// }
+
+pub fn browser_tab_create(browser: Browser) -> Fallible<Arc<Tab>> {
+    // println!("try to create a browser",);
+    let options = LaunchOptionsBuilder::default()
+        .build()
+        .expect("Couldn't find appropriate Chrome binary.");
+
+    let tab = browser.wait_for_initial_tab().unwrap();
+    tab.set_default_timeout(std::time::Duration::from_secs(100));
+
+    // println!("Browser created",);
+    Ok(tab)
+}
+
+pub fn user_tab_browse(
+    current_tab: &Tab,
+    hostname: &String,
+) -> std::result::Result<(u128), (u128, failure::Error)> {
+    let now = Instant::now();
+    // println!("Entering user browsing",);
+    // Doesn't use incognito mode
+    //
+    // let current_tab = match current_browser.new_tab() {
+    //     Ok(tab) => tab,
+    //     Err(e) => return Err((now.elapsed().as_micros(), e)),
+    // };
 
     // Incogeneto mode
     //
@@ -224,7 +282,6 @@ pub fn simple_user_browse(
 ///
 ///
 // 4 [(4636, "fanfiction.net"), (9055, "bs.serving-sys.com")]
-
 pub fn rdr_scheduler(
     now: Instant,
     pivot: &usize,
@@ -248,7 +305,7 @@ pub fn rdr_scheduler(
             std::thread::sleep(one_millis);
         } else {
             println!("DEBUG: matched");
-            match user_browse(&browser_list[user], &url) {
+            match simple_user_browse(&browser_list[user], &url) {
                 Ok(elapsed) => {
                     println!("ok");
                     // *num_of_ok += 1;
@@ -270,4 +327,45 @@ pub fn rdr_scheduler(
     //     pivot, num_of_ok, num_of_err
     // );
     // println!("(pivot {}) RDR Elapsed Time:  {:?}", pivot, elapsed_time);
+}
+
+pub fn rdr_scheduler_ng(
+    now: Instant,
+    pivot: &usize,
+    num_of_ok: &mut usize,
+    num_of_err: &mut usize,
+    elapsed_time: &mut Vec<u128>,
+    _num_of_users: &usize,
+    current_work: Vec<(u64, String, usize)>,
+    tab_list: &Vec<Arc<Tab>>,
+) {
+    // println!("\npivot: {:?}", pivot);
+    // println!("current work {:?}", current_work);
+
+    for (milli, url, user) in current_work.into_iter() {
+        println!("User {:?}: milli: {:?} url: {:?}", user, milli, url);
+        println!("DEBUG: {:?} {:?}", now.elapsed().as_millis(), milli);
+
+        if now.elapsed().as_millis() < milli as u128 {
+            println!("DEBUG: waiting");
+            let one_millis = Duration::from_millis(1);
+            std::thread::sleep(one_millis);
+        } else {
+            println!("DEBUG: matched");
+            match user_tab_browse(&tab_list[user], &url) {
+                Ok(elapsed) => {
+                    println!("ok");
+                    // *num_of_ok += 1;
+                    // elapsed_time.push(elapsed);
+                }
+                Err((elapsed, e)) => {
+                    println!("err");
+                    // *num_of_err += 1;
+                    // elapsed_time.push(elapsed);
+                    // println!("User {} caused an error: {:?}", user, e);
+                    println!("User {} caused an error", user,);
+                }
+            }
+        }
+    }
 }

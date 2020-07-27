@@ -9,6 +9,7 @@ use headless_chrome::protocol::runtime::methods::{RemoteObjectSubtype, RemoteObj
 use headless_chrome::protocol::RemoteError;
 use headless_chrome::LaunchOptionsBuilder;
 use headless_chrome::{
+    browser::context::Context,
     protocol::browser::{Bounds, WindowState},
     protocol::page::ScreenshotFormat,
     Browser, Tab,
@@ -41,10 +42,17 @@ fn main() {
 
     // Browser list.
     let mut browser_list: Vec<Browser> = Vec::new();
+    // Tab list
+    let mut tab_list: Vec<Arc<Tab>> = Vec::new();
+    // Context list
+    let mut ctx_list: Vec<Arc<Context>> = Vec::new();
 
     for _ in 0..num_of_users {
         let browser = browser_create().unwrap();
-        browser_list.push(browser);
+        // browser_list.push(browser);
+
+        let tab = browser_tab_create(browser).unwrap();
+        tab_list.push(tab);
     }
     println!("All browsers are created ",);
 
@@ -62,16 +70,28 @@ fn main() {
             let rest_sec = pivot % 60;
             println!("{:?} min, {:?} second", min, rest_sec);
             match rdr_workload.remove(&pivot) {
-                Some(wd) => rdr_scheduler(
-                    now.clone(),
-                    &pivot,
-                    &mut num_of_ok,
-                    &mut num_of_err,
-                    &mut elapsed_time,
-                    &num_of_users,
-                    wd,
-                    &browser_list,
-                ),
+                Some(wd) => {
+                    rdr_scheduler_ng(
+                        now.clone(),
+                        &pivot,
+                        &mut num_of_ok,
+                        &mut num_of_err,
+                        &mut elapsed_time,
+                        &num_of_users,
+                        wd,
+                        &tab_list,
+                    );
+                    // rdr_scheduler(
+                    //     now.clone(),
+                    //     &pivot,
+                    //     &mut num_of_ok,
+                    //     &mut num_of_err,
+                    //     &mut elapsed_time,
+                    //     &num_of_users,
+                    //     wd,
+                    //     &browser_list,
+                    // );
+                }
                 None => println!("No workload for second {:?}", pivot),
             }
             pivot += 1;
