@@ -190,20 +190,14 @@ pub fn user_browse(
     result
 }
 
-// pub fn browser_ctx_create(browser: Browser) -> Fallible<Context<'static>> {
+// pub fn browser_ctx_create() -> Fallible<Context<'static>> {
+//     let browser = browser_create().unwrap();
 //     let ctx = browser.new_context().unwrap();
-//     // println!("try to create a browser",);
 //
-//     // println!("Browser created",);
 //     Ok(ctx)
 // }
 
 pub fn browser_tab_create(browser: Browser) -> Fallible<Arc<Tab>> {
-    // println!("try to create a browser",);
-    let options = LaunchOptionsBuilder::default()
-        .build()
-        .expect("Couldn't find appropriate Chrome binary.");
-
     let tab = browser.wait_for_initial_tab().unwrap();
     tab.set_default_timeout(std::time::Duration::from_secs(100));
 
@@ -315,8 +309,8 @@ pub fn rdr_scheduler(
                     println!("err");
                     // *num_of_err += 1;
                     // elapsed_time.push(elapsed);
-                    // println!("User {} caused an error: {:?}", user, e);
-                    println!("User {} caused an error", user,);
+                    println!("User {} caused an error: {:?}", user, e);
+                    // println!("User {} caused an error", user,);
                 }
             }
         }
@@ -362,8 +356,8 @@ pub fn rdr_scheduler_ng(
                     println!("err");
                     // *num_of_err += 1;
                     // elapsed_time.push(elapsed);
-                    // println!("User {} caused an error: {:?}", user, e);
-                    println!("User {} caused an error", user,);
+                    println!("User {} caused an error: {:?}", user, e);
+                    // println!("User {} caused an error", user,);
                 }
             }
         }

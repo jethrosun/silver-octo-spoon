@@ -49,10 +49,11 @@ fn main() {
 
     for _ in 0..num_of_users {
         let browser = browser_create().unwrap();
-        // browser_list.push(browser);
-
         let tab = browser_tab_create(browser).unwrap();
         tab_list.push(tab);
+
+        // let ctx = browser_ctx_create().unwrap();
+        // ctx_list.push(ctx);
     }
     println!("All browsers are created ",);
 
