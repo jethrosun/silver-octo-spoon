@@ -159,6 +159,35 @@ pub fn user_browse(
         Ok(_) => Ok(now.elapsed().as_micros()),
         Err(e) => Err((now.elapsed().as_micros(), e)),
     };
+    println!("{:?}", result);
+    result
+}
+
+pub fn simple_user_browse(
+    current_browser: &Browser,
+    hostname: &String,
+) -> std::result::Result<(u128), (u128, failure::Error)> {
+    let now = Instant::now();
+    // println!("Entering user browsing",);
+    // Doesn't use incognito mode
+    //
+    let current_tab = match current_browser.new_tab() {
+        Ok(tab) => tab,
+        Err(e) => return Err((now.elapsed().as_micros(), e)),
+    };
+
+    // Incogeneto mode
+    //
+    // let incognito_cxt = current_browser.new_context()?;
+    // let current_tab: Arc<Tab> = incognito_cxt.new_tab()?;
+
+    let https_hostname = "https://".to_string() + &hostname;
+
+    // wait until navigated or not
+    let result = match current_tab.navigate_to(&https_hostname) {
+        Ok(_) => Ok(now.elapsed().as_micros()),
+        Err(e) => Err((now.elapsed().as_micros(), e)),
+    };
 
     result
 }
