@@ -22,7 +22,7 @@ use std::time::{Duration, Instant};
 
 mod lib;
 
-fn main() -> Fallible<()> {
+fn main() {
     // Workloads:
 
     // "/home/jethros/dev/projects/silver-octo-spoon/workload_tempaltes/rdr_pvn_workload.json";
@@ -48,12 +48,11 @@ fn main() -> Fallible<()> {
     }
     println!("All browsers are created ",);
 
-    // Jobs stack.
-    let mut job_stack = Vec::new();
-    let mut pivot = 0 as usize;
-    for i in (1..num_of_secs).rev() {
-        job_stack.push(i);
-    }
+    let mut pivot = 1 as usize;
+
+    let mut num_of_ok = 0;
+    let mut num_of_err = 0;
+    let mut elapsed_time: Vec<u128> = Vec::new();
 
     let now = Instant::now();
 
@@ -63,12 +62,18 @@ fn main() -> Fallible<()> {
             let rest_sec = pivot % 60;
             println!("{:?} min, {:?} second", min, rest_sec);
             match rdr_workload.remove(&pivot) {
-                Some(wd) => rdr_scheduler(&pivot, &num_of_users, wd, &browser_list),
+                Some(wd) => rdr_scheduler(
+                    &pivot,
+                    &mut num_of_ok,
+                    &mut num_of_err,
+                    &mut elapsed_time,
+                    &num_of_users,
+                    wd,
+                    &browser_list,
+                ),
                 None => println!("No workload for second {:?}", pivot),
             }
             pivot += 1;
         }
     }
-
-    Ok(())
 }

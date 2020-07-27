@@ -127,11 +127,18 @@ pub fn browser_create() -> Fallible<Browser> {
     Ok(browser)
 }
 
-pub fn user_browse(current_browser: &Browser, hostname: &String) -> Fallible<()> {
+pub fn user_browse(
+    current_browser: &Browser,
+    hostname: &String,
+) -> std::result::Result<(u128), (u128, failure::Error)> {
+    let now = Instant::now();
     // println!("Entering user browsing",);
     // Doesn't use incognito mode
     //
-    let current_tab = current_browser.new_tab()?;
+    let current_tab = match current_browser.new_tab() {
+        Ok(tab) => tab,
+        Err(e) => return Err((now.elapsed().as_micros(), e)),
+    };
 
     // Incogeneto mode
     //
@@ -139,23 +146,33 @@ pub fn user_browse(current_browser: &Browser, hostname: &String) -> Fallible<()>
     // let current_tab: Arc<Tab> = incognito_cxt.new_tab()?;
 
     let https_hostname = "https://".to_string() + &hostname;
-    // let _ = current_tab
-    //     .navigate_to(&https_hostname)?
-    //     .wait_until_navigated()?;
-    match current_tab.navigate_to(&https_hostname) {
-        Ok(_) => println!("Browse finished"),
-        Err(e) => println!("Browse failed with {:?}", e),
-    }
 
-    Ok(())
+    // wait until navigated or not
+    let navigate_to = match current_tab.navigate_to(&https_hostname) {
+        Ok(tab) => tab,
+        Err(e) => {
+            return Err((now.elapsed().as_micros(), e));
+        }
+    };
+    // let _ = current_tab.navigate_to(&https_hostname)?;
+    let result = match navigate_to.wait_until_navigated() {
+        Ok(_) => Ok(now.elapsed().as_micros()),
+        Err(e) => Err((now.elapsed().as_micros(), e)),
+    };
+
+    result
 }
 
 /// RDR proxy browsing scheduler.
 ///
 ///
 // 4 [(4636, "fanfiction.net"), (9055, "bs.serving-sys.com")]
+
 pub fn rdr_scheduler(
     pivot: &usize,
+    num_of_ok: &mut usize,
+    num_of_err: &mut usize,
+    elapsed_time: &mut Vec<u128>,
     _num_of_users: &usize,
     current_work: Vec<(u64, String, usize)>,
     browser_list: &Vec<Browser>,
@@ -167,12 +184,31 @@ pub fn rdr_scheduler(
 
     for (milli, url, user) in current_work.into_iter() {
         println!("User {:?}: milli: {:?} url: {:?}", user, milli, url);
+        println!("DEBUG: {:?} {:?}", now.elapsed().as_millis(), milli);
 
-        if now.elapsed().as_millis() == milli as u128 {
+        if now.elapsed().as_millis() < milli as u128 {
+            println!("DEBUG: waiting");
+            let one_millis = Duration::from_millis(1);
+            std::thread::sleep(one_millis);
+        } else {
+            println!("DEBUG: matched");
             match user_browse(&browser_list[user], &url) {
-                Ok(_) => {}
-                Err(e) => println!("User {} caused an error: {:?}", user, e),
+                Ok(elapsed) => {
+                    *num_of_ok += 1;
+                    elapsed_time.push(elapsed);
+                }
+                Err((elapsed, e)) => {
+                    *num_of_err += 1;
+                    elapsed_time.push(elapsed);
+                    println!("User {} caused an error: {:?}", user, e);
+                }
             }
         }
     }
+
+    println!(
+        "(pivot {}) RDR Scheduling: {:?} {:?}",
+        pivot, num_of_ok, num_of_err
+    );
+    println!("(pivot {}) RDR Elapsed Time:  {:?}", pivot, elapsed_time);
 }
