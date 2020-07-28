@@ -346,27 +346,27 @@ pub fn rdr_scheduler(
 
     for (milli, url, user) in current_work.into_iter() {
         println!("User {:?}: milli: {:?} url: {:?}", user, milli, url);
-        println!("DEBUG: {:?} {:?}", now.elapsed().as_millis(), milli);
+        // println!("DEBUG: {:?} {:?}", now.elapsed().as_millis(), milli);
 
         if now.elapsed().as_millis() < milli as u128 {
-            println!("DEBUG: waiting");
+            // println!("DEBUG: waiting");
             let one_millis = Duration::from_millis(1);
             std::thread::sleep(one_millis);
         } else {
-            println!("DEBUG: matched");
+            // println!("DEBUG: matched");
             match user_browse(&browser_list[user], &url) {
                 Ok(elapsed) => {
-                    println!("ok");
+                    // println!("ok");
                     // *num_of_ok += 1;
                     // elapsed_time.push(elapsed);
                 }
                 // Err((elapsed, e)) => {
                 Err(e) => {
-                    println!("err");
+                    // println!("err");
                     // *num_of_err += 1;
                     // elapsed_time.push(elapsed);
-                    println!("User {} caused an error: {:?}", user, e);
-                    // println!("User {} caused an error", user,);
+                    // println!("User {} caused an error: {:?}", user, e);
+                    println!("User {} caused an error", user,);
                 }
             }
         }
@@ -394,22 +394,22 @@ pub fn rdr_scheduler_ng(
 
     for (milli, url, user) in current_work.into_iter() {
         println!("User {:?}: milli: {:?} url: {:?}", user, milli, url);
-        println!("DEBUG: {:?} {:?}", now.elapsed().as_millis(), milli);
+        // println!("DEBUG: {:?} {:?}", now.elapsed().as_millis(), milli);
 
         if now.elapsed().as_millis() < milli as u128 {
-            println!("DEBUG: waiting");
+            // println!("DEBUG: waiting");
             let one_millis = Duration::from_millis(1);
             std::thread::sleep(one_millis);
         } else {
-            println!("DEBUG: matched");
+            // println!("DEBUG: matched");
             match user_tab_browse(&tab_list[user], &url) {
                 Ok(elapsed) => {
-                    println!("ok");
+                    // println!("ok");
                     // *num_of_ok += 1;
                     // elapsed_time.push(elapsed);
                 }
                 Err((elapsed, e)) => {
-                    println!("err");
+                    // println!("err");
                     // *num_of_err += 1;
                     // elapsed_time.push(elapsed);
                     println!("User {} caused an error: {:?}", user, e);
