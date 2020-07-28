@@ -48,8 +48,7 @@ fn main() {
     let mut ctx_list: Vec<Arc<Context>> = Vec::new();
 
     for _ in 0..num_of_users {
-        let browser = browser_create().unwrap();
-        let tab = browser_tab_create(browser).unwrap();
+        let tab = browser_tab_create().unwrap();
         tab_list.push(tab);
 
         // let ctx = browser_ctx_create().unwrap();

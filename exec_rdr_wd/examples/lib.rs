@@ -1,5 +1,5 @@
 use failure::Fallible;
-use headless_chrome::LaunchOptionsBuilder;
+use headless_chrome::LaunchOptions;
 use headless_chrome::{browser::context::Context, Browser, Tab};
 use serde_json::{from_reader, Result, Value};
 use std::collections::HashMap;
@@ -81,9 +81,9 @@ pub fn rdr_load_workload(
                 continue;
             } else if urls.unwrap()[1].as_str().unwrap().to_string() == "ad.yieldmanager.com" {
                 continue;
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "wikipedia.org" {
                 continue;
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "collegehumor.com" {
                 continue;
             } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
                 continue;
@@ -141,12 +141,11 @@ pub fn rdr_load_workload(
 }
 
 pub fn browser_create() -> Fallible<Browser> {
-    // println!("try to create a browser",);
-    let options = LaunchOptionsBuilder::default()
-        .build()
-        .expect("Couldn't find appropriate Chrome binary.");
-
-    let browser = Browser::new(options).unwrap();
+    let browser = Browser::new(
+        LaunchOptions::default_builder()
+            .build()
+            .expect("Could not find chrome-executable"),
+    )?;
     // let tab = browser.wait_for_initial_tab()?;
     // tab.set_default_timeout(std::time::Duration::from_secs(100));
 
@@ -154,40 +153,28 @@ pub fn browser_create() -> Fallible<Browser> {
     Ok(browser)
 }
 
-pub fn user_browse(
-    current_browser: &Browser,
-    hostname: &String,
-) -> std::result::Result<(u128), (u128, failure::Error)> {
+pub fn user_browse(current_browser: &Browser, hostname: &String) -> Fallible<()> {
+    // std::result::Result<(u128), (u128, failure::Error)> {
     let now = Instant::now();
-    // println!("Entering user browsing",);
-    // Doesn't use incognito mode
-    //
-    let current_tab = match current_browser.new_tab() {
-        Ok(tab) => tab,
-        Err(e) => return Err((now.elapsed().as_micros(), e)),
-    };
 
-    // Incogeneto mode
-    //
-    // let incognito_cxt = current_browser.new_context()?;
-    // let current_tab: Arc<Tab> = incognito_cxt.new_tab()?;
+    let tab = current_browser.wait_for_initial_tab()?;
 
     let https_hostname = "https://".to_string() + &hostname;
 
-    // wait until navigated or not
-    let navigate_to = match current_tab.navigate_to(&https_hostname) {
-        Ok(tab) => tab,
+    // tab.navigate_to(&https_hostname)?.wait_until_navigated()?;
+    tab.navigate_to(&https_hostname)?;
+
+    let html = match tab.wait_for_element("html") {
+        Ok(h) => {
+            println!("ok");
+            ()
+        }
         Err(e) => {
-            return Err((now.elapsed().as_micros(), e));
+            eprintln!("Query failed: {:?}", e);
+            ()
         }
     };
-    // let _ = current_tab.navigate_to(&https_hostname)?;
-    let result = match navigate_to.wait_until_navigated() {
-        Ok(_) => Ok(now.elapsed().as_micros()),
-        Err(e) => Err((now.elapsed().as_micros(), e)),
-    };
-
-    result
+    Ok(html)
 }
 
 // pub fn browser_ctx_create() -> Fallible<Context<'static>> {
@@ -197,9 +184,13 @@ pub fn user_browse(
 //     Ok(ctx)
 // }
 
-pub fn browser_tab_create(browser: Browser) -> Fallible<Arc<Tab>> {
-    let tab = browser.wait_for_initial_tab().unwrap();
-    tab.set_default_timeout(std::time::Duration::from_secs(100));
+pub fn browser_tab_create() -> Fallible<Arc<Tab>> {
+    let browser = Browser::new(
+        LaunchOptions::default_builder()
+            .build()
+            .expect("Could not find chrome-executable"),
+    )?;
+    let tab = browser.wait_for_initial_tab()?;
 
     // println!("Browser created",);
     Ok(tab)
@@ -299,13 +290,14 @@ pub fn rdr_scheduler(
             std::thread::sleep(one_millis);
         } else {
             println!("DEBUG: matched");
-            match simple_user_browse(&browser_list[user], &url) {
+            match user_browse(&browser_list[user], &url) {
                 Ok(elapsed) => {
                     println!("ok");
                     // *num_of_ok += 1;
                     // elapsed_time.push(elapsed);
                 }
-                Err((elapsed, e)) => {
+                // Err((elapsed, e)) => {
+                Err(e) => {
                     println!("err");
                     // *num_of_err += 1;
                     // elapsed_time.push(elapsed);

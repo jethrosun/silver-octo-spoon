@@ -81,76 +81,16 @@ pub fn rdr_load_workload(
                 continue;
             } else if urls.unwrap()[1].as_str().unwrap().to_string() == "ad.yieldmanager.com" {
                 continue;
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "wikipedia.org" {
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
                 continue;
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "collegehumor.com" {
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
                 continue;
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "blog.naver.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "section.blog.naver.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "l.qq.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.qq.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "google.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "womenofyoutube.mevio.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "google.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.llbean.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.llbean.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.llbean.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.llbean.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.llbean.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.llbean.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.llbean.com".to_string(),
-                    user,
-                ));
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
+                continue;
             } else {
                 millis.push((
                     urls.unwrap()[0].as_u64().unwrap(),
@@ -205,7 +145,8 @@ pub fn browser_create() -> Fallible<Browser> {
         LaunchOptions::default_builder()
             .build()
             .expect("Could not find chrome-executable"),
-    )?;
+    )?; // println!("try to create a browser",);
+
     // let tab = browser.wait_for_initial_tab()?;
     // tab.set_default_timeout(std::time::Duration::from_secs(100));
 
@@ -213,30 +154,40 @@ pub fn browser_create() -> Fallible<Browser> {
     Ok(browser)
 }
 
-pub fn user_browse(current_browser: &Browser, hostname: &String) -> Fallible<()> {
-    // std::result::Result<(u128), (u128, failure::Error)> {
+pub fn user_browse(
+    current_browser: &Browser,
+    hostname: &String,
+) -> std::result::Result<(u128), (u128, failure::Error)> {
     let now = Instant::now();
+    // println!("Entering user browsing",);
+    // Doesn't use incognito mode
+    //
+    let current_tab = match current_browser.new_tab() {
+        Ok(tab) => tab,
+        Err(e) => return Err((now.elapsed().as_micros(), e)),
+    };
 
-    let tab = current_browser.wait_for_initial_tab()?;
+    // Incogeneto mode
+    //
+    // let incognito_cxt = current_browser.new_context()?;
+    // let current_tab: Arc<Tab> = incognito_cxt.new_tab()?;
 
     let https_hostname = "https://".to_string() + &hostname;
 
-    // tab.navigate_to(&https_hostname)?.wait_until_navigated()?;
-    tab.navigate_to(&https_hostname)?;
+    // wait until navigated or not
+    let navigate_to = match current_tab.navigate_to(&https_hostname) {
+        Ok(tab) => tab,
+        Err(e) => {
+            return Err((now.elapsed().as_micros(), e));
+        }
+    };
+    // let _ = current_tab.navigate_to(&https_hostname)?;
+    let result = match navigate_to.wait_until_navigated() {
+        Ok(_) => Ok(now.elapsed().as_micros()),
+        Err(e) => Err((now.elapsed().as_micros(), e)),
+    };
 
-    // let html = match tab.wait_for_element("html") {
-    //     Ok(h) => {
-    //         println!("ok");
-    //         ()
-    //     }
-    //     Err(e) => {
-    //         eprintln!("Query failed: {:?}", e);
-    //         ()
-    //     }
-    // };
-    // Ok(html)
-
-    Ok(())
+    result
 }
 
 // pub fn browser_ctx_create() -> Fallible<Context<'static>> {
@@ -285,10 +236,8 @@ pub fn user_tab_browse(
             return Err((now.elapsed().as_micros(), e));
         }
     };
-
     // let _ = current_tab.navigate_to(&https_hostname)?;
     let result = match navigate_to.wait_until_navigated() {
-        // let result = match navigate_to {
         Ok(_) => Ok(now.elapsed().as_micros()),
         Err(e) => Err((now.elapsed().as_micros(), e)),
     };
@@ -354,14 +303,13 @@ pub fn rdr_scheduler(
             std::thread::sleep(one_millis);
         } else {
             println!("DEBUG: matched");
-            match user_browse(&browser_list[user], &url) {
+            match simple_user_browse(&browser_list[user], &url) {
                 Ok(elapsed) => {
                     println!("ok");
                     // *num_of_ok += 1;
                     // elapsed_time.push(elapsed);
                 }
-                // Err((elapsed, e)) => {
-                Err(e) => {
+                Err((elapsed, e)) => {
                     println!("err");
                     // *num_of_err += 1;
                     // elapsed_time.push(elapsed);
