@@ -356,17 +356,17 @@ pub fn rdr_scheduler(
             // println!("DEBUG: matched");
             match user_browse(&browser_list[user], &url) {
                 Ok(elapsed) => {
-                    // println!("ok");
+                    println!("ok");
                     // *num_of_ok += 1;
                     // elapsed_time.push(elapsed);
                 }
                 // Err((elapsed, e)) => {
                 Err(e) => {
-                    // println!("err");
+                    println!("err");
                     // *num_of_err += 1;
                     // elapsed_time.push(elapsed);
-                    // println!("User {} caused an error: {:?}", user, e);
                     println!("User {} caused an error", user,);
+                    // println!("User {} caused an error: {:?}", user, e);
                 }
             }
         }
