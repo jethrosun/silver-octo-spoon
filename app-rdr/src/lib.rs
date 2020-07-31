@@ -192,7 +192,7 @@ pub fn rdr_load_workload(
 pub fn browser_create() -> Fallible<Browser> {
     let timeout = Duration::new(1000, 0);
     let options = LaunchOptions::default_builder()
-        .headless(false)
+        .headless(true)
         .idle_browser_timeout(timeout)
         .build()
         .expect("Couldn't find appropriate Chrome binary.");
