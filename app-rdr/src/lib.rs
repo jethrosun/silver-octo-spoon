@@ -5,6 +5,7 @@ use serde_json::{from_reader, Result, Value};
 use std::collections::HashMap;
 use std::collections::HashSet;
 use std::fs::File;
+use std::path::PathBuf;
 use std::sync::Arc;
 use std::time::{Duration, Instant};
 use std::vec::Vec;
@@ -189,10 +190,16 @@ pub fn rdr_load_workload(
     Ok(workload)
 }
 
+// /usr/bin/chromedriver
+// /usr/bin/chromium-browser
 pub fn browser_create() -> Fallible<Browser> {
     let timeout = Duration::new(1000, 0);
+
+    let driver_path = PathBuf::from(r"/usr/bin/chromium-browser");
+
     let options = LaunchOptions::default_builder()
         .headless(true)
+        .path(Some(driver_path)) //
         .idle_browser_timeout(timeout)
         .build()
         .expect("Couldn't find appropriate Chrome binary.");
