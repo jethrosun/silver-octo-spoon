@@ -1,0 +1,632 @@
+Workload is generated
+All browsers are created 
+0 min, 1 second
+0 min, 2 second
+0 min, 3 second
+0 min, 4 second
+0 min, 5 second
+User 21: milli: 163 url: "a367.yahoofs.com"
+DEBUG: 5000 163
+DEBUG: matched
+err
+User 21 caused an error
+0 min, 6 second
+0 min, 7 second
+User 21: milli: 38 url: "amch.questionmarket.com"
+DEBUG: 7000 38
+DEBUG: matched
+err
+User 21 caused an error
+User 24: milli: 823 url: "video-stats.video.google.com"
+DEBUG: 7015 823
+DEBUG: matched
+err
+User 24 caused an error
+0 min, 8 second
+User 24: milli: 421 url: "s7ondemand1.scene7.com"
+DEBUG: 8000 421
+DEBUG: matched
+ok
+ok
+0 min, 9 second
+User 21: milli: 33 url: "sesamestats.com"
+DEBUG: 9000 33
+DEBUG: matched
+err
+User 21 caused an error
+User 24: milli: 472 url: "w"
+DEBUG: 9005 472
+DEBUG: matched
+err
+User 24 caused an error
+User 5: milli: 538 url: "imx.comedycentral.com"
+DEBUG: 9010 538
+DEBUG: matched
+err
+User 5 caused an error
+0 min, 10 second
+0 min, 11 second
+User 24: milli: 757 url: "www.naver.com"
+DEBUG: 11000 757
+DEBUG: matched
+ok
+ok
+0 min, 12 second
+User 21: milli: 33 url: "mylifeisaverage.com"
+DEBUG: 12000 33
+DEBUG: matched
+err
+User 21 caused an error
+User 5: milli: 42 url: "ads.brazzers.com"
+DEBUG: 12081 42
+DEBUG: matched
+err
+User 5 caused an error
+User 1: milli: 56 url: "aim.search.aol.com"
+DEBUG: 12136 56
+DEBUG: matched
+err
+User 1 caused an error
+0 min, 13 second
+User 24: milli: 580 url: "farm.game.playfish.com"
+DEBUG: 13000 580
+DEBUG: matched
+err
+User 24 caused an error
+0 min, 14 second
+User 13: milli: 79 url: "global.thenest.com"
+DEBUG: 14000 79
+DEBUG: matched
+err
+User 13 caused an error
+0 min, 15 second
+User 21: milli: 193 url: "mapquest.com"
+DEBUG: 15000 193
+DEBUG: matched
+ok
+ok
+User 24: milli: 479 url: "ebates.com"
+DEBUG: 15092 479
+DEBUG: matched
+ok
+ok
+User 1: milli: 586 url: "hcr.com"
+DEBUG: 15534 586
+DEBUG: matched
+err
+User 1 caused an error
+0 min, 16 second
+User 15: milli: 198 url: "images.google.com"
+DEBUG: 16000 198
+DEBUG: matched
+ok
+ok
+User 13: milli: 445 url: "youtube.com"
+DEBUG: 16250 445
+DEBUG: matched
+ok
+ok
+User 21: milli: 641 url: "apple.com"
+DEBUG: 16424 641
+DEBUG: matched
+ok
+ok
+0 min, 17 second
+User 15: milli: 62 url: "ro-co1.exp.msn.com"
+DEBUG: 17000 62
+DEBUG: matched
+err
+User 15 caused an error
+User 24: milli: 140 url: "rooksaves.us"
+DEBUG: 17010 140
+DEBUG: matched
+err
+User 24 caused an error
+User 13: milli: 142 url: "a367.yahoofs.com"
+DEBUG: 17021 142
+DEBUG: matched
+err
+User 13 caused an error
+0 min, 18 second
+User 5: milli: 452 url: "rss.livesearchapps.com"
+DEBUG: 18000 452
+DEBUG: matched
+err
+User 5 caused an error
+User 24: milli: 466 url: "view.atdmt.com"
+DEBUG: 18005 466
+DEBUG: matched
+ok
+ok
+User 13: milli: 499 url: "womenofyoutube.mevio.com"
+DEBUG: 18187 499
+DEBUG: matched
+err
+User 13 caused an error
+User 15: milli: 974 url: "womenofyoutube.mevio.com"
+DEBUG: 18359 974
+DEBUG: matched
+err
+User 15 caused an error
+0 min, 19 second
+User 5: milli: 400 url: "ad.doubleclick.net"
+DEBUG: 19000 400
+DEBUG: matched
+ok
+ok
+0 min, 20 second
+User 16: milli: 973 url: "video-stats.video.google.com"
+DEBUG: 20000 973
+DEBUG: matched
+err
+User 16 caused an error
+0 min, 21 second
+User 1: milli: 149 url: "search.netscape.com"
+DEBUG: 21000 149
+DEBUG: matched
+err
+User 1 caused an error
+User 5: milli: 836 url: "motors.shop.ebay.com"
+DEBUG: 21177 836
+DEBUG: matched
+err
+User 5 caused an error
+0 min, 22 second
+User 13: milli: 582 url: "a367.yahoofs.com"
+DEBUG: 22000 582
+DEBUG: matched
+err
+User 13 caused an error
+User 24: milli: 751 url: "www2.victoriassecret.com"
+DEBUG: 22005 751
+DEBUG: matched
+err
+User 24 caused an error
+0 min, 23 second
+User 21: milli: 298 url: "blogs.technet.com"
+DEBUG: 23000 298
+DEBUG: matched
+ok
+ok
+User 13: milli: 708 url: "facebook.com"
+DEBUG: 23122 708
+DEBUG: matched
+ok
+ok
+User 24: milli: 894 url: "facebook.com"
+DEBUG: 23316 894
+DEBUG: matched
+ok
+ok
+0 min, 24 second
+User 5: milli: 182 url: "beacon.securestudies.com"
+DEBUG: 24000 182
+DEBUG: matched
+ok
+ok
+User 20: milli: 421 url: "admachine.farfesh.com"
+DEBUG: 24177 421
+DEBUG: matched
+err
+User 20 caused an error
+0 min, 25 second
+User 5: milli: 334 url: "d.tradex.openx.com"
+DEBUG: 25000 334
+DEBUG: matched
+err
+User 5 caused an error
+User 20: milli: 634 url: "amch.questionmarket.com"
+DEBUG: 25035 634
+DEBUG: matched
+err
+User 20 caused an error
+User 16: milli: 982 url: "webmail.aol.com"
+DEBUG: 25041 982
+DEBUG: matched
+ok
+ok
+0 min, 26 second
+User 22: milli: 159 url: "nbcsports.msnbc.com"
+DEBUG: 26000 159
+DEBUG: matched
+err
+User 22 caused an error
+User 20: milli: 295 url: "autocomplete.hk.search.yahoo.com"
+DEBUG: 26065 295
+DEBUG: matched
+err
+User 20 caused an error
+User 5: milli: 743 url: "d.tradex.openx.com"
+DEBUG: 26111 743
+DEBUG: matched
+err
+User 5 caused an error
+0 min, 27 second
+User 21: milli: 155 url: "mylifeisaverage.com"
+DEBUG: 27000 155
+DEBUG: matched
+err
+User 21 caused an error
+User 5: milli: 163 url: "d.tradex.openx.com"
+DEBUG: 27081 163
+DEBUG: matched
+err
+User 5 caused an error
+User 16: milli: 820 url: "auth.ulib.iupui.edu"
+DEBUG: 27086 820
+DEBUG: matched
+err
+User 16 caused an error
+0 min, 28 second
+User 16: milli: 177 url: "hcr.com"
+DEBUG: 28000 177
+DEBUG: matched
+err
+User 16 caused an error
+User 5: milli: 282 url: "d.tradex.openx.com"
+DEBUG: 28141 282
+DEBUG: matched
+err
+User 5 caused an error
+User 22: milli: 530 url: "hcr.com"
+DEBUG: 28146 530
+DEBUG: matched
+err
+User 22 caused an error
+User 20: milli: 868 url: "jmn.jangonetwork.com"
+DEBUG: 28344 868
+DEBUG: matched
+ok
+ok
+0 min, 29 second
+0 min, 30 second
+User 20: milli: 201 url: "farfesh.com"
+DEBUG: 30000 201
+DEBUG: matched
+ok
+ok
+0 min, 31 second
+User 5: milli: 59 url: "sesamestats.com"
+DEBUG: 31355 59
+DEBUG: matched
+err
+User 5 caused an error
+User 16: milli: 282 url: "gamespot.com"
+DEBUG: 31360 282
+DEBUG: matched
+ok
+ok
+0 min, 32 second
+User 20: milli: 18 url: "hcr.com"
+DEBUG: 32000 18
+DEBUG: matched
+err
+User 20 caused an error
+User 22: milli: 325 url: "google.com"
+DEBUG: 32198 325
+DEBUG: matched
+ok
+ok
+0 min, 33 second
+User 22: milli: 210 url: "news.msn.co.kr"
+DEBUG: 33000 210
+DEBUG: matched
+err
+User 22 caused an error
+User 15: milli: 502 url: "psychonet.co.uk"
+DEBUG: 33031 502
+DEBUG: matched
+err
+User 15 caused an error
+User 24: milli: 856 url: "fbpr1.farmville.zynga.com"
+DEBUG: 33315 856
+DEBUG: matched
+err
+User 24 caused an error
+0 min, 34 second
+User 22: milli: 664 url: "optimized-by.rubiconproject.com"
+DEBUG: 34000 664
+DEBUG: matched
+ok
+ok
+0 min, 35 second
+User 20: milli: 178 url: "google.com"
+DEBUG: 35000 178
+DEBUG: matched
+ok
+ok
+User 15: milli: 984 url: "ro-co1.exp.msn.com"
+DEBUG: 35349 984
+DEBUG: matched
+err
+User 15 caused an error
+0 min, 36 second
+User 22: milli: 296 url: "msn13.nasads.com"
+DEBUG: 36000 296
+DEBUG: matched
+err
+User 22 caused an error
+User 24: milli: 490 url: "srv2.wa.marketingsolutions.yahoo.com"
+DEBUG: 36005 490
+DEBUG: matched
+err
+User 24 caused an error
+User 5: milli: 885 url: "d.tradex.openx.com"
+DEBUG: 36010 885
+DEBUG: matched
+err
+User 5 caused an error
+User 21: milli: 946 url: "xjjh.com"
+DEBUG: 36017 946
+DEBUG: matched
+err
+User 21 caused an error
+0 min, 37 second
+User 1: milli: 406 url: "google.com"
+DEBUG: 37000 406
+DEBUG: matched
+ok
+ok
+0 min, 38 second
+User 2: milli: 418 url: "informatics.indiana.edu"
+DEBUG: 38000 418
+DEBUG: matched
+ok
+ok
+User 22: milli: 619 url: "womenofyoutube.mevio.com"
+DEBUG: 38410 619
+DEBUG: matched
+err
+User 22 caused an error
+0 min, 39 second
+User 22: milli: 168 url: "ad.insightexpressai.com"
+DEBUG: 39000 168
+DEBUG: matched
+ok
+ok
+User 15: milli: 320 url: "kr.yahoo.com"
+DEBUG: 40113 320
+DEBUG: matched
+ok
+ok
+0 min, 40 second
+User 13: milli: 938 url: "www.naver.com"
+DEBUG: 40910 938
+DEBUG: matched
+ok
+ok
+0 min, 41 second
+User 1: milli: 225 url: "en.wikipedia.org"
+DEBUG: 41245 225
+DEBUG: matched
+ok
+ok
+User 21: milli: 356 url: "in.gov"
+DEBUG: 41563 356
+DEBUG: matched
+ok
+ok
+0 min, 42 second
+User 16: milli: 794 url: "ads.brazzers.com"
+DEBUG: 42489 794
+DEBUG: matched
+err
+User 16 caused an error
+0 min, 43 second
+User 20: milli: 290 url: "basketball.fantasysports.yahoo.com"
+DEBUG: 43000 290
+DEBUG: matched
+ok
+ok
+0 min, 44 second
+0 min, 45 second
+User 24: milli: 34 url: "farm.game.playfish.com"
+DEBUG: 45000 34
+DEBUG: matched
+err
+User 24 caused an error
+User 14: milli: 319 url: "l.qq.com"
+DEBUG: 45040 319
+DEBUG: matched
+ok
+ok
+0 min, 46 second
+User 14: milli: 452 url: "youtube.com"
+DEBUG: 46123 452
+DEBUG: matched
+ok
+ok
+User 24: milli: 835 url: "t.adbuyer.com"
+DEBUG: 46331 835
+DEBUG: matched
+err
+User 24 caused an error
+0 min, 47 second
+User 14: milli: 276 url: "waterjet.net"
+DEBUG: 47000 276
+DEBUG: matched
+err
+User 14 caused an error
+0 min, 48 second
+User 14: milli: 145 url: "video-stats.video.google.com"
+DEBUG: 48000 145
+DEBUG: matched
+err
+User 14 caused an error
+User 22: milli: 795 url: "noriteri.ipop.co.kr"
+DEBUG: 48045 795
+DEBUG: matched
+err
+User 22 caused an error
+0 min, 49 second
+User 2: milli: 126 url: "trumba.com"
+DEBUG: 49000 126
+DEBUG: matched
+ok
+ok
+0 min, 50 second
+User 21: milli: 244 url: "srv2.wa.marketingsolutions.yahoo.com"
+DEBUG: 50326 244
+DEBUG: matched
+err
+User 21 caused an error
+User 24: milli: 263 url: "facebook.com"
+DEBUG: 50331 263
+DEBUG: matched
+ok
+ok
+User 15: milli: 374 url: "facebook.com"
+DEBUG: 50475 374
+DEBUG: matched
+ok
+ok
+0 min, 51 second
+User 22: milli: 206 url: "player.cdn.targetspot.com"
+DEBUG: 51000 206
+DEBUG: matched
+err
+User 22 caused an error
+User 14: milli: 994 url: "youtube.com"
+DEBUG: 51055 994
+DEBUG: matched
+ok
+ok
+0 min, 52 second
+User 22: milli: 692 url: "player.targetspot.com"
+DEBUG: 52000 692
+DEBUG: matched
+err
+User 22 caused an error
+User 24: milli: 849 url: "flickr.com"
+DEBUG: 52025 849
+DEBUG: matched
+ok
+ok
+0 min, 53 second
+0 min, 54 second
+User 14: milli: 113 url: "s.ytimg.com"
+DEBUG: 54000 113
+DEBUG: matched
+ok
+ok
+User 22: milli: 299 url: "waterjet.net"
+DEBUG: 54193 299
+DEBUG: matched
+err
+User 22 caused an error
+User 27: milli: 745 url: "lg15.com"
+DEBUG: 54269 745
+DEBUG: matched
+err
+User 27 caused an error
+0 min, 55 second
+User 27: milli: 280 url: "maps.google.com"
+DEBUG: 55000 280
+DEBUG: matched
+ok
+ok
+User 22: milli: 488 url: "bing.com"
+DEBUG: 55516 488
+DEBUG: matched
+ok
+ok
+User 13: milli: 566 url: "viikii.net"
+DEBUG: 55654 566
+DEBUG: matched
+err
+User 13 caused an error
+User 15: milli: 922 url: "informatics.indiana.edu"
+DEBUG: 56069 922
+DEBUG: matched
+ok
+ok
+0 min, 56 second
+User 27: milli: 345 url: "nytimes.com"
+DEBUG: 56353 345
+DEBUG: matched
+ok
+ok
+User 22: milli: 394 url: "search.msn.com"
+DEBUG: 56474 394
+DEBUG: matched
+ok
+ok
+User 21: milli: 691 url: "googleads.g.doubleclick.net"
+DEBUG: 56562 691
+DEBUG: matched
+ok
+ok
+0 min, 57 second
+User 22: milli: 309 url: "thumb.brandreachsys.com"
+DEBUG: 57000 309
+DEBUG: matched
+err
+User 22 caused an error
+0 min, 58 second
+User 20: milli: 324 url: "facebook.com"
+DEBUG: 58000 324
+DEBUG: matched
+ok
+ok
+User 22: milli: 465 url: "brightcove.vo.llnwd.net"
+DEBUG: 58174 465
+DEBUG: matched
+ok
+ok
+User 5: milli: 622 url: "game3.pogo.com"
+DEBUG: 58265 622
+DEBUG: matched
+ok
+ok
+User 2: milli: 820 url: "video-stats.video.google.com"
+DEBUG: 58832 820
+DEBUG: matched
+err
+User 2 caused an error
+0 min, 59 second
+User 5: milli: 278 url: "server.cpmstar.com"
+DEBUG: 59000 278
+DEBUG: matched
+ok
+ok
+1 min, 0 second
+User 27: milli: 390 url: "search.yahoo.com"
+DEBUG: 60000 390
+DEBUG: matched
+ok
+ok
+User 22: milli: 770 url: "amazon.com"
+DEBUG: 60199 770
+DEBUG: matched
+ok
+ok
+1 min, 1 second
+User 22: milli: 25 url: "pandora.com"
+DEBUG: 61000 25
+DEBUG: matched
+ok
+ok
+User 2: milli: 290 url: "youtube.com"
+DEBUG: 61447 290
+DEBUG: matched
+ok
+ok
+User 24: milli: 309 url: "ad.insightexpressai.com"
+DEBUG: 61605 309
+DEBUG: matched
+ok
+ok
+User 27: milli: 603 url: "lg15.com"
+DEBUG: 63058 603
+DEBUG: matched
+err
+User 27 caused an error
+User 20: milli: 781 url: "pfp.sina.com.cn"
+DEBUG: 63215 781
+DEBUG: matched
+ok
+User 13: milli: 881 url: "gdx.mlb.com"
+DEBUG: 79968 881
+DEBUG: matched
+ok
+ok

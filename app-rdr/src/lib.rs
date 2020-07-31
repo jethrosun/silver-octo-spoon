@@ -85,72 +85,93 @@ pub fn rdr_load_workload(
                 continue;
             } else if urls.unwrap()[1].as_str().unwrap().to_string() == "collegehumor.com" {
                 continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "talenthunter.com" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "naver.com" {
+                continue;
+            // millis.push((
+            //     urls.unwrap()[0].as_u64().unwrap(),
+            //     "www.naver.com".to_string(),
+            //     user,
+            // ));
             } else if urls.unwrap()[1].as_str().unwrap().to_string() == "blog.naver.com" {
+                // millis.push((
+                //     urls.unwrap()[0].as_u64().unwrap(),
+                //     "section.blog.naver.com".to_string(),
+                //     user,
+                // ));
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "mads.gamespot.com" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "cyworld.com" {
+                // millis.push((
+                //     urls.unwrap()[0].as_u64().unwrap(),
+                //     "cy.cyworld.com".to_string(),
+                //     user,
+                // ));
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string()
+                == "penciloflight.deviantart.com"
+            {
+                continue;
+            }
+            // work but block
+            else if urls.unwrap()[1].as_str().unwrap().to_string() == "grad2b.com" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "sports.sina.com.cn" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "diligogames.com" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
+                // millis.push((
+                //     urls.unwrap()[0].as_u64().unwrap(),
+                //     "www.llbean.com".to_string(),
+                //     user,
+                // ));
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "focusbaiduafp.allyes.com" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "gdx.mlb.com" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "pfp.sina.com.cn" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbs.20jh.net" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "kr.yahoo.com" {
+                continue;
                 millis.push((
                     urls.unwrap()[0].as_u64().unwrap(),
-                    "section.blog.naver.com".to_string(),
+                    "www.yahoo.com".to_string(),
                     user,
                 ));
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "limeusa.com" {
+                continue;
             } else if urls.unwrap()[1].as_str().unwrap().to_string() == "l.qq.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.qq.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "google.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "womenofyoutube.mevio.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "google.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.llbean.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.llbean.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.llbean.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.llbean.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.llbean.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.llbean.com".to_string(),
-                    user,
-                ));
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "llbean.com" {
-                millis.push((
-                    urls.unwrap()[0].as_u64().unwrap(),
-                    "www.llbean.com".to_string(),
-                    user,
-                ));
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string()
+                == "co101w.col101.mail.live.com"
+            {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "xp.trafficmp.com" {
+                continue;
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc" {
+                continue;
+                millis.push((urls.unwrap()[0].as_u64().unwrap(), "".to_string(), user));
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc" {
+                continue;
+                millis.push((urls.unwrap()[0].as_u64().unwrap(), "".to_string(), user));
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc" {
+                continue;
+                millis.push((urls.unwrap()[0].as_u64().unwrap(), "".to_string(), user));
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc" {
+                continue;
+                millis.push((urls.unwrap()[0].as_u64().unwrap(), "".to_string(), user));
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc" {
+                continue;
+                millis.push((urls.unwrap()[0].as_u64().unwrap(), "".to_string(), user));
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc" {
+                continue;
+                millis.push((urls.unwrap()[0].as_u64().unwrap(), "".to_string(), user));
             } else {
                 millis.push((
                     urls.unwrap()[0].as_u64().unwrap(),
@@ -224,19 +245,17 @@ pub fn user_browse(current_browser: &Browser, hostname: &String) -> Fallible<()>
     // tab.navigate_to(&https_hostname)?.wait_until_navigated()?;
     tab.navigate_to(&https_hostname)?;
 
-    // let html = match tab.wait_for_element("html") {
-    //     Ok(h) => {
-    //         println!("ok");
-    //         ()
-    //     }
-    //     Err(e) => {
-    //         eprintln!("Query failed: {:?}", e);
-    //         ()
-    //     }
-    // };
-    // Ok(html)
-
-    Ok(())
+    let html = match tab.wait_for_element("html") {
+        Ok(h) => {
+            println!("ok");
+            ()
+        }
+        Err(e) => {
+            eprintln!("Query failed: {:?}", e);
+            ()
+        }
+    };
+    Ok(html)
 }
 
 // pub fn browser_ctx_create() -> Fallible<Context<'static>> {
@@ -285,10 +304,8 @@ pub fn user_tab_browse(
             return Err((now.elapsed().as_micros(), e));
         }
     };
-
     // let _ = current_tab.navigate_to(&https_hostname)?;
     let result = match navigate_to.wait_until_navigated() {
-        // let result = match navigate_to {
         Ok(_) => Ok(now.elapsed().as_micros()),
         Err(e) => Err((now.elapsed().as_micros(), e)),
     };
@@ -346,14 +363,14 @@ pub fn rdr_scheduler(
 
     for (milli, url, user) in current_work.into_iter() {
         println!("User {:?}: milli: {:?} url: {:?}", user, milli, url);
-        // println!("DEBUG: {:?} {:?}", now.elapsed().as_millis(), milli);
+        println!("DEBUG: {:?} {:?}", now.elapsed().as_millis(), milli);
 
         if now.elapsed().as_millis() < milli as u128 {
-            // println!("DEBUG: waiting");
+            println!("DEBUG: waiting");
             let one_millis = Duration::from_millis(1);
             std::thread::sleep(one_millis);
         } else {
-            // println!("DEBUG: matched");
+            println!("DEBUG: matched");
             match user_browse(&browser_list[user], &url) {
                 Ok(elapsed) => {
                     println!("ok");
@@ -365,8 +382,8 @@ pub fn rdr_scheduler(
                     println!("err");
                     // *num_of_err += 1;
                     // elapsed_time.push(elapsed);
-                    println!("User {} caused an error", user,);
                     // println!("User {} caused an error: {:?}", user, e);
+                    println!("User {} caused an error", user,);
                 }
             }
         }
@@ -394,22 +411,22 @@ pub fn rdr_scheduler_ng(
 
     for (milli, url, user) in current_work.into_iter() {
         println!("User {:?}: milli: {:?} url: {:?}", user, milli, url);
-        // println!("DEBUG: {:?} {:?}", now.elapsed().as_millis(), milli);
+        println!("DEBUG: {:?} {:?}", now.elapsed().as_millis(), milli);
 
         if now.elapsed().as_millis() < milli as u128 {
-            // println!("DEBUG: waiting");
+            println!("DEBUG: waiting");
             let one_millis = Duration::from_millis(1);
             std::thread::sleep(one_millis);
         } else {
-            // println!("DEBUG: matched");
+            println!("DEBUG: matched");
             match user_tab_browse(&tab_list[user], &url) {
                 Ok(elapsed) => {
-                    // println!("ok");
+                    println!("ok");
                     // *num_of_ok += 1;
                     // elapsed_time.push(elapsed);
                 }
                 Err((elapsed, e)) => {
-                    // println!("err");
+                    println!("err");
                     // *num_of_err += 1;
                     // elapsed_time.push(elapsed);
                     println!("User {} caused an error: {:?}", user, e);

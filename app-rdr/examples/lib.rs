@@ -85,7 +85,7 @@ pub fn rdr_load_workload(
                 continue;
             } else if urls.unwrap()[1].as_str().unwrap().to_string() == "collegehumor.com" {
                 continue;
-            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
+            } else if urls.unwrap()[1].as_str().unwrap().to_string() == "talenthunter.com" {
                 continue;
             } else if urls.unwrap()[1].as_str().unwrap().to_string() == "bbc.co.uk" {
                 continue;
