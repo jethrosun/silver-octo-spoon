@@ -31,7 +31,7 @@ fn main() {
     let workload_path =
         "/home/jethros/dev/pvn/utils/workloads/rdr_pvn_workloads/rdr_pvn_workload_5.json";
 
-    let num_of_users = 30;
+    let num_of_users = 50;
     let num_of_secs = 600;
 
     let mut rdr_workload =
@@ -66,7 +66,7 @@ fn main() {
         if now.elapsed().as_secs() == pivot as u64 {
             let min = pivot / 60;
             let rest_sec = pivot % 60;
-            println!("{:?} min, {:?} second", min, rest_sec);
+            println!("\n{:?} min, {:?} second\n", min, rest_sec);
             match rdr_workload.remove(&pivot) {
                 Some(wd) => {
                     rdr_scheduler(
