@@ -190,11 +190,13 @@ pub fn rdr_load_workload(
 }
 
 pub fn browser_create() -> Fallible<Browser> {
-    let browser = Browser::new(
-        LaunchOptions::default_builder()
-            .build()
-            .expect("Could not find chrome-executable"),
-    )?;
+    let timeout = Duration::new(1000, 0);
+    let options = LaunchOptions::default_builder()
+        .headless(false)
+        .idle_browser_timeout(timeout)
+        .build()
+        .expect("Couldn't find appropriate Chrome binary.");
+    let browser = Browser::new(options)?;
     // let tab = browser.wait_for_initial_tab()?;
     // tab.set_default_timeout(std::time::Duration::from_secs(100));
 
@@ -207,9 +209,11 @@ pub fn user_browse(current_browser: &Browser, hostname: &String) -> Fallible<()>
     let now = Instant::now();
 
     println!("1");
-    let tab = current_browser.wait_for_initial_tab()?;
+    let tab = current_browser.new_tab()?;
 
-    let https_hostname = "https://".to_string() + &hostname;
+    // let https_hostname = "https://".to_string() + &hostname;
+    let https_hostname = "https://google.com".to_string();
+    println!("{:?}", https_hostname);
 
     // tab.navigate_to(&https_hostname)?.wait_until_navigated()?;
     println!("2");
@@ -229,6 +233,9 @@ pub fn user_browse(current_browser: &Browser, hostname: &String) -> Fallible<()>
             ()
         }
     };
+
+    tab.close_target();
+    println!("here");
     Ok(html)
 }
 
