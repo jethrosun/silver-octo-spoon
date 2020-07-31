@@ -52,7 +52,7 @@ fn main() {
         // let ctx = browser_ctx_create().unwrap();
         // ctx_list.push(ctx);
     }
-    println!("All browsers are created ",);
+    println!("{} browsers are created ", num_of_users);
 
     let mut pivot = 1 as usize;
 
@@ -66,7 +66,7 @@ fn main() {
         if now.elapsed().as_secs() == pivot as u64 {
             let min = pivot / 60;
             let rest_sec = pivot % 60;
-            println!("\n{:?} min, {:?} second\n", min, rest_sec);
+            println!("\n{:?} min, {:?} second", min, rest_sec);
             match rdr_workload.remove(&pivot) {
                 Some(wd) => {
                     rdr_scheduler(

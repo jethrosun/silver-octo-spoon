@@ -196,10 +196,10 @@ pub fn browser_create() -> Fallible<Browser> {
     let timeout = Duration::new(1000, 0);
 
     let driver_path = PathBuf::from(r"/usr/bin/chromium-browser");
+    // .path(Some(driver_path)) //
 
     let options = LaunchOptions::default_builder()
         .headless(true)
-        .path(Some(driver_path)) //
         .idle_browser_timeout(timeout)
         .build()
         .expect("Couldn't find appropriate Chrome binary.");
