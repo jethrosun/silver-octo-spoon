@@ -218,8 +218,8 @@ pub fn user_browse(current_browser: &Browser, hostname: &String) -> Fallible<()>
     println!("1");
     let tab = current_browser.new_tab()?;
 
-    // let https_hostname = "https://".to_string() + &hostname;
-    let https_hostname = "https://google.com".to_string();
+    let https_hostname = "https://".to_string() + &hostname;
+    // let https_hostname = "https://google.com".to_string();
     println!("{:?}", https_hostname);
 
     // tab.navigate_to(&https_hostname)?.wait_until_navigated()?;
@@ -229,21 +229,23 @@ pub fn user_browse(current_browser: &Browser, hostname: &String) -> Fallible<()>
     // println!("3");
     // tab.wait_until_navigated()?;
 
-    println!("4");
-    let html = match tab.wait_for_element("html") {
-        Ok(h) => {
-            println!("html ok");
-            ()
-        }
-        Err(e) => {
-            println!("Query failed: {:?}", e);
-            ()
-        }
-    };
+    // println!("4");
+    // let html = match tab.wait_for_element("html") {
+    //     Ok(h) => {
+    //         println!("html ok");
+    //         ()
+    //     }
+    //     Err(e) => {
+    //         println!("Query failed: {:?}", e);
+    //         ()
+    //     }
+    // };
 
-    tab.close_target();
-    println!("here");
-    Ok(html)
+    // tab.close_target();
+    // println!("here");
+    // Ok(html)
+
+    Ok(())
 }
 
 // pub fn browser_ctx_create() -> Fallible<Context<'static>> {
