@@ -1,0 +1,11 @@
+[package]
+name = "rand_seed"
+version = "0.1.0"
+authors = ["Shuwen Jethro Sun <jethro.rules@real.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde_json = "*"
+failure = "*"
